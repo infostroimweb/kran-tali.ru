@@ -1,0 +1,9 @@
+[user]
+	email = kran-tali.ru@yandex.ru
+	name = krantali
+[remote "origin"]
+	url = git@github.com:infostroimweb/kran-tali.ru.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
