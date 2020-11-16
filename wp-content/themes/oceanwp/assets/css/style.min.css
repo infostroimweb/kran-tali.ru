@@ -413,12 +413,12 @@ form.wpcf7-form {
 	height: 9px;
 }
 
-@media (min-width: 1201px) {
+/*@media (min-width: 1201px) {
 	.inner-main .elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated {
 		padding-left: 0;
 		padding-right: 0;
 	}
-}
+}*/
 
 .elementor-255 .elementor-element.elementor-element-e95a7ce > .elementor-widget-container {
     margin: 0!important;

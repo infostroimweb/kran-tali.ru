@@ -44,6 +44,7 @@
  				<?php do_action( 'ocean_page_header' ); ?>
 
  				<?php if (is_front_page()): ?>
+ 					<script src="/wp-content/themes/oceanwp/assets/js/slick.min.js"></script>
  					<div id="main-page-top">
  						<div class="container">
  							<h1>Грузоподъемное оборудование<br>любой сложности</h1>
@@ -53,14 +54,28 @@
  								<span>ОСТАВЬТЕ ЗАЯВКУ</span>
  							</a>
  						</div>
+ 						<div class="main-page-top-bg">
+ 							<div style="background: url('/wp-content/themes/oceanwp/partials/new-header/img/1.jpg') 50% no-repeat; background-size: cover;"></div>
+ 							<div style="background: url('/wp-content/themes/oceanwp/partials/new-header/img/2.jpg') 50% no-repeat; background-size: cover;"></div>
+ 							<div style="background: url('/wp-content/themes/oceanwp/partials/new-header/img/3.jpg') 50% no-repeat; background-size: cover;"></div>
+ 						</div>
  					</div>
+ 					<script>jQuery('.main-page-top-bg').slick({
+ 						autoplay: true,
+ 						autoplaySpeed: 4000,
+ 						arrows: false,
+ 						fade: true,
+ 						speed: 1000
+ 					})</script>
 				<?php else: ?>
 					<div class="container">
 						<?php the_breadcrumb(); ?>
 						<div class="inner-heading">
 							<h1><?php 
-							if (is_single()) {
-								the_title(); 
+							if (is_page()) {
+								echo $post->post_title;
+							} elseif(is_single()) {
+								the_title();
 							} elseif(is_category()) {
 								single_cat_title();
 							} 							
