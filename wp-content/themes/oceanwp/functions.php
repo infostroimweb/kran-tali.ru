@@ -1023,8 +1023,12 @@ new OCEANWP_Theme_Class;
 
 
 
-function the_breadcrumb( $sep = ' &raquo; ', $l10n = array(), $args = array() ){
+function the_breadcrumb( $sep = '', $l10n = array(), $args = array() ){
 	$kb = new Kama_Breadcrumbs;
+	$svg_arrow = '<svg viewBox="0 0 13 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0.70909 3.71209C1.1007 3.71209 10.579 3.71209 10.579 3.71209L8.24406 1.37711C7.96714 1.10023 7.96714 0.651237 8.24406 0.374313C8.52094 0.0974375 8.96994 0.0974375 9.24686 0.374313L12.7923 3.91976C13.0692 4.19664 13.0692 4.64563 12.7923 4.92256L9.24686 8.468C9.10835 8.60647 8.92692 8.67572 8.74544 8.67572C8.56396 8.67572 8.38248 8.60647 8.24406 8.468C7.96714 8.19113 7.96714 7.74213 8.24406 7.46521L10.579 5.13027H0.70909C0.317483 5.13027 0 4.81279 0 4.42118C0 4.02958 0.317483 3.71209 0.70909 3.71209Z"/></svg>';
+	if ($sep == '') {
+		$sep = $svg_arrow;
+	}
 	echo $kb->get_crumbs( $sep, $l10n, $args );
 }
 
@@ -1091,7 +1095,7 @@ class Kama_Breadcrumbs {
 		$loc = (object) array_merge( apply_filters('kama_breadcrumbs_default_loc', self::$l10n ), $l10n );
 		$arg = (object) array_merge( apply_filters('kama_breadcrumbs_default_args', self::$args ), $args );
 
-		$arg->sep = '<span class="kb_sep">'. $arg->sep .'</span>'; // дополним
+		$arg->sep = '<em class="kb_sep">'. $arg->sep .'</em>'; // дополним
 
 		// упростим
 		$sep = & $arg->sep;

@@ -79,5 +79,20 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 		});
 	});
 </script>
+
+<script>
+    jQuery(document).ready( ($) => {
+        $('.new-header-mob-btn').on('click', () => {
+            $('#new-header .menu-menu-container').slideToggle()
+        })
+
+        $('.new-header-menu > .menu-item-has-children > a').on('click', function(e) {
+            e.preventDefault()
+            if(document.body.clientWidth <= 1024) {
+                $(this).next().slideToggle()
+            }            
+        })
+    })
+</script>
 </body>
 </html>

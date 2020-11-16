@@ -1,0 +1,118 @@
+.noneModal {
+	display:none;
+}
+
+
+.styleModalWrap {
+	display:table;
+	height:100%;
+	margin:0 auto;
+}
+
+.styleModalIn > * {
+	display:inline-block;
+}
+
+.styleModalPage {
+	background: #fff;
+	position:relative;
+	z-index:4;
+	width:600px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+	margin: 50px 0;
+}
+
+.styleModalPage button {
+	cursor:pointer;
+}
+
+.styleClose {
+    display: block;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    width: 25px;
+    height: 25px;
+    font-size: 0px;
+    cursor: pointer;
+}
+
+
+.styleModalBody {
+	padding: 30px;
+}
+
+body.overflow {
+	overflow: hidden;
+}
+
+body.noscroll .section {
+	padding-right: 17px;
+}
+
+@media only screen and (max-width: 700px) {
+	.styleModalPage {
+		width:400px;
+	}
+}
+@media (max-width: 600px) {
+	.bottom-region-input-wrap {
+		display: block;
+	}
+
+	.wpcf7-form-control-wrap {
+		display: block;
+	}
+
+	form.wpcf7-form input:not([type="submit"]), form.wpcf7-form textarea {
+		margin-right: 0;
+	}
+
+	.wpcf7-form-control-wrap:not(:last-child) {
+		margin-bottom: 12px;
+	}
+
+	form.wpcf7-form .form-help input:not([type="submit"]) {
+		border: solid 1px #ffba00;
+	}
+
+	.form-help input.wpcf7-form-control.wpcf7-submit {
+		padding: 19px 20px;
+	}
+
+	.top-region {
+		display: block;
+	}
+
+	.top-region-span:first-child {
+		justify-content: center;
+		margin-bottom: 16px;
+	}
+	.styleClose {
+		background-color: #ffba00;
+		right: 0px;
+		top: -15px;
+		width: 30px;
+		height: 30px;
+	}
+}
+@media only screen and (max-width: 450px) {
+	.styleModalPage {
+		width:100%;
+	}
+}
+
+.captcha>div {
+	margin: 0 auto;
+}
+
+.styleModalBody.error,
+.styleModalBody.oki {
+	background-image: none;
+	font-size: 18px;
+	color: #f00;
+}
+
+.styleModalBody.oki {
+	color: green;
+}
