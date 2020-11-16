@@ -1,2 +1,4 @@
 wp-content/cache/*
 wp-content/ai1wm-backups/*
+wp-config.php
+robots.txt
