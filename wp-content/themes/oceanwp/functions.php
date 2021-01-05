@@ -1651,4 +1651,3 @@ document.addEventListener( 'wpcf7mailfailed', function( event ) {
 <?php
 }
 
-

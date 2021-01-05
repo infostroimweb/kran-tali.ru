@@ -1,6 +1,10 @@
 <?php
 	class CdnWPFC{
 		public static function cloudflare_clear_cache($email = false, $key = false, $zoneid = false){
+			if(isset($GLOBALS["wpfc_cloudflare_purge_cache_executed"])){
+				return;
+			}
+
 			if(!$email && !$key && !$zoneid){
 				if($cdn_values = get_option("WpFastestCacheCDN")){
 					$std_obj = json_decode($cdn_values);
@@ -34,6 +38,18 @@
 								);
 
 				$response = wp_remote_request('https://api.cloudflare.com/client/v4/zones/'.$zoneid.'/purge_cache', $header);
+
+				if(!$response || is_wp_error($response)){
+					return array("success" => false, "error_message" => "Unable to disable rocket loader option");
+				}else{
+					$body = json_decode(wp_remote_retrieve_body($response));
+
+					if(!$body->success){
+						CdnWPFC::cloudflare_delete_zone_id_value();
+					}else{
+						$GLOBALS["wpfc_cloudflare_purge_cache_executed"] = true;
+					}
+				}
 			}
 		}
 
@@ -137,8 +153,19 @@
 		}
 
 		public static function cloudflare_get_zone_id($email = false, $key = false){
+			$cache_zone_id = CdnWPFC::cloudflare_get_zone_id_value();
+
+			if($cache_zone_id){
+				return $cache_zone_id;
+			}
+
+
 			$hostname = preg_replace("/^(https?\:\/\/)?(www\d*\.)?/", "", $_SERVER["HTTP_HOST"]);
 
+			if(function_exists("idn_to_utf8")){
+				$hostname = idn_to_utf8($hostname);
+			}
+			
 			$header = array("method" => "GET",
 							'headers' => array(
 											"X-Auth-Email" => $email,
@@ -159,6 +186,10 @@
 
 				if(isset($zone->errors) && isset($zone->errors[0])){
 					$res = array("success" => false, "error_message" => $zone->errors[0]->message);
+
+					if(isset($zone->errors[0]->error_chain) && isset($zone->errors[0]->error_chain[0])){
+						$res = array("success" => false, "error_message" => $zone->errors[0]->error_chain[0]->message);
+					}
 				}else{
 					if(isset($zone->result) && isset($zone->result[0])){
 						foreach ($zone->result as $zone_key => $zone_value) {
@@ -166,6 +197,8 @@
 								$res = array("success" => true, 
 											 "zoneid" => $zone_value->id,
 											 "plan" => $zone_value->plan->legacy_id);
+
+								CdnWPFC::cloudflare_save_zone_id_value($res);
 							}
 						}
 
@@ -179,6 +212,58 @@
 			}
 
 			return $res;
+		}
+
+		public static function cloudflare_get_zone_id_value(){
+			if($data = get_option("WpFastestCacheCDN")){
+				$arr = json_decode($data);
+
+				if(is_array($arr)){
+					foreach ($arr as $cdn_key => $cdn_value) {
+						if($cdn_value->id == "cloudflare"){
+							return unserialize($cdn_value->zone_id);
+						}
+					}
+				}	
+			}
+
+			return false;
+		}
+
+		public static function cloudflare_delete_zone_id_value(){
+			if($data = get_option("WpFastestCacheCDN")){
+				$arr = json_decode($data);
+
+				if(is_array($arr)){
+					foreach ($arr as $cdn_key => $cdn_value) {
+						if($cdn_value->id == "cloudflare"){
+							if(isset($cdn_value->zone_id)){
+								unset($cdn_value->zone_id);
+							}
+						}
+					}
+
+					update_option("WpFastestCacheCDN", json_encode($arr));
+				}
+			}
+		}
+
+		public static function cloudflare_save_zone_id_value($value){
+			if($data = get_option("WpFastestCacheCDN")){
+				$arr = json_decode($data);
+
+				if(is_array($arr)){
+					foreach ($arr as $cdn_key => &$cdn_value) {
+						if($cdn_value->id == "cloudflare"){
+							$value["time"] = time();
+							$cdn_value->zone_id = serialize($value);
+
+						}
+					}
+					
+					update_option("WpFastestCacheCDN", json_encode($arr));
+				}	
+			}
 		}
 
 		public static function cloudflare_remove_webp(){

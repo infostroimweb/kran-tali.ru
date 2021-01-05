@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) or die( 'Please don&rsquo;t call the plugin directly. Thanks :)' );
 
-//XML
+//XML Index sitemaps
 
 //Headers
 if (function_exists('seopress_sitemaps_headers')) {
@@ -15,8 +15,8 @@ add_filter( 'seopress_sitemaps_index_cpt_query', function( $args ) {
     global $sitepress, $sitepress_settings;
 
     $sitepress_settings['auto_adjust_ids'] = 0;
-    remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ) );
-    remove_filter( 'category_link', array( $sitepress, 'category_link_adjust_id' ), 1 );
+    remove_filter( 'terms_clauses', [ $sitepress, 'terms_clauses' ] );
+    remove_filter( 'category_link', [ $sitepress, 'category_link_adjust_id' ], 1 );
 
     return $args;
 });
@@ -25,7 +25,7 @@ add_action( 'the_post', function( $post ) {
 	$language = apply_filters(
 		'wpml_element_language_code',
 		null,
-		array( 'element_id' => $post->ID, 'element_type' => 'page' )
+		[ 'element_id' => $post->ID, 'element_type' => 'page' ]
 	);
 	do_action( 'wpml_switch_language', $language );
 });
@@ -35,7 +35,9 @@ function seopress_xml_sitemap_index() {
 	
 	if (function_exists('pll_home_url')) {
         $home_url = site_url().'/';
-    }
+	}
+	
+	$home_url = apply_filters( 'seopress_sitemaps_home_url', $home_url );
 
 	$seopress_sitemaps ='<?xml version="1.0" encoding="UTF-8"?>';
 	$seopress_sitemaps .='<?xml-stylesheet type="text/xsl" href="'.$home_url.'sitemaps_xsl.xsl"?>';
@@ -47,23 +49,39 @@ function seopress_xml_sitemap_index() {
 		foreach (seopress_xml_sitemap_post_types_list_option() as $cpt_key => $cpt_value) {
 			foreach ($cpt_value as $_cpt_key => $_cpt_value) {
 				if($_cpt_value =='1') {
-
-					//Polylang
-					
-						$count_posts = wp_count_posts($cpt_key);
-					
+					$args = [ 
+						'posts_per_page' => -1, 
+						'post_type' => $cpt_key, 
+						'post_status' => 'publish', 
+						'meta_query' => 
+						[
+							'relation' => 'OR',
+							[
+								'key' => '_seopress_robots_index', 
+								'value' => '', 
+								'compare' => 'NOT EXISTS' 
+							],
+							[
+								'key' => '_seopress_robots_index', 
+								'value' => 'yes', 
+								'compare' => '!=' 
+							],
+						],
+						'fields' => 'ids', 
+						'lang' => '', 
+						'has_password' => false 
+					];
+				
+					$args = apply_filters('seopress_sitemaps_index_post_types_query', $args, $cpt_key);
+				
+					$count_posts = count(get_posts( $args ));
 
 					//Max posts per paginated sitemap
 					$max = 1000;
 					$max = apply_filters('seopress_sitemaps_max_posts_per_sitemap', $max);
-
-					$published_posts = '';
-					if (isset($count_posts->publish)) {
-						$published_posts = $count_posts->publish;
-					}
-
-					if ($published_posts >= $max) {
-						$max_loop = $published_posts / $max;
+					
+					if ($count_posts >= $max) {
+						$max_loop = $count_posts / $max;
 					} else {
 						$max_loop = 1;
 					}
@@ -84,44 +102,57 @@ function seopress_xml_sitemap_index() {
 							$paged = 1;
 						}
 
-						$args = [
-							'post_type' => $cpt_key, 
-							'offset' => $offset, 
-							'post_status' => 'publish', 
-							'ignore_sticky_posts' => true, 
-							'posts_per_page' => 1, 
-							'meta_query' => [
-								[
-									'key' => '_seopress_robots_index', 
-									'value' => 'yes', 
-									'compare' => 'NOT EXISTS'
-								]
-							], 
-							'order' => 'DESC', 
-							'orderby' => 'modified', 
-							'lang' => '', 
-							'has_password' => false, 
-							'suppress_filters' => true
-						];
-						
-						$args = apply_filters('seopress_sitemaps_index_cpt_query', $args, $cpt_key);
+						$seopress_sitemaps .= "\n";
+						$seopress_sitemaps .= '<sitemap>';
+						$seopress_sitemaps .= "\n";
+						$seopress_sitemaps .= '<loc>';
+						$seopress_sitemaps .= $home_url.'sitemaps/'.$cpt_key.'-sitemap'.$paged.'.xml';
+						$seopress_sitemaps .= '</loc>';
+						$seopress_sitemaps .= "\n";
 
-						$get_latest_post = new WP_Query($args);
+						//Remove lastmod column in index sitemap for lage sitemap
+						$display_lastmod = apply_filters( 'seopress_sitemaps_index_lastmod', false );
 
-					    if($get_latest_post->have_posts()){
-							$seopress_sitemaps .= "\n";
-							$seopress_sitemaps .= '<sitemap>';
-							$seopress_sitemaps .= "\n";
-							$seopress_sitemaps .= '<loc>';
-							$seopress_sitemaps .= $home_url.'sitemaps/'.$cpt_key.'-sitemap'.$paged.'.xml';
-							$seopress_sitemaps .= '</loc>';
-					    	$seopress_sitemaps .= "\n";
-							$seopress_sitemaps .= '<lastmod>';
-					        $seopress_sitemaps .= date("c", strtotime($get_latest_post->posts[0]->post_modified));
-					        $seopress_sitemaps .= '</lastmod>';
-							$seopress_sitemaps .= "\n";
-							$seopress_sitemaps .= '</sitemap>';
+						if ($display_lastmod == true) { 
+							$args = [
+								'post_type' 			=> $cpt_key, 
+								'offset' 				=> $offset, 
+								'post_status' 			=> 'publish', 
+								'ignore_sticky_posts' 	=> true, 
+								'posts_per_page' 		=> 1,
+								'meta_query' => 
+									[
+										'relation' => 'OR',
+										[
+											'key' => '_seopress_robots_index', 
+											'value' => '', 
+											'compare' => 'NOT EXISTS' 
+										],
+										[
+											'key' => '_seopress_robots_index', 
+											'value' => 'yes', 
+											'compare' => '!=' 
+										],
+									],
+								'order' 				=> 'DESC', 
+								'orderby' 				=> 'modified', 
+								'lang' 					=> '', 
+								'has_password' 			=> false,
+							];
+
+							$args = apply_filters('seopress_sitemaps_index_cpt_query', $args, $cpt_key);
+
+							$get_latest_post = new WP_Query($args);
+
+							if($get_latest_post->have_posts()){
+								$seopress_sitemaps .= '<lastmod>';
+								$seopress_sitemaps .= date("c", strtotime($get_latest_post->posts[0]->post_modified));
+								$seopress_sitemaps .= '</lastmod>';
+								$seopress_sitemaps .= "\n";
+							}
 						}
+
+						$seopress_sitemaps .= '</sitemap>';
 					}
 				}
 			}
@@ -131,33 +162,71 @@ function seopress_xml_sitemap_index() {
 	//Taxonomies
 	if (seopress_xml_sitemap_taxonomies_list_option() !='') {
 		//Init
-		$seopress_xml_terms_list = array();
+		$seopress_xml_terms_list = [];
 		foreach (seopress_xml_sitemap_taxonomies_list_option() as $tax_key => $tax_value) {
 			foreach ($tax_value as $_tax_key => $_tax_value) {
 				if($_tax_value =='1') {
-					$seopress_xml_terms_list[] .= $tax_key;
+					$args = [
+						'taxonomy' => $tax_key,
+						'hide_empty' => false,
+						'lang' => '',
+						'fields' => 'ids',
+						'meta_query' => 
+						[
+							'relation' => 'OR',
+							[
+								'key' => '_seopress_robots_index', 
+								'value' => '', 
+								'compare' => 'NOT EXISTS' 
+							],
+							[
+								'key' => '_seopress_robots_index', 
+								'value' => 'yes', 
+								'compare' => '!=' 
+							],
+						],
+					];
+
+					$args = apply_filters('seopress_sitemaps_index_tax_query', $args, $tax_key);
+
+					$count_terms = count(get_terms( $args ));
+					
+					//Max terms per paginated sitemap
+					$max = 1000;
+					$max = apply_filters('seopress_sitemaps_max_terms_per_sitemap', $max);
+
+					if ($count_terms >= $max) {
+						$max_loop = $count_terms / $max;
+					} else {
+						$max_loop = 1;
+					}
+
+					$paged ='';
+					$i = '';
+					for ($i=0; $i < $max_loop ; $i++) {
+
+						if (isset($offset) && absint($offset) && $offset !='' && $offset !=0) {
+							$offset = ((($i)*$max));
+						} else {
+							$offset = 0;
+						}
+
+						if ($i >= 1 && $i <= $max_loop) {
+							$paged = $i+1;
+						} else {
+							$paged = 1;
+						}
+
+						$seopress_sitemaps .= "\n";
+						$seopress_sitemaps .= '<sitemap>';
+						$seopress_sitemaps .= "\n";
+						$seopress_sitemaps .= '<loc>';
+						$seopress_sitemaps .= $home_url.'sitemaps/'.$tax_key.'-sitemap'.$paged.'.xml';
+						$seopress_sitemaps .= '</loc>';
+						$seopress_sitemaps .= "\n";
+						$seopress_sitemaps .= '</sitemap>';
+					}
 				}
-			}
-		}
-		foreach ($seopress_xml_terms_list as $term_value) {
-			$args = [
-			    'taxonomy' => $term_value,
-			    'hide_empty' => false,
-			    'lang' => ''
-			];
-			$args = apply_filters('seopress_sitemaps_index_tax_query', $args, $term_value);
-			
-			$terms = get_terms($args);
-			
-			if (!empty($terms)) {
-				$seopress_sitemaps .= "\n";
-				$seopress_sitemaps .= '<sitemap>';
-				$seopress_sitemaps .= "\n";
-				$seopress_sitemaps .= '<loc>';
-				$seopress_sitemaps .= $home_url.'sitemaps/'.$term_value.'-sitemap.xml';
-				$seopress_sitemaps .= '</loc>';
-				$seopress_sitemaps .= "\n";
-				$seopress_sitemaps .= '</sitemap>';
 			}
 		}
 	}
@@ -177,7 +246,7 @@ function seopress_xml_sitemap_index() {
 		    }
 		}
 		if (seopress_xml_sitemap_news_cpt_option() !='') {
-			$seopress_xml_sitemap_news_cpt_array = array();
+			$seopress_xml_sitemap_news_cpt_array = [];
 		    foreach (seopress_xml_sitemap_news_cpt_option() as $cpt_key => $cpt_value) {
 		        foreach ($cpt_value as $_cpt_key => $_cpt_value) {
 		            if($_cpt_value =='1') {
@@ -193,7 +262,7 @@ function seopress_xml_sitemap_index() {
 			'ignore_sticky_posts' => true, 
 			'posts_per_page' => 1, 
 			'orderby' => 'modified', 
-			'meta_query' => [ 
+			'meta_query' => [
 				[
 					'key' => '_seopress_robots_index', 
 					'value' => 'yes', 
@@ -226,14 +295,100 @@ function seopress_xml_sitemap_index() {
 
 	//Video sitemap
 	if (function_exists("seopress_xml_sitemap_video_enable_option") && seopress_xml_sitemap_video_enable_option() !='') {
-		$seopress_sitemaps .= "\n";
-		$seopress_sitemaps .= '<sitemap>';
-		$seopress_sitemaps .= "\n";
-		$seopress_sitemaps .= '<loc>';
-		$seopress_sitemaps .= $home_url.'sitemaps/video.xml';
-		$seopress_sitemaps .= '</loc>';
-		$seopress_sitemaps .= "\n";
-		$seopress_sitemaps .= '</sitemap>';
+		if (seopress_xml_sitemap_post_types_list_option() !='') {
+			$cpt = [];
+			foreach (seopress_xml_sitemap_post_types_list_option() as $cpt_key => $cpt_value) {
+				foreach ($cpt_value as $_cpt_key => $_cpt_value) {
+					if($_cpt_value =='1') {
+						$cpt[] = $cpt_key;
+					}
+				}
+			}
+		}
+		
+		$args = [
+			'post_type' => $cpt,
+			'post_status' => 'publish',
+			'ignore_sticky_posts' => true,
+			'posts_per_page' => -1,
+			'meta_query' => [
+				'relation' => 'AND',
+				[
+					'relation' => 'OR',
+					[
+						'key' => '_seopress_robots_index',
+						'value' => '',
+						'compare' => 'NOT EXISTS'
+					],
+					[
+						'key' => '_seopress_robots_index',
+						'value' => 'yes',
+						'compare' => '!='
+					],
+				],
+				[
+					'relation' => 'OR',
+					[
+						'key' => '_seopress_video_disabled',
+						'value' => '',
+						'compare' => 'NOT EXISTS'
+					],
+					[
+						'key' => '_seopress_video_disabled',
+						'value' => 'yes',
+						'compare' => '!='
+					],
+				],
+				[
+					'key' => '_seopress_video',
+					'compare' => 'EXISTS'
+				]
+			],
+			'lang' => '',
+			'has_password' => false,
+			'fields' => 'ids',
+		];
+		
+		$args = apply_filters('seopress_sitemaps_index_video_query', $args, $cpt_key);
+
+		$count_posts = count(get_posts( $args ));
+
+
+		//Max posts per paginated sitemap
+		$max = 1000;
+		$max = apply_filters('seopress_sitemaps_max_videos_per_sitemap', $max);
+
+		if ($count_posts >= $max) {
+			$max_loop = $count_posts / $max;
+		} else {
+			$max_loop = 1;
+		}
+
+		$paged ='';
+		$i = '';
+		for ($i=0; $i < $max_loop ; $i++) {
+
+			if (isset($offset) && absint($offset) && $offset !='' && $offset !=0) {
+				$offset = ((($i)*$max));
+			} else {
+				$offset = 0;
+			}
+
+			if ($i >= 1 && $i <= $max_loop) {
+				$paged = $i+1;
+			} else {
+				$paged = 1;
+			}
+
+			$seopress_sitemaps .= "\n";
+			$seopress_sitemaps .= '<sitemap>';
+			$seopress_sitemaps .= "\n";
+			$seopress_sitemaps .= '<loc>';
+			$seopress_sitemaps .= $home_url.'sitemaps/video'.$paged.'.xml';
+			$seopress_sitemaps .= '</loc>';
+			$seopress_sitemaps .= "\n";
+			$seopress_sitemaps .= '</sitemap>';
+		}
 	}
 
 	//Author sitemap

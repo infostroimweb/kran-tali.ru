@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 	}).trigger('change');
 	
 	//Import from SEO plugins
-	const seo_plugins = ["yoast","aio","seo-framework","rk","squirrly","seo-ultimate","wp-meta-seo","premium-seo-pack","metadata"]
+	const seo_plugins = ["yoast","aio","seo-framework","rk","squirrly","seo-ultimate","wp-meta-seo","premium-seo-pack","wpseo","metadata"]
 	seo_plugins.forEach(function (item) {
 		$('#seopress-'+item+'-migrate').on('click', function(e) {
 			e.preventDefault();
@@ -69,6 +69,11 @@ jQuery(document).ready(function($) {
 					action = 'seopress_premium_seo_pack_migration';
 					_ajax_nonce = seopressAjaxMigrate.seopress_premium_seo_pack_migrate.seopress_nonce;
 					break;
+				case 'seopress-wpseo-migrate':
+					url = seopressAjaxMigrate.seopress_wpseo_migrate.seopress_wpseo_migration;
+					action = 'seopress_wpseo_migration';
+					_ajax_nonce = seopressAjaxMigrate.seopress_wpseo_migrate.seopress_nonce;
+					break;
 				case 'seopress-metadata-migrate':
 					url = seopressAjaxMigrate.seopress_metadata_csv.seopress_metadata_export;
 					action = 'seopress_metadata_export';
@@ -79,7 +84,7 @@ jQuery(document).ready(function($) {
 			self.process_offset( 0, self, url, action, _ajax_nonce, id );
 		});
 
-		process_offset = function( offset, self, url, action, _ajax_nonce, id ) {
+		process_offset = function( offset, self, url, action, _ajax_nonce, id, post_export, term_export ) {
 
 			i18n = seopressAjaxMigrate.i18n.migration;
 			if (id =='metadata') {
@@ -91,6 +96,8 @@ jQuery(document).ready(function($) {
 				data : {
 					action: action,
 					offset: offset,
+					post_export : post_export,
+					term_export : term_export,
 					_ajax_nonce: _ajax_nonce,
 				},
 				success : function( data ) {
@@ -103,7 +110,7 @@ jQuery(document).ready(function($) {
 							$(location).attr('href',data.data.url);
 						}
 					} else {
-						self.process_offset( parseInt( data.data.offset ), self, url, action, _ajax_nonce, id );
+						self.process_offset( parseInt( data.data.offset ), self, url, action, _ajax_nonce, id, data.data.post_export, data.data.term_export );
 					}
 				},
 			});

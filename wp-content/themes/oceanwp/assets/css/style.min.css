@@ -428,3 +428,55 @@ form.wpcf7-form {
 .elementor-255 .elementor-element.elementor-element-613451a > .elementor-widget-container {
     padding: 0!important;
 }
+
+.yarpp-related.yarpp-related-krantali {
+	padding: 50px 0;
+}
+
+.yarpp-related.yarpp-related-krantali h3 {
+	font-size: 30px;
+	font-family: Oswald, sans-serif;
+	color: #54595f;
+	text-transform: none;
+	margin-bottom: 15px;
+}
+
+.yarpp-related-krantali .yarpp-thumbnails-horizontal {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 20px;
+}
+
+.yarpp-related-krantali .yarpp-thumbnails-horizontal .yarpp-thumbnail {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 210px 15px 15px;
+}
+
+.yarpp-related-krantali .yarpp-thumbnails-horizontal .yarpp-thumbnail img {
+	position: absolute;
+	display: block;
+	width: auto;
+	max-width: calc(100% - 30px);
+	height: 185px;
+	top: 15px;
+	left: 15px;
+	object-fit: contain;
+	margin: 0 auto;
+}
+
+.yarpp-related-krantali .yarpp-thumbnails-horizontal .yarpp-thumbnail-title {
+	display: block;
+	margin: 0;
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
+}
+
+
+.yarpp-related.yarpp-related-krantali .entry-title {
+	border-bottom: none;
+}

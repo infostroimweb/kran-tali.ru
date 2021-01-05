@@ -76,6 +76,9 @@
 
 .entries .blog-entry.post .blog-entry-header .entry-title {
 	text-align: center;
+	font-family: Oswald, sans-serif;
+    color: #54595f;
+    line-height: 1.3;
 }
 
 .entries .blog-entry.post .blog-entry-header .entry-title a {

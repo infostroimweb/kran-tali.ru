@@ -44,6 +44,7 @@ function seopress_redirections_value($seopress_redirections_value) {
 	}
 }
 
+
 if ( $pagenow =='term.php' || $pagenow =='edit-tags.php') {
 	echo '
 		<tr id="term-seopress" class="form-field">
@@ -53,6 +54,7 @@ if ( $pagenow =='term.php' || $pagenow =='edit-tags.php') {
 					<div class="inside">';
 }
 
+
 echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'" data_tax="'.$data_tax.'">';
 		
 		if ("seopress_404" != $typenow) {
@@ -60,7 +62,7 @@ echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'
 			$seo_tabs['advanced-tab'] = '<li><a href="#tabs-2"><span class="dashicons dashicons-admin-generic"></span>'. __( 'Advanced', 'wp-seopress' ) .'<span id="sp-advanced-alert"></span></a></li>';
 			$seo_tabs['social-tab'] = '<li><a href="#tabs-3"><span class="dashicons dashicons-share"></span>'. __( 'Social', 'wp-seopress' ) .'</a></li>';
 		}
-	   
+
 		$seo_tabs['redirect-tab'] = '<li><a href="#tabs-4"><span class="dashicons dashicons-admin-links"></span>'. __( 'Redirection', 'wp-seopress' ) .'</a></li>';
 		
 		if (is_plugin_active( 'wp-seopress-pro/seopress-pro.php' )) {
@@ -119,13 +121,18 @@ echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'
 							'.__(' (maximum recommended limit)','wp-seopress').'
 						</div>
 						
-						<div class="wrap-tags">
-							<span id="seopress-tag-single-title" data-tag="%%post_title%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Post Title','wp-seopress').'</span>
-
-							<span id="seopress-tag-single-site-title" data-tag="%%sitetitle%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Site Title','wp-seopress').'</span>
-
-							<span id="seopress-tag-single-sep" data-tag="%%sep%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Separator','wp-seopress').'</span>
-						</div>
+						<div class="wrap-tags">';
+						if ( $pagenow =='term.php' || $pagenow =='edit-tags.php') {
+							echo '<span id="seopress-tag-single-title" data-tag="%%term_title%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Term Title','wp-seopress').'</span>';
+						} else {
+							echo '<span id="seopress-tag-single-title" data-tag="%%post_title%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Post Title','wp-seopress').'</span>';
+						}
+						echo '<span id="seopress-tag-single-site-title" data-tag="%%sitetitle%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Site Title','wp-seopress').'</span>
+							<span id="seopress-tag-single-sep" data-tag="%%sep%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Separator','wp-seopress').'</span>';
+							
+							echo seopress_render_dyn_variables("tag-title");
+	
+						echo '</div>
 
 						<p style="margin-bottom:0">
 							<label for="seopress_titles_desc_meta">'
@@ -142,17 +149,15 @@ echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'
 							<strong>'.__(' / 940 pixels - ','wp-seopress').'</strong>
 							<div id="seopress_titles_desc_counters"></div>
 							'.__(' (maximum recommended limit)','wp-seopress').'
-						</div>';
+						</div>
+						<div class="wrap-tags">';
 						if ( $pagenow =='term.php' || $pagenow =='edit-tags.php') {
-							echo '<div class="wrap-tags">
-								<span id="seopress-tag-single-excerpt" data-tag="%%_category_description%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Category / term description','wp-seopress').'</span>
-							</div>';
+							echo '<span id="seopress-tag-single-excerpt" data-tag="%%_category_description%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Category / term description','wp-seopress').'</span>';
 						} else {
-							echo '<div class="wrap-tags">
-								<span id="seopress-tag-single-excerpt" data-tag="%%post_excerpt%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Post Excerpt','wp-seopress').'</span>
-							</div>';
+							echo '<span id="seopress-tag-single-excerpt" data-tag="%%post_excerpt%%" class="tag-title"><span class="dashicons dashicons-plus"></span>'.__('Post Excerpt','wp-seopress').'</span>';
 						}
-					echo '</div>';
+						echo seopress_render_dyn_variables("tag-description");
+					echo '</div></div>';
 					
 					$toggle_preview = 1;
 					$toggle_preview = apply_filters('seopress_toggle_mobile_preview', $toggle_preview);
@@ -256,7 +261,8 @@ echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'
 					</p>
 					<p class="description">';
 						$url = admin_url('admin.php?page=seopress-titles#tab=tab_seopress_titles_single');
-						echo sprintf(__('You cannot uncheck a parameter? This is normal, and it‘s most likely defined in the global settings of the extension.','wp-seopress'), $url);
+						/* translators: %s: link to plugin settings page */
+						echo sprintf(__('You cannot uncheck a parameter? This is normal, and it‘s most likely defined in the <a href="%s">global settings of the plugin.</a>','wp-seopress'), $url);
 						echo '</p>
 					<p>
 						<label for="seopress_robots_canonical_meta">'. __( 'Canonical URL', 'wp-seopress' ) .'
@@ -271,7 +277,7 @@ echo '<div id="seopress-tabs" data_id="'.$current_id.'" data_origin="'.$origin.'
 					if (($typenow =='post' || $typenow =='product') && ($pagenow == 'post.php' || $pagenow == 'post-new.php')) {
 						echo '<p>
 							<label for="seopress_robots_primary_cat_meta">'. __( 'Select a primary category', 'wp-seopress' ) .'</label>
-							<span class="description">'.__('Set the category that gets used in the %category% permalink if you have multiple categories.','wp-seopress').'</p>
+							<span class="description">'.__('Set the category that gets used in the %category% permalink and in our breadcrumbs if you have multiple categories.','wp-seopress').'</p>
 							<select name="seopress_robots_primary_cat">';
 
 							$cats = get_categories();

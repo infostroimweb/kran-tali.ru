@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Heading tag
-$heading = get_theme_mod( 'ocean_blog_entries_heading_tag', 'h2' );
+$heading = get_theme_mod( 'ocean_blog_entries_heading_tag', 'div' );
 $heading = $heading ? $heading : 'h2';
 $heading = apply_filters( 'ocean_blog_entries_heading', $heading ); ?>
 

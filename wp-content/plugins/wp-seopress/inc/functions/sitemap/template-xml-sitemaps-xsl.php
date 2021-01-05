@@ -16,7 +16,9 @@ function seopress_xml_sitemap_index_xsl() {
 	
 	if (function_exists('pll_home_url')) {
         $home_url = site_url().'/';
-    }
+	}
+	
+	$home_url = apply_filters( 'seopress_sitemaps_home_url', $home_url );
 
 	$seopress_sitemaps_xsl ='<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="2.0"
 				xmlns:html="http://www.w3.org/TR/REC-html40"
@@ -133,7 +135,7 @@ function seopress_xml_sitemap_index_xsl() {
 	$seopress_sitemaps_xsl .='URL';
 	$seopress_sitemaps_xsl .='</div>';
 	$seopress_sitemaps_xsl .='<div class="lastmod">';
-	$seopress_sitemaps_xsl .='Last update';
+	$seopress_sitemaps_xsl .=__('Last update','wp-seopress');
 	$seopress_sitemaps_xsl .='</div>';
 	$seopress_sitemaps_xsl .='<ul>';
 	$seopress_sitemaps_xsl .='<xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">';
@@ -149,8 +151,11 @@ function seopress_xml_sitemap_index_xsl() {
 	$seopress_sitemaps_xsl .='<xsl:for-each select="sitemap:urlset/sitemap:url">';
     $seopress_sitemaps_xsl .='<li>';
     $seopress_sitemaps_xsl .='<xsl:variable name="url_loc"><xsl:value-of select="sitemap:loc"/></xsl:variable>';
-    $seopress_sitemaps_xsl .='<span class="item-loc"><a href="{$url_loc}"><xsl:value-of select="sitemap:loc" /></a></span>';
-    $seopress_sitemaps_xsl .='<span class="item-lastmod"><xsl:value-of select="sitemap:lastmod" /></span>';
+	$seopress_sitemaps_xsl .='<span class="item-loc"><a href="{$url_loc}"><xsl:value-of select="sitemap:loc" /></a></span>';
+	
+	$seopress_sitemaps_xsl .= '<xsl:if test="sitemap:lastmod">';
+	$seopress_sitemaps_xsl .='<span class="item-lastmod"><xsl:value-of select="sitemap:lastmod" /></span>';
+	$seopress_sitemaps_xsl .='</xsl:if>';
     $seopress_sitemaps_xsl .='</li>';
     $seopress_sitemaps_xsl .='</xsl:for-each>';
     $seopress_sitemaps_xsl .='</ul>';

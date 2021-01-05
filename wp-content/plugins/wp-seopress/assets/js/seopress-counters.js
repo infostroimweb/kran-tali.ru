@@ -322,6 +322,32 @@ function sp_ca_toggle() {
 	});
 }
 
+//Tagify
+var input = document.querySelector('input[id=seopress_analysis_target_kw_meta]');
+
+var target_kw = new Tagify(input, {
+	originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+})
+
+function seopress_google_suggest(data){
+	
+	var raw_suggestions = String(data);
+	var suggestions_array = raw_suggestions.split(',');
+	
+	var i;
+	for (i = 0; i < suggestions_array.length; i++) {
+		if (suggestions_array[i] != null && suggestions_array[i] != undefined && suggestions_array[i] !='' && suggestions_array[i] !='[object Object]') {
+			document.getElementById('seopress_suggestions').innerHTML += '<li><a href=\"#\" class=\"sp-suggest-btn button button-small\">'+suggestions_array[i]+'</a></li>';
+		}
+	}
+
+	jQuery('.sp-suggest-btn').click(function(e) {
+		e.preventDefault();
+		
+		target_kw.addTags(jQuery(this).text());
+	});
+}
+
 jQuery(document).ready(function(e) {
 	//default state
 	if (jQuery('#toggle-preview').attr('data-toggle') == '1') {
@@ -446,7 +472,7 @@ jQuery(document).ready(function(e) {
 				e("#seopress_cpt #seopress_robots_canonical_meta").attr("placeholder", s.data.canonical),
 				
 				e("#seopress-analysis-tabs").load(" #seopress-analysis-tabs-1", '', sp_ca_toggle),
-				e(".analysis-score p").removeClass('loading'),
+				e(".analysis-score p").removeClass('loading'),			
 				
 				e(" #seopress_titles_title_counters_val").remove(),
 				e(" #seopress_titles_desc_counters_val").remove(),
