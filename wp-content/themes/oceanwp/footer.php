@@ -16,11 +16,79 @@
 
 <?php
         // Elementor `footer` location
-if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) { ?>
+/*if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) { ?>
 
     <?php do_action( 'ocean_footer' ); ?>
 
-<?php } ?>
+<?php }*/ ?>
+
+<footer class="footer">
+    <div class="footer-top container">
+        <div class="d-flex flex-wrap justify-content-between flex-column flex-lg-row">
+            <div class="footer-col align-items-start">
+                <a href="/" class="footer-logo">
+                    <img class="lazyloaded" src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" data-src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" title="" alt="">
+                </a>
+                <p class="footer-description">Производство грузоподъёмного оборудования: мостовые краны, кран-балки, консольные краны, козловые краны, электротали, лебёдки, эстакады.</p>
+                <!-- <ul class="footer-socials d-flex flex-wrap">
+                    <li>
+                        <a class="" target="_blank" rel="nofollow">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" target="_blank" rel="nofollow">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" target="_blank" rel="nofollow">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </li>
+                </ul> -->
+                <?php echo do_shortcode('[elementor-template id="1553"]'); ?>
+                <a href="/sitemap/">Карта сайта</a>
+            </div>
+            <div class="footer-col align-items-start align-items-lg-center">
+                <div class="d-flex flex-column">
+                    <h2 class="footer-menu-title">Продукция</h2>
+                    <?php 
+                    wp_nav_menu([
+                        'menu'       => '23', 
+                        'container'  => false, 
+                        'menu_class' => 'footer-menu d-flex flex-column',
+                        'menu_id'    => 'footerProduction'
+                    ]);
+                    ?>
+                </div>
+            </div>
+            <div class="footer-col align-items-start align-items-lg-end">
+                <div class="d-flex flex-column">
+                    <h2 class="footer-menu-title">Услуги</h2>
+                    <?php 
+                    wp_nav_menu([
+                        'menu'       => '24', 
+                        'container'  => false, 
+                        'menu_class' => 'footer-menu d-flex flex-column',
+                        'menu_id'    => 'footerProduction'
+                    ]);
+                    ?>
+                </div>        
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="footer-copyright-inner d-flex justify-content-between align-items-lg-center flex-column flex-lg-row">
+                <span class="footer-copyright-left">© ООО "Росттехмаш" 2008 — 2021. Информация на сайте не является публичной офертой.</span>
+                <a href="/policy/" class="footer-copyright-right">Соглашение на обработку персональных данных</a>                
+            </div>           
+        </div>
+    </div>
+</footer>
+
+
 
 <?php do_action( 'ocean_after_footer' ); ?>
 
