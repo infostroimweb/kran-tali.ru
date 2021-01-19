@@ -9,7 +9,81 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 #RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_URI} !(.*)/$
-#RewriteRule ^(.*[^/])$ $1/ [L,R=301]
+#RewriteRule ^(.*[^])$ $1/ [L,R=301]
+
+#19.01.2021
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-talej-i-koshek.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-talej-i-koshek/	[R=301,L]
+
+RewriteRule	^mostovye-krany/kran-mostovoj-dvuhbalochnyj.html$ https://kran-tali.ru/mostovye-krany/kran-mostovoj-dvuhbalochnyj/	[R=301,L]
+
+RewriteRule	^uslugi/tekhnicheskoe-obsluzhivanie.html$ https://kran-tali.ru	[R=301,L]
+
+RewriteRule	^uslugi/tekhnicheskoe-obsluzhivanie.html$ https://kran-tali.ru/uslugi/tekhnicheskoe-obsluzhivanie/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-gruzopodyomnyh-kranov.html$ https://kran-tali.ru	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-gruzopodyomnyh-kranov.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-gruzopodyomnyh-kranov/	[R=301,L]
+
+RewriteRule	^angary-i-kranovye-ehstakady/kranovye-ehstakady.html$ https://kran-tali.ru/angary-i-kranovye-ehstakady/kranovye-ehstakady/	[R=301,L]
+
+RewriteRule	^policy.html$ https://kran-tali.ru/policy/	[R=301,L]
+
+RewriteRule	^uslugi/remont.html$ https://kran-tali.ru/uslugi/remont/	[R=301,L]
+
+RewriteRule	^kontakty.html$ https://kran-tali.ru/kontakty/	[R=301,L]
+
+RewriteRule	^konsolnye-krany/kran-konsolnyj-povorotnyj-nastennyj.html$ https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-nastennyj/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-podyome-i-peremeshchenii-gruzov-gruzopodyomnymi-mekhanizmami.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-podyome-i-peremeshchenii-gruzov-gruzopodyomnymi-mekhanizmami/	[R=301,L]
+
+RewriteRule	^uslugi/modernizaciya.html$ https://kran-tali.ru/uslugi/modernizaciya/	[R=301,L]
+
+RewriteRule	^kozlovye-krany/kran-kozlovoj-ehlektricheskij.html$ https://kran-tali.ru/kozlovye-krany/kran-kozlovoj-ehlektricheskij/	[R=301,L]
+
+RewriteRule	^lebedki-ehlektricheskie/lebedki-manevrovye.html$ https://kran-tali.ru/lebedki-ehlektricheskie/lebedki-manevrovye/	[R=301,L]
+
+RewriteRule	^angary-i-kranovye-ehstakady/angary.html$ https://kran-tali.ru/angary-i-kranovye-ehstakady/angary/	[R=301,L]
+
+RewriteRule	^dokumentaciya/obshchie-trebovaniya-bezopasnosti.html$ https://kran-tali.ru/dokumentaciya/obshchie-trebovaniya-bezopasnosti/	[R=301,L]
+
+RewriteRule	^mostovye-krany/kran-mostovoj-odnobalochnyj-opornyj.html$ https://kran-tali.ru/mostovye-krany/kran-mostovoj-odnobalochnyj-opornyj/	[R=301,L]
+
+RewriteRule	^mostovye-krany/kran-mostovoj-odnobalochnyj-podvesnoj.html$ https://kran-tali.ru/mostovye-krany/kran-mostovoj-odnobalochnyj-podvesnoj/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-lebyodok.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-lebyodok/	[R=301,L]
+
+RewriteRule	^telfery-tali/tali-ehlektricheskie-rossiya.html$ https://kran-tali.ru/telfery-tali/tali-ehlektricheskie-rossiya/	[R=301,L]
+
+RewriteRule	^konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ehlektricheskij.html$ https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ehlektricheskij/	[R=301,L]
+
+RewriteRule	^telfery-tali/traversy.html$ https://kran-tali.ru/telfery-tali/traversy/	[R=301,L]
+
+RewriteRule	^telfery-tali/tali-ehlektricheskie-bolgariya.html$ https://kran-tali.ru/telfery-tali/tali-ehlektricheskie-bolgariya/	[R=301,L]
+
+RewriteRule	^konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ruchnoj.html$ https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ruchnoj/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-cepyam.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-cepyam/	[R=301,L]
+
+RewriteRule	^dokumentaciya/obshchie-trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-gruzozahvatnyh-prisposoblenij.html$ https://kran-tali.ru/dokumentaciya/obshchie-trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-gruzozahvatnyh-prisposoblenij/	[R=301,L]
+
+RewriteRule	^o-kompanii.html$ https://kran-tali.ru/o-kompanii/	[R=301,L]
+
+RewriteRule	^kozlovye-krany/krany-kozlovye-mobilnye.html$ https://kran-tali.ru/kozlovye-krany/krany-kozlovye-mobilnye/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-krany.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-krany/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-i-shnuram-iz-rastitelnyh-i-sinteticheskih-voloko/dokumentaciya/trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-podyomnikov.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-i-shnuram-iz-rastitelnyh-i-sinteticheskih-voloko/dokumentaciya/trebovaniya-bezopasnosti-pri-rabotah-s-primeneniem-podyomnikov/	[R=301,L]
+
+RewriteRule	^lebedki-ehlektricheskie/lebedki-tyagovye.html$ https://kran-tali.ru/lebedki-ehlektricheskie/lebedki-tyagovye/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-stropam.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-stropam/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-stropam.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-k-kanatam-stropam/	[R=301,L]
+
+RewriteRule	^dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-blokov-polispastov.html$ https://kran-tali.ru/dokumentaciya/trebovaniya-bezopasnosti-taly/trebovaniya-bezopasnosti-pri-primenenii-blokov-polispastov/	[R=301,L]
+
+
 
 
 # Start WPFC Exclude
