@@ -544,16 +544,52 @@ form.wpcf7-form {
 }*/
 
 .footer-menu-title {
+	position: relative;
+	min-width: 195px;
+	margin-bottom: 0;
 	font-size: 18px;
 	font-weight: 500;
 	color: #fff;
-	margin-bottom: 20px;
+}
+
+.footer-menu-title.active {
+	color: #ffba00;
+}
+
+.footer-menu-title::after {
+		content: '';
+		position: absolute;
+		top: 40%;
+		right: 0;
+		display: block;
+		border: 6px solid transparent;
+		border-top-color: currentColor;
+	}
+
+
+@media (min-width: 1025px) {
+	.footer-menu-title::after {
+		display: none;
+	}
+}
+
+.footer-menu-container {
+		display: none;
+		padding-top: 20px;
+	}
+
+@media (min-width: 1025px) {
+	.footer-menu-container {
+		display: block;
+	}
 }
 
 .footer-menu {
 	list-style: none;
 	margin: 0;
 }
+
+
 
 .footer-menu li {
 	padding-bottom: 6px;
@@ -593,3 +629,5 @@ form.wpcf7-form {
 .footer .footer-copyright-right {
 	color: #adadad;
 }
+
+

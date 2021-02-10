@@ -53,27 +53,31 @@
             <div class="footer-col align-items-start align-items-lg-center">
                 <div class="d-flex flex-column">
                     <h2 class="footer-menu-title">Продукция</h2>
-                    <?php 
-                    wp_nav_menu([
-                        'menu'       => '23', 
-                        'container'  => false, 
-                        'menu_class' => 'footer-menu d-flex flex-column',
-                        'menu_id'    => 'footerProduction'
-                    ]);
-                    ?>
+                    <div class="footer-menu-container">
+                        <?php 
+                        wp_nav_menu([
+                            'menu'       => '23', 
+                            'container'  => false, 
+                            'menu_class' => 'footer-menu flex-column',
+                            'menu_id'    => 'footerProduction'
+                        ]);
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="footer-col align-items-start align-items-lg-end">
                 <div class="d-flex flex-column">
                     <h2 class="footer-menu-title">Услуги</h2>
-                    <?php 
-                    wp_nav_menu([
-                        'menu'       => '24', 
-                        'container'  => false, 
-                        'menu_class' => 'footer-menu d-flex flex-column',
-                        'menu_id'    => 'footerProduction'
-                    ]);
-                    ?>
+                    <div class="footer-menu-container">
+                        <?php 
+                        wp_nav_menu([
+                            'menu'       => '24', 
+                            'container'  => false, 
+                            'menu_class' => 'footer-menu flex-column',
+                            'menu_id'    => 'footerProduction'
+                        ]);
+                        ?>
+                    </div>
                 </div>        
             </div>
         </div>
@@ -81,7 +85,7 @@
     <div class="footer-copyright">
         <div class="container">
             <div class="footer-copyright-inner d-flex justify-content-between align-items-lg-center flex-column flex-lg-row">
-                <span class="footer-copyright-left">© ООО "Росттехмаш" 2008 — 2021. Информация на сайте не является публичной офертой.</span>
+                <span class="footer-copyright-left">© ООО "Росттехмаш" 2008 — <?php echo date('Y') ?>. Информация на сайте не является публичной офертой.</span>
                 <a href="/policy/" class="footer-copyright-right">Соглашение на обработку персональных данных</a>                
             </div>           
         </div>
@@ -144,7 +148,6 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 	jQuery(document).ready( function() {
 		jQuery("#file-load input[name='file']").change(function(){
 			var filename = jQuery(this).val().replace(/.*\\/, "");
-			console.log(filename);
 			jQuery(this).closest("label").html(filename);
 		});
 	});
@@ -152,8 +155,9 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 
 <script>
     jQuery(document).ready( ($) => {
-        $('.new-header-mob-btn').on('click', () => {
-            $('#new-header .menu-menu-container').slideToggle()
+        $('#mobMenuBtn').on('click', () => {
+            $('#new-header .header-menu-container').slideToggle()
+            $('#mobMenuBtn i').toggle()
         })
 
         $('.new-header-menu > .menu-item-has-children > a').on('click', function(e) {
@@ -161,6 +165,11 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
             if(document.body.clientWidth <= 1024) {
                 $(this).next().slideToggle()
             }            
+        })
+
+        $('.footer-menu-title').on('click', function() {
+            $(this).toggleClass('active')
+            $(this).next('.footer-menu-container').slideToggle()
         })
     })
 </script>
