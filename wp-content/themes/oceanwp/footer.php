@@ -145,12 +145,12 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 <?php wp_footer(); ?>
 
 <script>
-	jQuery(document).ready( function() {
-		jQuery("#file-load input[name='file']").change(function(){
-			var filename = jQuery(this).val().replace(/.*\\/, "");
-			jQuery(this).closest("label").html(filename);
-		});
-	});
+    jQuery(document).ready( function() {
+        jQuery("#file-load input[name='file']").change(function(){
+            var filename = jQuery(this).val().replace(/.*\\/, "");
+            jQuery(this).closest("label").html(filename);
+        });
+    });
 </script>
 
 <script>
@@ -173,5 +173,38 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
         })
     })
 </script>
+
+<?php $zoom = is_mobile() ? '5' : '7'; ?>
+<?php if (is_page('kontakty')): ?>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=b9282ea3-6f59-41e7-8ac1-3108161a14d9&lang=ru_RU"></script>
+    <script>
+        var myMap;
+        ymaps.ready(init);
+
+        function init () {
+            myMap = new ymaps.Map('map', {
+                center: [54.664425, 41.387129],
+                zoom: <?php echo $zoom; ?>,
+                controls: ['zoomControl', 'typeSelector',  'fullscreenControl']
+            });
+            var moscow = new ymaps.Placemark([55.800578, 37.636649], {
+                iconContent: 'Представительство в Москве',
+                balloonContent: 'Представительство в г. Москва Контактный телефон: +7 (495) 532-36-09. 129626, город Москва, пр-кт Мира, дом 102 корпус 1, эт 8 ком 6 оф 36 E-mail: kran-tali@mail.ru'
+            }, {
+                preset: 'islands#redStretchyIcon'
+            });
+            var penza = new ymaps.Placemark([53.194208, 45.001398], {
+                iconContent: 'Офис и производство',
+                balloonContent: 'г. Пенза, ул. Захарова, д. 1, офис 8 Контактный телефон: +7 (8412) 30-56-63. E-mail: kran-tali@mail.ru'
+            }, {
+                preset: 'islands#redStretchyIcon'
+            });
+            myMap.geoObjects.add(moscow).add(penza);
+            myMap.behaviors.disable('scrollZoom');
+            myMap.behaviors.disable('drag');
+        } 
+    </script>
+<?php endif ?>
+
 </body>
 </html>
