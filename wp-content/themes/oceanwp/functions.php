@@ -1661,4 +1661,47 @@ function is_mobile(){
 $isMob = is_mobile();
 
 
+//Дополнительные поля
+add_action('add_meta_boxes', 'my_extra_fields', 0);
+function my_extra_fields() {
+	add_meta_box( 'extra_fields', 'Дополнительные поля', 'extra_fields_box_func', 'post', 'normal', 'high'  );
+}
+function extra_fields_box_func( $post ){
+	?>
+	<div style="margin-bottom: 10px">
+		<label style="margin-right: 10px" for="price_text">Текст перед ценой:</label>
+		<textarea name="extra[price_text]" rows="1" cols="100" id="price_text"><?php echo get_post_meta($post->ID, 'price_text', 1);  ?></textarea>
+	</div>
+	<div>
+		<label style="margin-right: 10px" for="price">Цена:</label>
+		<input type="number" name="extra[price]" value="<?php echo get_post_meta($post->ID, 'price', 1);  ?>" id="price">
+	</div>
+	<input type="hidden" name="extra_fields_nonce" value="<?php echo wp_create_nonce(__FILE__); ?>" />
+	<?php
+}
+add_action('save_post', 'my_extra_fields_update', 0);
+function my_extra_fields_update( $post_id ){
 
+
+	// базовая проверка
+	if (
+		empty( $_POST['extra'] )
+		|| ! wp_verify_nonce( $_POST['extra_fields_nonce'], __FILE__ )
+		|| wp_is_post_autosave( $post_id )
+		|| wp_is_post_revision( $post_id )
+	)
+		return false;
+
+	$_POST['extra'] = array_map( 'wp_kses_post', $_POST['extra'] ); // чистим все данные от пробелов по краям
+
+	foreach( $_POST['extra'] as $key => $value ){
+		if( empty($value) ){
+			delete_post_meta( $post_id, $key ); // удаляем поле если значение пустое
+			continue;
+		}
+
+		update_post_meta( $post_id, $key, $value ); // add_post_meta() работает автоматически
+	}
+
+	return $post_id;
+}
