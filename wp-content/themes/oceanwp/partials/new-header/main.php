@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/wp-content/themes/oceanwp/partials/new-header/new-header.css?v=1.3">
+<link rel="stylesheet" href="/wp-content/themes/oceanwp/partials/new-header/new-header.css?v=1.4">
 <header class="<?php if (is_front_page()) {echo 'front-page';} else {echo 'inner-page';} ?>" id="new-header">
 	<?php if (!is_mobile()): ?>
 		<div class="new-header-top">

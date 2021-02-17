@@ -1662,6 +1662,13 @@ function is_mobile(){
 }
 $isMob = is_mobile();
 
+//Добавляет SVG в список разрешенных для загрузки файлов.
+add_filter( 'upload_mimes', 'svg_upload_allow' );
+function svg_upload_allow( $mimes ) {
+	$mimes['svg']  = 'image/svg+xml';
+
+	return $mimes;
+}
 
 //Дополнительные поля
 add_action('add_meta_boxes', 'my_extra_fields', 0);
