@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//
+////
 
 // Core Constants
 define( 'OCEANWP_THEME_DIR', get_template_directory() );
