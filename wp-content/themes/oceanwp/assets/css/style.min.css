@@ -185,11 +185,19 @@ a.btn_custom:hover {
 }
 input.wpcf7-form-control.wpcf7-submit.custom_btn {
 	background-color: #ffba00;
-	font-family: "Roboto", Sans-serif;
+	border: none; 
+	font-family: "Oswald",sans-serif;
 	font-weight: 500;
 	color: #000;
 	font-size: 16px;
-	letter-spacing: 0;
+	line-height: 1;
+	letter-spacing: 1px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    transition: all .3s ease;
+}
+input.wpcf7-form-control.wpcf7-submit.custom_btn:hover {
+    background-color: #e49303;
 }
 textarea.wpcf7-form-control.wpcf7-textarea.custom_textarea {
 	height: 100px;
@@ -738,15 +746,43 @@ form.wpcf7-form input[type="checkbox"] {
 	color: #fff;
 }
 
+.price-block__price,
+.price-block button { 
+	
+}
+
+.price-block button {
+	font-family: "Oswald",sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1;
+	color: #fff;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+	background-color: transparent;
+	border: 2px solid #fff;
+	padding: 12px 30px;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+
+.price-block button:hover {
+	background-color: #FFBA00;
+	border-color: #e49303;
+	color: #000;
+	background-color: #e49303;
+}
+
 .price-block__price {
 	background-color: #fff;
 	box-shadow: 0 0 22px 3px rgba(39, 44, 76, .1);
 	border-radius: 3px;
 	padding: 9px 16px;
+	margin-bottom: 20px;
 	font-size: 24px;
 	font-weight: 700;
 	line-height: 1;
-	color: #272c4c;
+	color: #272c4c;	
 }
 
 .price-block__price::before {
@@ -762,10 +798,12 @@ form.wpcf7-form input[type="checkbox"] {
 @media (min-width: 992px) {
 	.price-block .price-block__text {
 		margin-bottom: 0;
-	}
-
-	.price-block__text {
 		margin-right: 40px;
 		font-size: 21px;
+	}
+
+	.price-block__price {
+		margin-bottom: 0;
+		margin-right: 50px;
 	}
 }

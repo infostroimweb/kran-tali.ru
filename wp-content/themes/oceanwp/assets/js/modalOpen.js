@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 	$(document).on( "click", ".jsModalOpen", function(e){
 		e.preventDefault();
-		openModal($(this).attr("data-id-modal"));
+		openModal($(this).data("id-modal"));
 	});
 	
 	$(document).on( "click", ".jsClose, .jsModalIn", function(e){

@@ -85,6 +85,7 @@
 									<div class="price-block d-flex flex-column flex-lg-row align-items-center justify-content-center">
 										<p class="price-block__text"><?php echo get_post_meta($post->ID, 'price_text', 1);  ?></p>
 										<div class="price-block__price d-flex align-items-center">от <?php echo number_format($price, 0, ',', ' '); ?> &#8381;</div>
+										<button class="jsModalOpen" data-id-modal="callback">Заказать</button>
 									</div>
 								<?php endif; ?>
 							<?php endif; ?>
