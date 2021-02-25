@@ -206,5 +206,37 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
     </script>
 <?php endif ?>
 
+<?php if (is_single()): ?>
+    <?php if($price = get_post_meta($post->ID, 'price', 1)): ?>
+        <?php $prodDescription = preg_replace('/\[contact-form-7.+\]/', '', strip_tags(get_the_content())); ?>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Product",
+                "image": "<?php the_post_thumbnail_url(); ?>",
+                "url": "<?php echo get_post_permalink() ?>",
+                "name": "<?php the_title(); ?>",
+                "description": "<?php echo $prodDescription ?>",
+                "brand": "Росттехмаш",
+                "offers": 
+                {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "<?php echo get_post_permalink() ?>",
+                    "price": "<?php echo number_format($price, 2, '.', ''); ?>",
+                    "priceCurrency": "RUB",
+                    "availableDeliveryMethod": "собственным транспортом или компанией",
+                    "seller": "ООО «Росттехмаш»",
+                    "offeredBy": "ООО «Росттехмаш»",
+                    "warranty": "гарантия от производителя",
+                    "itemOffered": "производство под заказ",
+                    "itemCondition": "новый" 
+                }
+
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
 </body>
 </html>

@@ -4310,13 +4310,13 @@ if ( ! function_exists( 'oceanwp_get_schema_markup' ) ) {
 			if ( is_home() || is_front_page() ) {
 				$schema = 'itemscope="itemscope" itemtype="https://schema.org/WebPage"';
 			}
-			elseif ( is_category() || is_tag() ) {
+			/*elseif ( is_category() || is_tag() ) {
 				$schema = 'itemscope="itemscope" itemtype="https://schema.org/Blog"';
 			}
 			elseif ( is_singular( 'post') ) {
 				$schema = 'itemscope="itemscope" itemtype="https://schema.org/Article"';
 			}
-			elseif ( is_page() ) {
+*/			elseif ( is_page() ) {
 				$schema = 'itemscope="itemscope" itemtype="https://schema.org/WebPage"';
 			}
 			else {
