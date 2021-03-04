@@ -189,19 +189,19 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
             });
             var moscow = new ymaps.Placemark([55.800578, 37.636649], {
                 iconContent: 'Представительство в Москве',
-                balloonContent: 'Представительство в г. Москва Контактный телефон: +7 (495) 532-36-09. 129626, город Москва, пр-кт Мира, дом 102 корпус 1, эт 8 ком 6 оф 36 E-mail: kran-tali@mail.ru'
+                balloonContent: 'Представительство в Москве.<br>Контактный телефон: +7&nbsp;(495)&nbsp;532&#8209;36&#8209;09.<br>129626, г.&#8201;Москва, пр-кт Мира, д.&#8201;102, корпус 1, эт.&#8201;8, ком.&#8201;6, оф.&#8201;36<br> E-mail: kran-tali@mail.ru'
             }, {
                 preset: 'islands#redStretchyIcon'
             });
             var penza = new ymaps.Placemark([53.194208, 45.001398], {
                 iconContent: 'Офис и производство',
-                balloonContent: 'г. Пенза, ул. Захарова, д. 1, офис 8 Контактный телефон: +7 (8412) 30-56-63. E-mail: kran-tali@mail.ru'
+                balloonContent: 'г.&#8201;Пенза, ул.&#8201;Захарова, д.&#8201;1, офис 8<br> Контактный телефон: +7&nbsp;(8412)&nbsp;30&#8209;56&#8209;63.<br> E-mail: kran-tali@mail.ru'
             }, {
                 preset: 'islands#redStretchyIcon'
             });
             myMap.geoObjects.add(moscow).add(penza);
             myMap.behaviors.disable('scrollZoom');
-            myMap.behaviors.disable('drag');
+            <?php if(is_mobile()): ?>myMap.behaviors.disable('drag');<?php endif; ?>
         } 
     </script>
 <?php endif ?>
