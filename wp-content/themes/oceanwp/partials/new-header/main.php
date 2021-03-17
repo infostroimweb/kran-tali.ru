@@ -42,4 +42,12 @@
 			</button>	
 		</div>
 	</div>
+	<?php if (is_mobile()): ?>
+		<div class="new-header-phone-bar">
+			<div class="container">
+				<span style="margin-right: 30px"><i class="fas fa-map-marker-alt"></i><span>г.&#8239;Пенза</span></span>
+				<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>
+			</div>
+		</div>
+	<?php endif; ?>
 </header>

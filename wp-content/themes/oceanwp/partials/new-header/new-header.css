@@ -361,3 +361,13 @@ main.inner-main {
 #new-header .custom-logo-link {
 	padding-right: 30px;
 }
+
+#new-header .new-header-phone-bar {
+	border-top: 1px solid rgba(255,255,255,.1);
+	border-bottom: 1px solid #272c4c;
+	padding: 8px 0;
+}
+
+#new-header .new-header-phone-bar .fas {
+	margin-right: 7px;
+}
