@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2021-02-24 11:47">
+    <shop>
+        <name>ООО «Росттехмаш»</name>
+        <company>ООО «Росттехмаш»</company>
+        <url>https://kran-tali.ru</url>
+        <currencies>
+            <currency id="RUR" rate="1"/>
+        </currencies>
+        <categories>
+            <category id="1">Мостовые краны</category>
+        </categories>
+        <offers>
+            <offer id="9012">
+                <name>Кран мостовой однобалочный подвесной</name>
+                <url>https://kran-tali.ru/mostovye-krany/kran-mostovoj-odnobalochnyj-podvesnoj/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/kbp.jpg</picture>
+                <price>159000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <description>
+                    <![CDATA[     
+                    <div class="elementor-text-editor elementor-clearfix"><p><span style="font-weight: 400;">Мостовой однобалочный подвесной кран </span><span style="font-weight: 400;">—</span><span style="font-weight: 400;"> отличное решение для перемещения груза в помещениях с ограниченным пространством.&nbsp;</span></p><p><span style="font-weight: 400;">Мы производим мостовые однобалочные краны разных модификаций. Характеристики стандартных моделей представлены на этой странице. Также мы готовы спроектировать и изготовить&nbsp; грузоподъемное оборудование данного типа по индивидуальным размерам и параметрам, для эксплуатации в определенных производственных условиях.</span></p><p><span style="font-weight: 400;">С учетом среды, в которой должен работать кран мы покрываем узлы оборудования в базовом исполнении краской, устойчивой к работе в температурном режиме от -20°C до +40°C, а также под заказ возможен вариант покрытия специальной краской, устойчивой к термическому и химическому воздействиям, которая выдерживает температурный режим от -60°C до +60°C (пожаробезопасное, взрывозащищенное исполнение).</span></p><p><a href="/wp-content/uploads/2020/03/podvesg.gif"><noscript><img class="aligncenter wp-image-591 size-full" src="/wp-content/uploads/2020/03/podvesg.gif" alt="" width="464" height="250" /></noscript><img class="aligncenter wp-image-591 size-full lazyloaded" src="/wp-content/uploads/2020/03/podvesg.gif" data-src="/wp-content/uploads/2020/03/podvesg.gif" alt="" width="464" height="250"></a></p></div>
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+    </shop>
+</yml_catalog>
