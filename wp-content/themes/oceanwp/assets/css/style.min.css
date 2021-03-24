@@ -846,3 +846,7 @@ form.wpcf7-form input[type="checkbox"] {
 .prod-info-block__text p:not(:last-child) {
 	margin-bottom: 10px;
 }
+
+.grecaptcha-badge {
+	right: -300px!important;
+}
