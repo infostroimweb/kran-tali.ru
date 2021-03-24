@@ -81,6 +81,22 @@
 							} 							
 							?></h1>
 							<?php if (is_single()): ?>
+								<?php if(in_array(get_the_category()[0]->term_id, [11,12,13,14,15,16])): ?>
+									<div class="prod-info-block">
+										<div class="prod-info-block__col">
+											<div class="prod-info-block__img d-flex justify-content-center">
+												<?php the_post_thumbnail('full') ?>
+											</div>
+										</div>
+										<div class="prod-info-block__col">
+											<?php if($info_text = get_post_meta($post->ID, 'info_text', 1)): ?>
+												<div class="prod-info-block__text">
+													<?php echo $info_text; ?>
+												</div>
+											<?php endif; ?>
+										</div>								
+									</div>
+								<?php endif; ?>	
 								<?php if($price = get_post_meta($post->ID, 'price', 1)): ?>
 									<div class="price-block d-flex flex-column flex-lg-row align-items-center justify-content-center">
 										<p class="price-block__text"><?php echo get_post_meta($post->ID, 'price_text', 1);  ?></p>

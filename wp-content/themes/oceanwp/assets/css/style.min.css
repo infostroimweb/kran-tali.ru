@@ -740,7 +740,7 @@ form.wpcf7-form input[type="checkbox"] {
 }
 
 .price-block__text {
-	max-width: 300px;
+	/*max-width: 300px;*/
 	font-size: 20px;
 	line-height: 1.17;
 	color: #fff;
@@ -806,4 +806,43 @@ form.wpcf7-form input[type="checkbox"] {
 		margin-bottom: 0;
 		margin-right: 50px;
 	}
+}
+
+.prod-info-block {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 22px;
+	padding-top: 35px;
+}
+
+@media (min-width: 768px) {
+	.prod-info-block {
+		grid-template-columns: 49fr 51fr;
+	}
+}
+
+.prod-info-block__img {
+	padding: 12px;
+	border: 1px solid #E5EDF0;
+}
+
+.prod-info-block__img img {
+	max-width: 100%;
+}
+
+.prod-info-block__text {
+	padding: 24px 30px 24px 48px;
+	background-color: #F6F8F9;
+}
+
+.prod-info-block__text,
+.prod-info-block__text p {
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	line-height: 1.8;
+	color: #000;
+}
+
+.prod-info-block__text p:not(:last-child) {
+	margin-bottom: 10px;
 }

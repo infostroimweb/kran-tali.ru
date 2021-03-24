@@ -1679,10 +1679,14 @@ function my_extra_fields() {
 function extra_fields_box_func( $post ){
 	?>
 	<div style="margin-bottom: 10px">
-		<label style="margin-right: 10px" for="price_text">Текст перед ценой:</label>
-		<textarea name="extra[price_text]" rows="1" cols="100" id="price_text"><?php echo get_post_meta($post->ID, 'price_text', 1);  ?></textarea>
+		<label for="info_text">Текст вверху, справа от картинки:</label>
+		<textarea name="extra[info_text]" rows="5" id="info_text" style="width: 100%; margin-top: 5px;"><?php echo get_post_meta($post->ID, 'info_text', 1);  ?><?php echo get_post_meta($post->ID, 'info_text', 1);  ?></textarea>
 	</div>
-	<div>
+	<div style="margin-bottom: 10px">
+		<label for="price_text">Текст перед ценой:</label>
+		<textarea name="extra[price_text]" rows="1" id="price_text" style="width: 100%; margin-top: 5px;"><?php echo get_post_meta($post->ID, 'price_text', 1);  ?></textarea>
+	</div>
+	<div style="display: flex; align-items: center">
 		<label style="margin-right: 10px" for="price">Цена:</label>
 		<input type="number" name="extra[price]" value="<?php echo get_post_meta($post->ID, 'price', 1);  ?>" id="price">
 	</div>
