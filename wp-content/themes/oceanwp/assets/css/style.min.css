@@ -734,21 +734,35 @@ form.wpcf7-form input[type="checkbox"] {
 
 .price-block {
 	background: #272c4c url('../img/price-bg.jpg') 50% 0;
-	padding: 30px;
+	padding: 30px 40px;
 	font-family: Roboto, sans-serif;
 	margin-top: 30px;
 }
 
+@media (min-width: 768px) {
+	.price-block {
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+}
+
 .price-block__text {
-	/*max-width: 300px;*/
 	font-size: 20px;
-	line-height: 1.17;
+	line-height: 1.4;
+	text-align: center;
 	color: #fff;
 }
 
+@media (min-width: 768px) {
+	.price-block__text {
+		line-height: 1.17;
+		text-align: left;		
+	}
+}
+
 .price-block__price,
-.price-block button { 
-	
+.price-block button {
+	flex-shrink: 0;	
 }
 
 .price-block button {
@@ -756,18 +770,17 @@ form.wpcf7-form input[type="checkbox"] {
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 1;
-	color: #fff;
+	color: #000;
     letter-spacing: 1px;
 	text-transform: uppercase;
-	background-color: transparent;
-	border: 2px solid #fff;
+	background-color: #FFBA00;
+	border: 2px solid #FFBA00;
 	padding: 12px 30px;
 	cursor: pointer;
 	transition: all .3s ease;
 }
 
 .price-block button:hover {
-	background-color: #FFBA00;
 	border-color: #e49303;
 	color: #000;
 	background-color: #e49303;
@@ -838,8 +851,8 @@ form.wpcf7-form input[type="checkbox"] {
 .prod-info-block__text,
 .prod-info-block__text p {
 	font-family: Roboto, sans-serif;
-	font-size: 14px;
-	line-height: 1.8;
+	font-size: 16px;
+	line-height: 2;
 	color: #000;
 }
 

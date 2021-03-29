@@ -208,13 +208,13 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 
 <?php if (is_single()): ?>
     <?php if($price = get_post_meta($post->ID, 'price', 1)): ?>
-        <?php $prodDescription = preg_replace('/\[contact-form-7.+\]/', '', strip_tags(get_the_content())); ?>
+        <?php $prodDescription = get_post_meta($post->ID, 'info_text', 1) ?? preg_replace('/\[contact-form-7.+\]/', '', strip_tags(get_the_content())); ?>
         <script type="application/ld+json">
             {
                 "@context": "http://schema.org",
                 "@type": "Product",
                 "image": "<?php the_post_thumbnail_url(); ?>",
-                "url": "<?php echo get_post_permalink() ?>",
+                "url": "<?php echo get_permalink($post->ID) ?>",
                 "name": "<?php the_title(); ?>",
                 "description": "<?php echo $prodDescription ?>",
                 "brand": "Росттехмаш",
@@ -222,7 +222,7 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
                 {
                     "@type": "Offer",
                     "availability": "https://schema.org/PreOrder",
-                    "url": "<?php echo get_post_permalink() ?>",
+                    "url": "<?php echo get_permalink($post->ID) ?>",
                     "price": "<?php echo number_format($price, 2, '.', ''); ?>",
                     "priceCurrency": "RUB",
                     "availableDeliveryMethod": "собственным транспортом или компанией",
