@@ -12,5 +12,10 @@ jQuery(document).ready( function() {
 			dataLayer.push({'event': 'request'})
 		}
 	}, false );
+
+	jQuery( ".guide-button.guide-button-finish" ).on( "click", function() {
+	  jQuery(".modal-zayavka").css("display", "flex");
+	});
+
 });
 

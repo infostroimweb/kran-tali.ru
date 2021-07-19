@@ -689,6 +689,33 @@ form.wpcf7-form {
 	color: #adadad;
 }
 
+.footer .align-items-lg-end a.soc-link-you{
+	margin-top: 85px;
+	display: inline-flex;
+	width: 46px;
+}
+.footer .align-items-lg-end a.soc-link-you img{
+	width: 46px;
+	height: auto;
+}
+.elementor .soc-link-contact img{
+	height: 30px;
+	width: auto;
+}
+@media (max-width: 768px) {
+	.footer .align-items-lg-end a.soc-link-you{
+		margin-top: 45px;
+		display: inline-flex;
+		width: auto;
+	}
+	#main #content-wrap {
+	    padding-bottom: 30px;
+	}
+	.elementor .soc-link-contact img{
+		height: 20px;
+		width: auto;
+	}
+}
 
 .form-row {
 	display: -ms-flexbox;
@@ -862,4 +889,31 @@ form.wpcf7-form input[type="checkbox"] {
 
 .grecaptcha-badge {
 	right: -300px!important;
+}
+
+.guideplugin .guide-card-result-count{
+	display: none!important;
+}
+.guideplugin .guide-slider-result-count{
+	display: none!important;
+}
+.guide-button-finish{}
+.modal-zayavka{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;	
+	background-color: #fff;
+	align-items: center;
+	justify-content: center;
+}
+
+.guideplugin.guide-2199 .guideplugin-background{
+	height: 20%;
+	max-height: 68px;
+	background-position: top;
+	background-size: cover;
 }

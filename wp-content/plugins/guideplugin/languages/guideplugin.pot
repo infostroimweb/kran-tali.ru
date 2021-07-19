@@ -1,0 +1,609 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: GuidePlugin\n"
+"POT-Creation-Date: 2020-04-12 11:32+0200\n"
+"PO-Revision-Date: 2020-04-12 11:24+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: guideplugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: acf\n"
+
+#: acf-php/group_5dbc5da7e067b.php:4
+msgid "Slug"
+msgstr ""
+
+#: acf-php/group_5dbc5da7e067b.php:7
+msgid ""
+"A unique identifier for this facet. Only lowercase characters and _ are "
+"valid."
+msgstr ""
+
+#: acf-php/group_5dbc5da7e067b.php:19
+msgid "Source"
+msgstr ""
+
+#: acf-php/group_5dbc5da7e067b.php:22
+msgid "The data source for this facet."
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:4 acf-php/group_5dfb8ace86651.php:4
+#: acf-php/group_5e44155d8a24b.php:4
+msgid "Text"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:16 acf-php/group_5dfb8ace86651.php:16
+msgid "Title"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:31 acf-php/group_5dfb8ace86651.php:31
+msgid "Description"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:46 acf-php/group_5dfb8ace86651.php:73
+#: acf-php/group_5e29f139d8cbc.php:49 acf-php/group_5e29f139d8cbc.php:130
+#: acf-php/group_5e88b630a8f12.php:145
+msgid "Filter"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:58
+msgid "Filter Type"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:76
+msgid "Cards"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:89
+msgid "Card type"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:107
+msgid "Card behavior"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:125
+msgid "Card items"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:140
+msgid "Image"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:160
+msgid "Label"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:175
+msgid "Card ID"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:178
+msgid "This field will be filled automatically."
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:191 acf-php/group_5dc9466f08606.php:270
+#: acf-php/group_5dc95c15a5829.php:4 acf-php/group_5e29f139d8cbc.php:35
+msgid "Conditions"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:206
+msgid "Result label"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:221
+msgid "Slider"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:234
+msgid "Slider type"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:252 acf-php/group_5dc95c15a5829.php:56
+msgid "Behavior"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:285 acf-php/group_5dc95c15a5829.php:15
+#: acf-php/group_5dc95c15a5829.php:18
+msgid "Facet"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:301 acf-php/group_5dc9466f08606.php:321
+#: acf-php/group_5dc95c15a5829.php:34 acf-php/group_5e29f139d8cbc.php:65
+msgid "Rule"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:341
+msgid "Lower limit"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:358
+msgid "Upper limit"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:375
+msgid "Prefix"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:390
+msgid "Suffix"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:405
+msgid "Slider images"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:420
+msgid "Slider image"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:440 templates/guide/filter/filter.php:12
+msgid "Help"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:452
+msgid "Show help"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:455
+msgid "Whether help for the user should be displayed or not."
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:467
+msgid "Help Text"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:470
+msgid "Help your user with some further explanations about this question."
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:482
+msgid "Progress"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:494
+msgid "Show in progress"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:497
+msgid "Whether a progress text should be displayed or not."
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:509
+msgid "Progress Label"
+msgstr ""
+
+#: acf-php/group_5dc9466f08606.php:512
+msgid "E.g. \"We are searching in your budget\""
+msgstr ""
+
+#: acf-php/group_5dc95c15a5829.php:7
+msgid ""
+"Add here the facets which should be filtered with this card. All successive "
+"facets are linked with AND. But you can also add OR conditions."
+msgstr ""
+
+#: acf-php/group_5dc95c15a5829.php:74
+msgid "Values"
+msgstr ""
+
+#: acf-php/group_5dc95c15a5829.php:89 acf-php/group_5e29f139d8cbc.php:89
+msgid "Value"
+msgstr ""
+
+#: acf-php/group_5dc95c15a5829.php:107
+msgid "OR condition"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:46 acf-php/group_5dfb8ace86651.php:58
+msgid "Filters"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:89
+msgid "Input required"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:104
+msgid "Filter ID"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:120 acf-php/group_5e2193ef05ca5.php:50
+#: acf-php/group_5e8b2e13af264.php:4
+msgid "Design"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:132
+msgid "Design type"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:151
+msgid "Design selection"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:169 acf-php/group_5dfb8ace86651.php:182
+msgid "Custom Design"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:197
+msgid "Settings"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:209
+msgid "Show results on"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:228
+msgid "Result page"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:231
+msgid "On this page you have to include the shortcode [guideplugin_results]"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:246
+msgid "Result count"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:249
+msgid "Number of posts to show on result page."
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:263
+msgid "Include/Exclude post types"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:281
+msgid "Post types"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:317
+msgid "Include/Exclude taxonomies"
+msgstr ""
+
+#: acf-php/group_5dfb8ace86651.php:335
+msgid "Taxonomies"
+msgstr ""
+
+#: acf-php/group_5e2193ef05ca5.php:4
+msgid "Indexing"
+msgstr ""
+
+#: acf-php/group_5e2193ef05ca5.php:16
+msgid "Posts per index loop"
+msgstr ""
+
+#: acf-php/group_5e2193ef05ca5.php:19
+msgid ""
+"Number of posts to index within one loop. Warning: This setting could impact "
+"your server performance."
+msgstr ""
+
+#: acf-php/group_5e2193ef05ca5.php:33
+msgid "Reindex interval"
+msgstr ""
+
+#: acf-php/group_5e2193ef05ca5.php:36
+msgid ""
+"Set the interval for reindexing the facets. The standard value is 6 hours."
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:4
+msgid "Guides"
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:7
+msgid ""
+"Use only on this guide(s). If no guide is selected this logic is used on all "
+"guides."
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:20
+msgid "Rulesets"
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:46
+msgid "Filter Condition"
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:107
+msgid "OR Condition"
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:115
+msgid "Actions"
+msgstr ""
+
+#: acf-php/group_5e29f139d8cbc.php:146
+msgid "Action"
+msgstr ""
+
+#: acf-php/group_5e44155d8a24b.php:19
+msgid "Selection"
+msgstr ""
+
+#: acf-php/group_5e44155d8a24b.php:38
+msgid "Slider Value"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:4
+msgid "Guide"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:17 acf-php/group_5e88b630a8f12.php:158
+msgid "Title Color"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:28 acf-php/group_5e88b630a8f12.php:169
+msgid "Title Font Size"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:45 acf-php/group_5e88b630a8f12.php:186
+msgid "Description Color"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:56 acf-php/group_5e88b630a8f12.php:197
+msgid "Description Font Size"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:73
+msgid "Guide Background"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:86
+msgid "Background color (start)"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:97
+msgid "Background color (end)"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:108
+msgid "Background image"
+msgstr ""
+
+#: acf-php/group_5e88b630a8f12.php:128
+msgid "Background direction"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:4
+msgid "Model year"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:19
+msgid "Color"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:34
+msgid "Date"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:47
+msgid "Country"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:62
+msgid "New"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:77
+msgid "KM"
+msgstr ""
+
+#: acf-php/group_5e8de8eb5db31.php:94
+msgid "PS"
+msgstr ""
+
+#: hooks/AcfHooks.php:92
+msgid "GuidePlugin Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: hooks/AcfHooks.php:93
+msgid "GuidePlugin"
+msgstr ""
+
+#: hooks/CronTaskHooks.php:22
+msgid "Every 1 minutes"
+msgstr ""
+
+#: hooks/CronTaskHooks.php:26
+msgid "Every 6 hours"
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
+msgid "Check for updates"
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
+msgid "View details"
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:548
+#, php-format
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:550
+#, php-format
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:552
+#, php-format
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: lib/plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
+msgid "There is no changelog available."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:205
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:252
+msgid "Theme License - "
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:274
+msgid "Manage license"
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:414
+msgid ""
+"Unexpected Error! The query to retrieve the license data returned a "
+"malformed response."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:432
+msgid "The license is already in use for this domain."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:435
+msgid ""
+"The license has reached the maximum number of activations and cannot be "
+"activated for this domain."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:441
+msgid "The license is already inactive for this domain."
+msgstr ""
+
+#. translators: the license expiry date
+#: lib/wp-package-updater/class-wp-package-updater.php:452
+#, php-format
+msgid "The license expired on %s and needs to be renewed to be updated."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:456
+msgid "The license expired and needs to be renewed to be updated."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:462
+msgid ""
+"The license is blocked and cannot be updated anymore. Please use another "
+"license key."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:468
+msgid ""
+"The license has not been activated and its status is stil pending. Please "
+"try again or use another license key."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:474
+msgid "The provided license key is invalid. Please use another license key."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:477
+msgid ""
+"The provided license key does not appear to be valid. Please use another "
+"license key."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:481
+msgid ""
+"An active license is required to update the plugin. Please provide a valid "
+"license key in Plugins > Installed Plugins."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:483
+msgid ""
+"An active license is required to update the theme. Please provide a valid "
+"license key in Appearence > Theme License."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:489
+msgid ""
+"An unexpected error has occured. Please try again. If the problem persists, "
+"please contact the author of the plugin."
+msgstr ""
+
+#: lib/wp-package-updater/class-wp-package-updater.php:491
+msgid ""
+"An unexpected error has occured. Please try again. If the problem persists, "
+"please contact the author of the theme."
+msgstr ""
+
+#: lib/wp-package-updater/templates/license-form.php:6
+msgid "Current license key:"
+msgstr ""
+
+#: lib/wp-package-updater/templates/license-form.php:9
+msgid "License key to change:"
+msgstr ""
+
+#: templates/guide/filter/filter.php:18
+msgid "Подсказка"
+msgstr ""
+
+#: templates/guide/filter/filter.php:24
+msgid "Предыдущий параметр"
+msgstr ""
+
+#: templates/guide/filter/filter.php:25
+msgid "Следующий параметр"
+msgstr ""
+
+#: templates/guide/filter/filter.php:26
+msgid "Show results"
+msgstr ""
+
+#: templates/options/dashboard.php:2
+#, php-format
+msgid "%d indexed posts"
+msgstr ""
+
+#: templates/options/dashboard.php:3
+msgid "Rebuild index"
+msgstr ""
+
+#: templates/options/dashboard.php:4
+msgid "Purge index"
+msgstr ""
+
+#: templates/options/dashboard.php:6
+#, php-format
+msgid "Indexing is running! %d indexed so far..."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://www.guideplugin.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Create awesome guides to help your visitors finding the right content."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sebastian Kraus"
+msgstr ""

@@ -1,0 +1,10 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1">guideplugin_guides</custom-type>
+        <custom-type translate="1">guideplugin_filters</custom-type>
+        <custom-type translate="1">guideplugin_logics</custom-type>
+        <custom-type translate="1">guideplugin_template</custom-type>
+        <custom-type translate="1">guideplugin_facets</custom-type>
+        <custom-type translate="0">guideplugin_designs</custom-type>
+    </custom-types>
+</wpml-config>

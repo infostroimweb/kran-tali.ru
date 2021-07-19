@@ -78,6 +78,7 @@
                         ]);
                         ?>
                     </div>
+                    <a href="https://www.youtube.com/channel/UC7rm8d4UZxtFqivJrJ27aWA" class="soc-link-you" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youtube_logo.png" alt=""></a>
                 </div>        
             </div>
         </div>
@@ -91,8 +92,6 @@
         </div>
     </div>
 </footer>
-
-
 
 <?php do_action( 'ocean_after_footer' ); ?>
 

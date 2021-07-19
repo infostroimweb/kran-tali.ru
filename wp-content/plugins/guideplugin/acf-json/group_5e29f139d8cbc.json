@@ -1,0 +1,322 @@
+{
+    "key": "group_5e29f139d8cbc",
+    "title": "Logic - Rules",
+    "fields": [
+        {
+            "key": "field_5e29f2b5e18fe",
+            "label": "Guides",
+            "name": "guideplugin_guides",
+            "type": "post_object",
+            "instructions": "Use only on this guide(s). If no guide is selected this logic is used on all guides.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "guideplugin_guides"
+            ],
+            "taxonomy": "",
+            "allow_null": 1,
+            "multiple": 1,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
+            "key": "field_5e2b05045b706",
+            "label": "Rulesets",
+            "name": "guideplugin_rulesets",
+            "type": "repeater",
+            "instructions": "You can create multiple rulesets here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "layout": "row",
+            "button_label": "Add Ruleset",
+            "sub_fields": [
+                {
+                    "key": "field_5e2a17bb83f67",
+                    "label": "Conditions",
+                    "name": "conditions",
+                    "type": "flexible_content",
+                    "instructions": "All successive conditions are linked with AND. But you can also add OR conditions.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layouts": {
+                        "layout_5e2d7d6607552": {
+                            "key": "layout_5e2d7d6607552",
+                            "name": "filter_condition",
+                            "label": "Filter Condition",
+                            "display": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_5e2d7db6d8b06",
+                                    "label": "Filter",
+                                    "name": "filter",
+                                    "type": "post_object",
+                                    "instructions": "Select a filter that the condition should base on.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+                                        "guideplugin_filters"
+                                    ],
+                                    "taxonomy": "",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "return_format": "id",
+                                    "ui": 1
+                                },
+                                {
+                                    "key": "field_5e2d7e9db5de0",
+                                    "label": "Rule",
+                                    "name": "rule",
+                                    "type": "select",
+                                    "instructions": "Select the rule for the condition. Make sure that the rule matches your filter type.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "card_id_is": "Card: ID is",
+                                        "card_id_is_not": "Card: ID is not",
+                                        "slider_single_less_than": "Slider Single: Less than",
+                                        "slider_single_greater_than": "Slider Single: Greater than",
+                                        "slider_range_lower_less_than": "Slider Range: Lower value - Less than",
+                                        "slider_range_lower_greater_than": "Slider Range: Lower value - Greater than",
+                                        "slider_range_upper_less_than": "Slider Range: Upper value - Less than",
+                                        "slider_range_upper_greater_than": "Slider Range: Upper Value - Greater than"
+                                    },
+                                    "default_value": false,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "return_format": "value",
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_5ea83188c956a",
+                                    "label": "Value selection",
+                                    "name": "value_selection",
+                                    "type": "select",
+                                    "instructions": "Here you can decide if you want to enter the value manually or select a value from your global dataset.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "value_list": "Value list",
+                                        "manual": "Manual"
+                                    },
+                                    "default_value": "manual",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_5e2d7f64b5de1",
+                                    "label": "Value (manual)",
+                                    "name": "value",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_5ea83188c956a",
+                                                "operator": "==",
+                                                "value": "manual"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_5ea831aac956b",
+                                    "label": "Value (list)",
+                                    "name": "value",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_5ea83188c956a",
+                                                "operator": "==",
+                                                "value": "value_list"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": [],
+                                    "default_value": false,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 1,
+                                    "ajax": 1,
+                                    "return_format": "value",
+                                    "placeholder": ""
+                                }
+                            ],
+                            "min": "1",
+                            "max": ""
+                        },
+                        "layout_5e2d7d93d8b05": {
+                            "key": "layout_5e2d7d93d8b05",
+                            "name": "or_condition",
+                            "label": "OR Condition",
+                            "display": "row",
+                            "sub_fields": [],
+                            "min": "",
+                            "max": ""
+                        }
+                    },
+                    "button_label": "Add Condition",
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "field_5e2a17ce83f68",
+                    "label": "Actions",
+                    "name": "actions",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 1,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add Action",
+                    "sub_fields": [
+                        {
+                            "key": "field_5e2d8056b12d6",
+                            "label": "Filter",
+                            "name": "filter",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "guideplugin_filters"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_5e2d8073b12d7",
+                            "label": "Action",
+                            "name": "action",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "hide": "Hide"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 1,
+                            "ajax": 0,
+                            "return_format": "value",
+                            "placeholder": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guideplugin_logics"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1592571952
+}

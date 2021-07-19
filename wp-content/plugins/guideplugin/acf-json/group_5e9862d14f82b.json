@@ -1,0 +1,754 @@
+{
+    "key": "group_5e9862d14f82b",
+    "title": "Template",
+    "fields": [
+        {
+            "key": "field_5edb69b716f65",
+            "label": "Template Builder",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e9862e057d7e",
+            "label": "Template rows",
+            "name": "guideplugin_template_rows",
+            "type": "repeater",
+            "instructions": "Here you can add multiple rows.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add row",
+            "sub_fields": [
+                {
+                    "key": "field_5eda6ee5e6d76",
+                    "label": "Row",
+                    "name": "template_columns",
+                    "type": "repeater",
+                    "instructions": "This is a template row. You can add multiple columns in here with different sizes.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add column",
+                    "sub_fields": [
+                        {
+                            "key": "field_5eda6ff0e6d79",
+                            "label": "Modules",
+                            "name": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0
+                        },
+                        {
+                            "key": "field_5e98679a103cd",
+                            "label": "Modules",
+                            "name": "template_modules",
+                            "type": "flexible_content",
+                            "instructions": "Add different modules to your template.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layouts": {
+                                "layout_5e9995e4c5b24": {
+                                    "key": "layout_5e9995e4c5b24",
+                                    "name": "title",
+                                    "label": "Title",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5eb285973b075",
+                                            "label": "Module",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5eb285bc3b077",
+                                            "label": "Modul: Title",
+                                            "name": "",
+                                            "type": "message",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "message": "This module will insert the post title on this position.",
+                                            "new_lines": "wpautop",
+                                            "esc_html": 0
+                                        },
+                                        {
+                                            "key": "field_5eb285853b074",
+                                            "label": "Settings",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e999615c5b2c",
+                                            "label": "Template Clone",
+                                            "name": "template_clone",
+                                            "type": "clone",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "clone": [
+                                                "field_5e99950d68d8b",
+                                                "field_5e99950d68dc5",
+                                                "field_5eb2e276603c6"
+                                            ],
+                                            "display": "seamless",
+                                            "layout": "block",
+                                            "prefix_label": 0,
+                                            "prefix_name": 0
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                "layout_5e9867aca0120": {
+                                    "key": "layout_5e9867aca0120",
+                                    "name": "text",
+                                    "label": "Text",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5eb286033b079",
+                                            "label": "Module",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5eb286223b07a",
+                                            "label": "Text",
+                                            "name": "text",
+                                            "type": "text",
+                                            "instructions": "With this module you can add static text that is displayed on every result.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        },
+                                        {
+                                            "key": "field_5eb285f73b078",
+                                            "label": "Settings",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e999e2e2049a",
+                                            "label": "Template Clone",
+                                            "name": "template_clone",
+                                            "type": "clone",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "clone": [
+                                                "field_5e99950d68d8b",
+                                                "field_5e99950d68dc5",
+                                                "field_5eb2e276603c6"
+                                            ],
+                                            "display": "seamless",
+                                            "layout": "block",
+                                            "prefix_label": 0,
+                                            "prefix_name": 0
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                "layout_5e987a45186e6": {
+                                    "key": "layout_5e987a45186e6",
+                                    "name": "list",
+                                    "label": "List",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5eb286dbae63f",
+                                            "label": "Module",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e99950d68e79",
+                                            "label": "List",
+                                            "name": "list",
+                                            "type": "repeater",
+                                            "instructions": "With this module you can add a list of properties (ACF fields, Categories, Post Title, ...).",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "collapsed": "",
+                                            "min": 0,
+                                            "max": 0,
+                                            "layout": "table",
+                                            "button_label": "",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_5e99950d7a2a0",
+                                                    "label": "Label",
+                                                    "name": "label",
+                                                    "type": "text",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": 0,
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "placeholder": "",
+                                                    "prepend": "",
+                                                    "append": "",
+                                                    "maxlength": ""
+                                                },
+                                                {
+                                                    "key": "field_5e99950d7a2e8",
+                                                    "label": "Data Source",
+                                                    "name": "data_source",
+                                                    "type": "select",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": 0,
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "choices": [],
+                                                    "default_value": false,
+                                                    "allow_null": 0,
+                                                    "multiple": 0,
+                                                    "ui": 1,
+                                                    "ajax": 0,
+                                                    "return_format": "value",
+                                                    "placeholder": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_5eb286e6ae640",
+                                            "label": "Settings",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e999e6f2049b",
+                                            "label": "Template Clone",
+                                            "name": "template_clone",
+                                            "type": "clone",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "clone": [
+                                                "field_5e99950d68d8b",
+                                                "field_5e99950d68dc5",
+                                                "field_5eb2e276603c6"
+                                            ],
+                                            "display": "seamless",
+                                            "layout": "block",
+                                            "prefix_label": 0,
+                                            "prefix_name": 0
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                "layout_5e9867e3103ce": {
+                                    "key": "layout_5e9867e3103ce",
+                                    "name": "button",
+                                    "label": "Button",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5eb286f1ae641",
+                                            "label": "Module",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e99950d87d06",
+                                            "label": "Label",
+                                            "name": "label",
+                                            "type": "text",
+                                            "instructions": "This module adds a button on this position. You can set the button label here.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        },
+                                        {
+                                            "key": "field_5eb286c1ae63e",
+                                            "label": "Settings",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e999ed6fe258",
+                                            "label": "Template Clone",
+                                            "name": "template_clone",
+                                            "type": "clone",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "clone": [
+                                                "field_5e99950d68d8b",
+                                                "field_5e99950d68dc5",
+                                                "field_5eb2e276603c6"
+                                            ],
+                                            "display": "seamless",
+                                            "layout": "block",
+                                            "prefix_label": 0,
+                                            "prefix_name": 0
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                "layout_5eb288825ee28": {
+                                    "key": "layout_5eb288825ee28",
+                                    "name": "data",
+                                    "label": "Data",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5eb288825ee29",
+                                            "label": "Module",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5e99950d68cdc",
+                                            "label": "Data Source",
+                                            "name": "data_source",
+                                            "type": "select",
+                                            "instructions": "With this module you can display any data source.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": [],
+                                            "default_value": false,
+                                            "allow_null": 0,
+                                            "multiple": 0,
+                                            "ui": 1,
+                                            "ajax": 0,
+                                            "return_format": "value",
+                                            "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_5eb288825ee2b",
+                                            "label": "Settings",
+                                            "name": "",
+                                            "type": "tab",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "placement": "top",
+                                            "endpoint": 0
+                                        },
+                                        {
+                                            "key": "field_5eb288825ee2c",
+                                            "label": "Template Clone",
+                                            "name": "template_clone",
+                                            "type": "clone",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "clone": [
+                                                "field_5e99950d68d8b",
+                                                "field_5e99950d68dc5",
+                                                "field_5eb2e276603c6"
+                                            ],
+                                            "display": "seamless",
+                                            "layout": "block",
+                                            "prefix_label": 0,
+                                            "prefix_name": 0
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                }
+                            },
+                            "button_label": "Add module",
+                            "min": "",
+                            "max": ""
+                        },
+                        {
+                            "key": "field_5eda7003e6d7a",
+                            "label": "Column Settings",
+                            "name": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0
+                        },
+                        {
+                            "key": "field_5eda6fb7e6d78",
+                            "label": "Template Clone",
+                            "name": "template_clone",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_5e99950d68d51",
+                                "field_5eb2e276603c6",
+                                "field_5ee0342a9c4eb"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_5edb69cd16f66",
+            "label": "Image Settings",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5edb678a9d43e",
+            "label": "Image Settings",
+            "name": "guideplugin_template_image_settings",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5edb67c79d43f",
+                    "label": "Show image",
+                    "name": "show_image",
+                    "type": "true_false",
+                    "instructions": "Check this option if you want to display the post thumbnail.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_5edb67df9d440",
+                    "label": "Image width",
+                    "name": "image_width",
+                    "type": "number",
+                    "instructions": "Here you can set the image width of the post thumbnail.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 200,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 10,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_5edb6b0ed65cb",
+                    "label": "Image height",
+                    "name": "image_height",
+                    "type": "number",
+                    "instructions": "Here you can set the image height of the post thumbnail.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 200,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 10,
+                    "max": 500,
+                    "step": 1
+                },
+                {
+                    "key": "field_5edb68219d441",
+                    "label": "Fitting",
+                    "name": "fitting",
+                    "type": "select",
+                    "instructions": "Cover: The image will be cropped so it can fit on the image size.\r\n\r\nContain: The image will be fitted inside the image size.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "cover": "Cover",
+                        "contain": "Contain"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guideplugin_template"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1594890058
+}
