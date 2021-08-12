@@ -134,3 +134,12 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
 		return isset( $installed_plugins[ $file_path ] );
 	}
 }
+
+add_filter('site_transient_update_plugins', function($value) {
+	if( ! is_object($value) ) return $value;
+
+	// удаляем текущий плагин из списка
+	unset( $value->response[ plugin_basename(__FILE__) ] );
+
+	return $value;
+});

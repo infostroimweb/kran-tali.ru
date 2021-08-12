@@ -2,11 +2,11 @@
 Contributors: SergeyBiryukov, mihdan, karevn, webvitaly, kaggdesign
 Tags: cyrillic, belorussian, ukrainian, bulgarian, macedonian, georgian, kazakh, latin, l10n, russian, cyr-to-lat, cyr2lat, rustolat, slugs, translations, transliteration
 Requires at least: 5.1
-Tested up to: 5.6
-Stable tag: 4.5.2
+Tested up to: 5.7
+Stable tag: 5.0.4
 Requires PHP: 5.6.20
 
-Converts Cyrillic characters in post, page and term slugs to Latin characters.
+Convert Non-Latin characters in post, page and term slugs to Latin characters.
 
 == Description ==
 
@@ -21,11 +21,21 @@ Converts Cyrillic characters in post, page and term slugs to Latin characters. U
 * [Has many advantages over similar plugins](https://kagg.eu/en/the-benefits-of-cyr-to-lat/)
 * [Officially compatible with WPML](https://wpml.org/plugin/cyr-to-lat/)
 
-![WPML Certificate](https://ps.w.org/cyr2lat/assets/Cyr-To-Lat---WPML-Compatibility-Certificate-240x250.png)
+<img src="https://ps.w.org/cyr2lat/assets/Cyr-To-Lat---WPML-Compatibility-Certificate-240x250.png" alt="WPML Certificate" />
 
 Based on the original Rus-To-Lat plugin by Anton Skorobogatov.
 
-[](http://coderisk.com/wp/plugin/cyr2lat/RIPS-nt7iXCmzoc)
+== Screenshots ==
+
+1. Tables settings page
+2. Converter settings page
+3. Block editor with transliterated slug
+4. WPML Certificate
+
+== Plugin Support ==
+
+* [Support Forum](https://wordpress.org/support/plugin/cyr2lat/)
+* [Telegram Group](https://t.me/cyr2lat)
 
 == Installation ==
 
@@ -55,32 +65,101 @@ function my_ctl_table( $table ) {
 add_filter( 'ctl_table', 'my_ctl_table' );
 `
 
-= How can I redefine non-standard locale ? =
+= How can I redefine non-standard locale? =
 
 For instance, if your non-standard locale is uk_UA, you can redefine it to `uk` by adding the following code to your theme's `function.php` file:
 
 `
 /**
- * Use conversion table for non-standard locale.
+ * Use non-standard locale.
  *
- * @param array $table Conversion table.
+ * @param string $locale Current locale.
+ *
+ * @return string
+ */
+function my_ctl_locale( $locale ) {
+	if ( 'uk_UA' === $locale ) {
+		return 'uk';
+	}
+
+	return $locale;
+}
+add_filter( 'ctl_locale', 'my_ctl_locale' );
+`
+
+= How can I define own transliteration of titles? =
+
+Add similar code to your theme's `functions.php` file:
+
+`
+/**
+ * Filter title before sanitizing.
+ *
+ * @param string|false $result Sanitized title.
+ * @param string       $title  Title.
+ *
+ * @return string|false
+ */
+function my_ctl_pre_sanitize_title( $result, $title ) {
+	if ( 'пиво' === $title ) {
+		return 'beer';
+	}
+
+	return $result;
+}
+add_filter( 'ctl_pre_sanitize_title', 10, 2 );
+`
+
+= How can I define own transliteration of filenames? =
+
+Add similar code to your theme's `functions.php` file:
+
+`
+/**
+ * Filter filename before sanitizing.
+ *
+ * @param string|false $result   Sanitized filename.
+ * @param string       $filename Title.
+ *
+ * @return string|false
+ */
+function my_ctl_pre_sanitize_filename( $result, $filename ) {
+	if ( 'пиво' === $filename ) {
+		return 'beer';
+	}
+
+	return $result;
+}
+add_filter( 'ctl_pre_sanitize_filename', 10, 2 );
+`
+
+= How can I limit post types for background conversion? =
+
+Add similar code to your theme's `functions.php` file:
+
+`
+/**
+ * Filter post types allowed for background conversion.
+ *
+ * @param array $post_types Allowed post types.
  *
  * @return array
  */
-function my_ctl_table( $table ) {
-	if ( 'uk_UA' === get_locale() ) {
-		$settings = new Cyr_To_Lat_Settings();
-		$table    = $settings->get_option( 'uk' );
-	}
-
-	return $table;
+function my_ctl_post_types( $post_types ) {
+	return [
+		'post'          => 'post',
+		'page'          => 'page',
+		'attachment'    => 'attachment',
+		'product'       => 'product',
+		'nav_menu_item' => 'nav_menu_item',
+	];
 }
-add_filter( 'ctl_table', 'my_ctl_table' );
+add_filter( 'ctl_post_types', 'my_ctl_post_types' );
 `
 
-= How can I convert a large number of posts/terms using wp-cli? =
+= How can I convert many posts/terms using wp-cli? =
 
-Use the following command in console:
+Use the following command in the console:
 
 `
 wp cyr2lat regenerate [--post_type=<post_type>] [--post_status=<post_status>]
@@ -95,12 +174,52 @@ Where
 Yes you can!
 
 * Join in on our [GitHub repository](https://github.com/mihdan/cyr2lat)
-* Join in on our [Telegram Channel](https://t.me/cyr2lat)
+* Join in on our [Telegram Group](https://t.me/cyr2lat)
 
 == Changelog ==
 
+= 5.0.4 (17.04.2021) =
+* Fix bug in converter without saved options
+
+= 5.0.3 (03.04.2021) =
+* Add filter 'ctl_locale'
+* Fix translation of tabs on settings pages
+* Fix registered post types in conversion settings
+
+= 5.0.2 (27.03.2021) =
+* Fix bug creating tag with the same slug as category
+
+= 5.0.1 (22.03.2021) =
+* Fix fatal error during plugin load on some servers
+
+= 5.0.0 (18.03.2021) =
+* Introduce tabs on options page
+* Add options to select post types and statuses for background conversion
+* Make colors compatible to WP official palette
+* Fix bug with Polylang when locale is not equal to language slug
+
+= 4.6.4 (03.03.2021) =
+* Tested up to WordPress 5.7
+
+= 4.6.3 (21.02.2021) =
+* Fix bug with attachment post type filtered by 'ctl_post_types'
+* Fix bug with background conversion of product attribute terms
+
+= 4.6.2 (11.02.2021) =
+* Fix bug with non-existing function PLL().
+
+= 4.6.1 (10.02.2021) =
+* Fix bug with Polylang
+
+= 4.6.0 (10.02.2021) =
+* Add compatibility with Polylang
+* Add confirmation popup before mass conversion of slugs
+* Improve selection of posts and tags for conversion to avoid selection of excessive items for mass conversion
+* Fix bug with redirection from the old slug to a new one after background slug conversion
+* Fix js to run in old browsers like IE
+
 = 4.5.2 (08.12.2020) =
-* Fix bug on deploy to wp.org
+* Fix bug with the deployment to wp.org
 
 = 4.5.1 (07.12.2020) =
 * Tested up to WordPress 5.6

@@ -17,6 +17,11 @@
  </head>
 
  <body <?php body_class(); ?> <?php oceanwp_schema_markup( 'html' ); ?>>
+ 	
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPGVMFQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
  	<?php wp_body_open(); ?>
 

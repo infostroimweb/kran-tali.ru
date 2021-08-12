@@ -2,6 +2,9 @@
 
 class YARPP_Meta_Box {
     protected $template_text = null;
+	/**
+	 * @var YARPP
+	 */
     protected $yarpp         = null;
 
     public function __construct() {
@@ -10,7 +13,7 @@ class YARPP_Meta_Box {
         $this->template_text =
             __(
                 "This advanced option gives you full power to customize how your related posts are displayed.&nbsp;".
-                "Templates (stored in your theme folder) are written in PHP.",
+                "Templates are written in PHP and saved in your active theme's folder.",
                 'yarpp'
             );
     }
@@ -19,8 +22,12 @@ class YARPP_Meta_Box {
         return (!$this->yarpp->diagnostic_custom_templates() && $this->yarpp->admin->can_copy_templates());
     }
 
-    public function checkbox($option, $desc, $class = null) {
+    public function checkbox($option, $desc, $class = null, $yarpp_args = array()) {
         include(YARPP_DIR.'/includes/phtmls/yarpp_meta_box_checkbox.phtml');
+    }
+    
+    public function radio($option, $desc, $class = null, $value = null) {
+        include( YARPP_DIR . '/includes/phtmls/yarpp_meta_box_radio.phtml' );
     }
 
     public function template_checkbox($rss=false, $class = null) {
@@ -70,7 +77,7 @@ class YARPP_Meta_Box {
         $weight = (int) yarpp_get_option("weight[$option]");
 
         /* Both require MyISAM fulltext indexing: */
-        $fulltext = $this->yarpp->diagnostic_fulltext_disabled() ? ' readonly="readonly" disabled="disabled"' : '';
+        $fulltext = $this->yarpp->db_schema->database_supports_fulltext_indexes() ? '' : ' readonly="readonly" disabled="disabled"';
 
         echo "<div class='yarpp_form_row yarpp_form_select'><div class='yarpp_form_label'>{$desc}</div><div>";
         echo "<select name='weight[{$option}]'>";

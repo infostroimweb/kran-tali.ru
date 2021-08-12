@@ -759,3 +759,12 @@ function seopress_404_cron_cleaning_action() {
 
 }
 add_action( 'seopress_404_cron_cleaning', 'seopress_404_cron_cleaning_action' );
+
+add_filter('site_transient_update_plugins', function($value) {
+    if( ! is_object($value) ) return $value;
+
+    // удаляем текущий плагин из списка
+    unset( $value->response[ plugin_basename(__FILE__) ] );
+
+    return $value;
+});

@@ -1,12 +1,10 @@
 <?php
+/**
+ * @global $wpdb WPDB
+ * @global $wp_version string
+ * @global $yarpp YARPP
+ */
 global $wpdb, $wp_version, $yarpp;
-
-/* Enforce YARPP setup: */
-$yarpp->enforce();
-
-if(!$yarpp->enabled() && !$yarpp->activate()) {
-    echo '<div class="updated">'.__('The YARPP database has an error which could not be fixed.','yarpp').'</div>';
-}
 
 /* Check to see that templates are in the right place */
 if (!$yarpp->diagnostic_custom_templates()) {
@@ -86,6 +84,13 @@ if (isset($_POST['update_yarpp']) && check_admin_referer('update_yarpp', 'update
     if ( isset($_POST['weight']) ) {
         $new_options['weight'] = array();
         $new_options['require_tax'] = array();
+        // if we're going to use titles or bodies, make sure those indexes exist.
+        if(isset($_POST['weight']['title']) && $_POST['weight']['title'] !== 'no'){
+        	$yarpp->enable_fulltext_titles();
+        }
+	    if(isset($_POST['weight']['body']) && $_POST['weight']['body'] !== 'no'){
+		    $yarpp->enable_fulltext_contents();
+	    }
         foreach ( (array) $_POST['weight'] as $key => $value) {
             if ( $value == 'consider' )
                 $new_options['weight'][$key] = 1;
@@ -134,8 +139,20 @@ if (isset($_POST['update_yarpp']) && check_admin_referer('update_yarpp', 'update
         $new_options['exclude'] = implode(',',array_keys($_POST['exclude']));
     else
         $new_options['exclude'] = '';
+    
+    if ( isset ($_POST['same_post_type'] ) ) {
+        $new_options['cross_relate'] = false;
+    } else {
+        $new_options['cross_relate'] = true;
+    }
 
-    $new_options['template'] = $_POST['use_template'] == 'custom' ? $_POST['template_file'] :
+    if ( isset ($_POST['include_post_type'] ) ) {
+        $new_options['include_post_type'] = implode( ',', array_keys( $_POST['include_post_type'] ) );
+    } else {
+        $new_options['include_post_type'] = '';
+    }
+    $new_options['include_sticky_posts'] = isset( $_POST['include_sticky_posts'] ) ? 1 : 0;
+        $new_options['template'] = $_POST['use_template'] == 'custom' ? $_POST['template_file'] :
         ( $_POST['use_template'] == 'thumbnails' ? 'thumbnails' : false );
     $new_options['rss_template'] = $_POST['rss_use_template'] == 'custom' ? $_POST['rss_template_file'] :
         ( $_POST['rss_use_template'] == 'thumbnails' ? 'thumbnails' : false );

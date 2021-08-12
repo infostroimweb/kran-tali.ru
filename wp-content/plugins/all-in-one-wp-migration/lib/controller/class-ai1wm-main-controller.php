@@ -157,6 +157,7 @@ class Ai1wm_Main_Controller {
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Config_File::execute', 60 );
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Enumerate_Content::execute', 100 );
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Enumerate_Media::execute', 110 );
+		add_filter( 'ai1wm_export', 'Ai1wm_Export_Enumerate_Tables::execute', 120 );
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Content::execute', 150 );
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Media::execute', 160 );
 		add_filter( 'ai1wm_export', 'Ai1wm_Export_Database::execute', 200 );
@@ -170,6 +171,7 @@ class Ai1wm_Main_Controller {
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Validate::execute', 50 );
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Confirm::execute', 100 );
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Blogs::execute', 150 );
+		add_filter( 'ai1wm_import', 'Ai1wm_Import_Permalinks::execute', 170 );
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Enumerate::execute', 200 );
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Content::execute', 250 );
 		add_filter( 'ai1wm_import', 'Ai1wm_Import_Mu_Plugins::execute', 270 );
@@ -210,6 +212,11 @@ class Ai1wm_Main_Controller {
 			}
 		}
 
+		// Add in plugin update message
+		foreach ( Ai1wm_Extensions::get() as $slug => $extension ) {
+			add_action( "in_plugin_update_message-{$extension['basename']}", 'Ai1wm_Updater_Controller::in_plugin_update_message', 10, 2 );
+		}
+
 		// Add automatic plugins update
 		add_action( 'wp_maybe_auto_update', 'Ai1wm_Updater_Controller::check_for_updates' );
 
@@ -222,7 +229,7 @@ class Ai1wm_Main_Controller {
 		// Add chunk size limit
 		add_filter( 'ai1wm_max_chunk_size', 'Ai1wm_Import_Controller::max_chunk_size' );
 
-		// Add plugins api
+		// Add plugins API
 		add_filter( 'plugins_api', 'Ai1wm_Updater_Controller::plugins_api', 20, 3 );
 
 		// Add plugins updates
@@ -849,7 +856,7 @@ class Ai1wm_Main_Controller {
 			'ai1wm_import',
 			'ai1wm_disk_space',
 			array(
-				'free'   => @disk_free_space( AI1WM_STORAGE_PATH ),
+				'free'   => ai1wm_disk_free_space( AI1WM_STORAGE_PATH ),
 				'factor' => AI1WM_DISK_SPACE_FACTOR,
 				'extra'  => AI1WM_DISK_SPACE_EXTRA,
 			)
@@ -1023,7 +1030,7 @@ class Ai1wm_Main_Controller {
 			'ai1wm_backups',
 			'ai1wm_disk_space',
 			array(
-				'free'   => @disk_free_space( AI1WM_STORAGE_PATH ),
+				'free'   => ai1wm_disk_free_space( AI1WM_STORAGE_PATH ),
 				'factor' => AI1WM_DISK_SPACE_FACTOR,
 				'extra'  => AI1WM_DISK_SPACE_EXTRA,
 			)

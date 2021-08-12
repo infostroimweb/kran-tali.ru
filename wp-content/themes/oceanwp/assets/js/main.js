@@ -12,5 +12,17 @@ jQuery(document).ready( function() {
 			dataLayer.push({'event': 'request'})
 		}
 	}, false );
+
+	jQuery('.custom-logo').attr({
+	 height: '45px',
+	 width: '164px'
+	});
+
+	jQuery('.footer-logo img').attr({
+	 height: '114px',
+	 width: '200px'
+	});
+
+
 });
 

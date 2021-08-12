@@ -21,6 +21,8 @@ if ( empty($thumbnails_default) )
 
 $dimensions = $this->thumbnail_dimensions();
 
+$output .= '<!-- YARPP Thumbnails -->'."\n";
+
 $output .= '<h3>' . $thumbnails_heading . '</h3>' . "\n";
 
 if (have_posts()) {
@@ -51,4 +53,4 @@ if (have_posts()) {
 	$output .= $no_results;
 }
 
-$this->enqueue_thumbnails( $dimensions );
+$this->enqueue_thumbnails_stylesheet( $dimensions );

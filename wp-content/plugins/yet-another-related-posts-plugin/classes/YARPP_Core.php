@@ -92,19 +92,26 @@ class YARPP {
 		$excerpt_rss_priority = apply_filters('yarpp_excerpt_rss_priority', 600);
 
 		add_filter('the_content',        array($this, 'the_content'), $content_priority);
+		add_action('bbp_template_after_single_topic', array($this,'add_to_bbpress'));
 		add_filter('the_content_feed',   array($this, 'the_content_feed'), $feed_priority);
 		add_filter('the_excerpt_rss',    array($this, 'the_excerpt_rss' ), $excerpt_rss_priority);
-		add_action('wp_enqueue_scripts', array($this, 'maybe_enqueue_thumbnails'));
+		add_action('wp_enqueue_scripts', array($this, 'maybe_enqueue_thumbnails_stylesheet'));
+		add_filter( 'is_protected_meta', array( $this, 'is_protected_meta' ), 10, 3 );
 
         /**
 		 * If we're using thumbnails, register yarpp-thumbnail size, if theme has not already.
 		 * Note: see FAQ in the readme if you would like to change the YARPP thumbnail size.
+		 * If theme has already yarpp-thumbnail size registered and we also try to register yarpp-thumbnail then it will throw a fatal error. So it is necessary to check if yarpp-thumbnail size is not registered.
          */
-		if ($this->diagnostic_using_thumbnails() && (!($dimensions = $this->thumbnail_dimensions()) || isset($dimensions['_default']))) {
+		global $add_image_size_by_yarpp;
+		 if ( false === yarpp_get_image_sizes( 'yarpp-thumbnail' ) ) {			
 			$width  = 120;
 			$height = 120;
 			$crop   = true;
-			add_image_size('yarpp-thumbnail', $width, $height, $crop);
+			add_image_size( 'yarpp-thumbnail', $width, $height, $crop );
+			$add_image_size_by_yarpp = true;
+		} else {
+			$add_image_size_by_yarpp = false;
 		}
 
 		if (isset($_REQUEST['yarpp_debug'])) $this->debug = true;
@@ -117,12 +124,29 @@ class YARPP {
 		if (is_admin()) {
 			require_once(YARPP_DIR.'/classes/YARPP_Admin.php');
 			$this->admin = new YARPP_Admin($this);
-			$this->enforce();
+			if( ! defined('DOING_AJAX')){
+				$this->enforce();
+			}
 		}
 		$shortcode = new YARPP_Shortcode();
 		$shortcode->register();
 	}
-		
+	/**
+	 * Add yarpp_meta key to protected list.
+     *
+     * @since 5.19
+	 *
+	 * @param bool   $protected Whether the key is considered protected.
+	 * @param string $meta_key  Metadata key.
+	 * @param string $meta_type Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user',
+	 *                          or any other object type with an associated meta table.
+	 */
+	public function is_protected_meta( $protected, $meta_key, $meta_type ) {
+		if ( 'yarpp_meta' === $meta_key ) {
+			return true;
+		}
+		return $protected;
+	}
 	/*
 	 * OPTIONS
 	 */
@@ -141,7 +165,7 @@ class YARPP {
 
 	private function load_default_options() {
 		$this->default_options = array(
-			'threshold' => 4,
+			'threshold' => 1,
 			'limit' => 4,
 			'excerpt_length' => 10,
 			'recent' => false,
@@ -170,15 +194,18 @@ class YARPP {
 			'rss_template' => false,
 			'show_pass_post' => false,
 			'cross_relate' => false,
+			'include_sticky_posts' => true,
+			'generate_missing_thumbnails' => false,
 			'rss_display' => false,
 			'rss_excerpt_display' => true,
 			'promote_yarpp' => false,
 			'rss_promote_yarpp' => false,
 			'myisam_override' => false,
 			'exclude' => '',
+			'include_post_type' => get_post_types( array() ),
 			'weight' => array(
-				'title' => 1,
-				'body' => 1,
+				'title' => 0,
+				'body' => 0,
 				'tax' => array(
 					'category' => 1,
 					'post_tag' => 1
@@ -196,6 +223,9 @@ class YARPP {
 			'pools' => array(),
 			'manually_using_thumbnails' => false,
 			'rest_api_display' => true,
+			'thumbnail_size_display' => 0,
+			'custom_theme_thumbnail_size_display' => 0,
+			'thumbnail_size_feed_display' => 0,
 			'rest_api_client_side_caching' => false,
 			'yarpp_rest_api_cache_time' => 15
 		);
@@ -217,7 +247,7 @@ class YARPP {
 		$this->db_options->set_yarpp_options($new_options);
 	
 		// new in 3.1: clear cache when updating certain settings.
-		$clear_cache_options = array('show_pass_post' => 1, 'recent' => 1, 'threshold' => 1, 'past_only' => 1);
+		$clear_cache_options = array('show_pass_post' => 1, 'recent' => 1, 'threshold' => 1, 'past_only' => 1, 'include_sticky_posts' => 1, 'cross_relate' => 1);
 
 		$relevant_options = array_intersect_key($options, $clear_cache_options);
 		$relevant_current_options = array_intersect_key($current_options, $clear_cache_options);
@@ -228,6 +258,7 @@ class YARPP {
             || ($new_options['weight'] != $current_options['weight'])
             || ($new_options['exclude'] != $current_options['exclude'])
             || ($new_options['require_tax'] != $current_options['require_tax'])
+						|| ($new_options['include_post_type'] != $current_options['include_post_type'])
         ) {
 		    $this->cache->flush();
         }
@@ -299,19 +330,14 @@ class YARPP {
     }
 
 	public function enabled() {
-		if (!(bool) $this->cache->is_enabled()) return false;
-		if (!(bool) $this->diagnostic_fulltext_disabled()) return $this->diagnostic_fulltext_indices();
-		return true;
+		if ( ! (bool) $this->cache->is_enabled() ) {
+			return false;
+		} else {
+			return $this->diagnostic_fulltext_indices();
+		}
 	}
 	
 	public function activate() {
-		/*
-		 * If it's not known to be disabled, but the indexes aren't there.
-		 */
-		if (!$this->diagnostic_fulltext_disabled() && !$this->diagnostic_fulltext_indices()) {
-			$this->enable_fulltext();
-		}
-
 		if ((bool) $this->cache->is_enabled() === false) {
 			$this->cache->setup();
 		}
@@ -346,7 +372,12 @@ class YARPP {
 				return $engine;
 		}
 	}
-	
+
+	/**
+	 * @deprecated in 5.14.0 we just always enable fulltext indexes, or keep checking for it, so this should never need
+	 * to be called.
+	 * @return bool
+	 */
 	function diagnostic_fulltext_disabled() {
 		return $this->db_options->is_fulltext_disabled();
 	}
@@ -355,19 +386,36 @@ class YARPP {
 	 * Attempts to add the fulltext indexes on the posts table.
 	 *
 	 * @since 5.1.8
+	 * @deprecated use YARPP::enable_fulltext_titles() and YARPP::enable_fulltext_contents() instead
 	 * @return bool
 	 */
 	public function enable_fulltext() {
-        /*
+		_deprecated_function('YARPP::enable_fulltext','5.15.0');
+        if(! $this->db_supports_fulltext()){
+        	return false;
+        }
+        if(! $this->enable_fulltext_titles()){
+        	return false;
+        }
+        if( ! $this->enable_fulltext_contents()){
+        	return false;
+        }
+        return true;
+	}
+
+	protected function db_supports_fulltext(){
+		/*
          * If we haven't already re-attempted creating the database indexes and the database doesn't support adding
          * those indexes, disable it.
          */
 		if (!(bool) $this->get_option(YARPP_DB_Options::YARPP_MYISAM_OVERRIDE) &&
 		    ! $this->db_schema->database_supports_fulltext_indexes()) {
-				$this->disable_fulltext();
-				return false;
+			$this->disable_fulltext();
+			return false;
 		}
-
+		return true;
+	}
+	public function enable_fulltext_titles(){
 		if(! $this->db_schema->title_column_has_index()) {
 			if ( $this->db_schema->add_title_index() ) {
 				$this->db_options->delete_fulltext_db_error_record();
@@ -377,7 +425,10 @@ class YARPP {
 				return false;
 			}
 		}
+		return true;
+	}
 
+	public function enable_fulltext_contents(){
 		if(! $this->db_schema->content_column_has_index()){
 			if ( $this->db_schema->add_content_index()) {
 				$this->db_options->delete_fulltext_db_error_record();
@@ -387,8 +438,7 @@ class YARPP {
 				return false;
 			}
 		}
-
-        return true;
+		return true;
 	}
 
 	/**
@@ -406,8 +456,22 @@ class YARPP {
 		/* cut threshold by half: */
 		$threshold = (float) $this->get_option('threshold');
 		$this->set_option(array('threshold' => round($threshold / 2)));
+	}
 
-		$this->db_options->set_fulltext_disabled(true);
+	/**
+	 * Returns true if we consider this to be a big database (based on posts records); false otherwise.
+	 * Uses the constants YARPP_BIG_DB
+	 * @return bool
+	 */
+	public function diagnostic_big_db(){
+		global $wpdb;
+		if(! defined('YARPP_BIG_DB')){
+			define('YARPP_BIG_DB', 5000);
+		}
+		$sql = 'SELECT count(*) FROM ' . $wpdb->posts;
+		// Note: count includes drafts, revisions, etc
+		$posts_count = $wpdb->get_var($sql);
+		return (int)$posts_count > YARPP_BIG_DB;
 	}
 
     /*
@@ -415,9 +479,7 @@ class YARPP {
      * @return bool
      */
 	public function diagnostic_fulltext_indices() {
-		global $wpdb;
-		$wpdb->get_results("SHOW INDEX FROM {$wpdb->posts} WHERE Key_name = 'yarpp_title' OR Key_name = 'yarpp_content'");
-		return ($wpdb->num_rows >= 2);
+		return $this->db_schema->title_column_has_index() && $this->db_schema->content_column_has_index();
 	}
 
 	public function diagnostic_hidden_metaboxes() {
@@ -449,14 +511,14 @@ class YARPP {
 
 		if (!(array_sum($stats) > 0)) return false;
 		
-		$sum = array_sum(array_map('array_product', array_map(null, array_values($stats), array_keys($stats))));
+		$sum = array_sum((array)array_map('array_product', array_map(null, array_values($stats), array_keys($stats))));
 		$avg = $sum / array_sum( $stats );
 
 		return ($this->cache->cache_status() > 0.1 && $avg > 2);
 	}
 	
 	public function diagnostic_generate_thumbnails() {
-		return (defined('YARPP_GENERATE_THUMBNAILS') && YARPP_GENERATE_THUMBNAILS);
+		return (defined( 'YARPP_GENERATE_THUMBNAILS' ) && YARPP_GENERATE_THUMBNAILS) || (bool) $this->get_option( 'generate_missing_thumbnails' );
 	}
 
 	public function diagnostic_using_thumbnails() {
@@ -465,13 +527,27 @@ class YARPP {
 		if ($this->get_option('rss_template') === 'thumbnails' && $this->get_option('rss_display')) return true;
 		return false;
 	}
-
+	public function get_thumbnail_option_name() {
+		if ( is_feed() ) {
+			return 'thumbnail_size_feed_display';
+		}
+		$chosen_template = yarpp_get_option( 'template' );
+		// check if they're using a custom template
+		if ( 'thumbnails' === $chosen_template){
+			return 'thumbnail_size_display';
+		}
+		return 'custom_theme_thumbnail_size_display';
+	}
 	public function thumbnail_dimensions() {
 		global $_wp_additional_image_sizes;
 		if (!isset($_wp_additional_image_sizes['yarpp-thumbnail'])) return $this->default_dimensions;
 
-		$dimensions = $_wp_additional_image_sizes['yarpp-thumbnail'];
-		$dimensions['size'] = 'yarpp-thumbnail';
+		// get user selected thumbnail size.
+		$dimensions = yarpp_get_thumbnail_image_dimensions( $this->get_thumbnail_option_name() );	
+		if ( empty($dimensions) ) {
+			$dimensions = $_wp_additional_image_sizes['yarpp-thumbnail'];
+			$dimensions['size'] = 'yarpp-thumbnail';
+		}	
 		
 		/* Ensure YARPP dimensions format: */
 		$dimensions['width']  = (int) $dimensions['width'];
@@ -479,7 +555,16 @@ class YARPP {
 		return $dimensions;
 	}
 
-	public function maybe_enqueue_thumbnails() {
+	/**
+	 * @deprecated 5.11.0
+	 * @see \YARPP::maybe_enqueue_thumbnails_stylesheet
+	 */
+	public function maybe_enqueue_thumbnails(){
+		_deprecated_function('YARPP::maybe_enqueue_thumbnails','5.11.0','YARPP::maybe_enqueue_thumbnails_stylesheet');
+		return 	$this->maybe_enqueue_thumbnails_stylesheet();
+	}
+
+	public function maybe_enqueue_thumbnails_stylesheet() {
 		if (is_feed()) return;
 
 		$auto_display_post_types = $this->get_option('auto_display_post_types');
@@ -491,19 +576,36 @@ class YARPP {
 
 		if ($this->get_option('template') !== 'thumbnails') return;
 
-		$this->enqueue_thumbnails($this->thumbnail_dimensions());
+		$this->enqueue_thumbnails_stylesheet($this->thumbnail_dimensions());
 	}
 
+	/**
+	 * @deprecated 5.11.0
+	 * @see YARPP::enqueue_thumbnails_stylesheet()
+	 * @param $dimensions
+	 */
 	public function enqueue_thumbnails($dimensions) {
-        $queryStr = http_build_query(
-            array(
-                'width'  => $dimensions['width'],
-                'height' => $dimensions['height']
-            )
-        );
+		_deprecated_function('YARPP::enqueue_thumbnails','5.11.0','YARPP::enqueue_thumbnails_stylesheet');
+		return $this->enqueue_thumbnails_stylesheet($dimensions);
+	}
 
-    $url = plugins_url('includes/styles_thumbnails.css.php?'.$queryStr, dirname(__FILE__));
-		wp_enqueue_style("yarpp-thumbnails-".$dimensions['size'], $url, array(), YARPP_VERSION, 'all');
+	/**
+	 * @param $dimensions
+	 */
+	public function enqueue_thumbnails_stylesheet( $dimensions ) {
+		
+		wp_register_style('yarpp-thumbnails', plugins_url('/style/styles_thumbnails.css', YARPP_MAIN_FILE ), array(), YARPP_VERSION);
+		/**
+		 * Filter to allow dequeing of styles_thumbnails.css.
+		 *
+		 * @param boolean default true
+		 */
+		$enqueue_yarpp_thumbnails = apply_filters( 'yarpp_enqueue_thumbnails_style', true );
+		if ( true === $enqueue_yarpp_thumbnails ) {
+			$yarpp_custom_css = yarpp_thumbnail_inline_css( $dimensions );			
+			wp_enqueue_style( 'yarpp-thumbnails' );
+			wp_add_inline_style( 'yarpp-thumbnails', $yarpp_custom_css );
+		}		
 	}
 
     /*
@@ -541,7 +643,7 @@ class YARPP {
 			if ($this->templates === false) $this->templates = array();
 
 			// get basenames only
-			$this->templates = array_map(array($this, 'get_template_data'), $this->templates);
+			$this->templates = (array)array_map(array($this, 'get_template_data'), $this->templates);
 		}
 		return (array) $this->templates;
 	}
@@ -859,6 +961,14 @@ class YARPP {
 	}
 	
 	private $post_types = null;
+
+	/**
+	 * Gets all the post types YARPP can add related content to, and the post types YARPP can include in
+	 * "the pool"
+	 * @param string $field 'objects', or any property on WP_Post_Type, like 'name'. Defaults to 'name'.
+	 *
+	 * @return array|null
+	 */
 	public function get_post_types($field = 'name') {
 		if (is_null($this->post_types)) {
 			$this->post_types = get_post_types(array(), 'objects');
@@ -870,7 +980,48 @@ class YARPP {
 		return wp_list_pluck( $this->post_types, $field );
 	}
 
+	/**
+	 * Gets the post types to use for the current YARPP query
+	 * @param string|WP_Post $reference_ID
+	 * @param array $args
+	 * @return string[]
+	 */
+	public function get_query_post_types($reference_ID = null, $args = array()){
+		$include_post_type       = yarpp_get_option( 'include_post_type' );
+		$include_post_type = wp_parse_list( $include_post_type );
+		if(isset($args['post_type'])){
+			$post_types = (array)$args['post_type'];
+		} else if ( ! $this->get_option('cross_relate') ) {
+			$current_post_type = get_post_type( $reference_ID );
+			$post_types = array( $current_post_type );
+			if ( ! in_array( $current_post_type, $include_post_type) ) {
+				$post_types = array('');
+			}
+		}else if ( ! empty( $include_post_type ) ) {
+			$post_types = $include_post_type;
+		}else if ( $this->get_option('cross_relate') ) {
+			$post_types = $this->get_post_types();
+		} else {
+			$post_types = array(get_post_type($reference_ID));
+		}
+		return apply_filters(
+			'yarpp_map_post_types',
+			$post_types,
+			is_array($args) && isset($args['domain']) ? $args['domain'] : null
+		);
+	}
+
 	private function post_type_filter($post_type) {
+		// Remove blacklisted post types.
+		if(class_exists( 'bbPress' ) && in_array(
+			$post_type->name,
+			array(
+				'forum', // bbPress forums (ie, group of topics).
+				'reply' // bbPress replies to topics
+			)
+		)){
+			return false;
+		}
 		if ($post_type->public) return true;
 		if (isset($post_type->yarpp_support)) return $post_type->yarpp_support;
 		return false;
@@ -906,15 +1057,16 @@ class YARPP {
 
 		$comments   = wp_count_comments();
 		$users      = $wpdb->get_var("SELECT COUNT(ID) FROM ".$wpdb->users); //count_users();
-        $posts      = $wpdb->get_var("SELECT COUNT(ID) FROM ".$wpdb->posts." WHERE post_type = 'post' AND comment_count > 0");
+    $posts      = $wpdb->get_var("SELECT COUNT(ID) FROM ".$wpdb->posts." WHERE post_type = 'post' AND comment_count > 0");
 		$settings   = $this->get_option();
 
 		$collect = array_flip(array(
 			'threshold', 'limit', 'excerpt_length', 'recent', 'rss_limit',
 			'rss_excerpt_length', 'past_only', 'show_excerpt', 'rss_show_excerpt',
-			'template', 'rss_template', 'show_pass_post', 'cross_relate',
+			'template', 'rss_template', 'show_pass_post', 'cross_relate', 'generate_missing_thumbnails', 'include_sticky_posts', 
 			'rss_display', 'rss_excerpt_display', 'promote_yarpp', 'rss_promote_yarpp',
-			'myisam_override', 'weight', 'require_tax', 'auto_display_archive'
+			'myisam_override', 'weight', 'require_tax', 'auto_display_archive', 'exclude',
+			'include_post_type'
 		));
 
 		$check_changed = array(
@@ -937,7 +1089,6 @@ class YARPP {
 			),
 			'diagnostics' => array(
 				'myisam_posts'          => $this->diagnostic_myisam_posts(),
-				'fulltext_disabled'     => $this->diagnostic_fulltext_disabled(),
 				'fulltext_indices'      => $this->diagnostic_fulltext_indices(),
 				'hidden_metaboxes'      => $this->diagnostic_hidden_metaboxes(),
 				'post_thumbnails'       => $this->diagnostic_post_thumbnails(),
@@ -1042,18 +1193,9 @@ class YARPP {
 			return null;
         }
 
-        if ($this->get_option('cross_relate')) {
-            $post_types = $this->get_post_types();
-        } else {
-            $post_types = array(get_post_type());
-        }
-
-        $post_types = apply_filters('yarpp_map_post_types', $post_types, 'website');
-
         return $this->display_related(
             null,
             array(
-                'post_type' => $post_types,
                 'domain'    => 'website'
             ),
             false
@@ -1095,9 +1237,16 @@ class YARPP {
 	public function display_related($reference_ID = null, $args = array(), $echo = true) {
 		// Avoid infinite recursion here.
         if ( $this->do_not_query_for_related()) return false;
-        $this->enforce();
-
-        wp_enqueue_style('yarppRelatedCss', plugins_url('/style/related.css', YARPP_MAIN_FILE));
+        wp_register_style('yarppRelatedCss', plugins_url('/style/related.css', YARPP_MAIN_FILE ), array(), YARPP_VERSION);
+		/**
+		 * Filter to allow dequeing of related.css.
+		 *
+		 * @param boolean default true
+		 */
+		$enqueue_related_style = apply_filters( 'yarpp_enqueue_related_style', true );
+		if ( true === $enqueue_related_style ) {
+			wp_enqueue_style( 'yarppRelatedCss' );
+		}
         $output = null;
 
         if (is_numeric($reference_ID)) {
@@ -1142,7 +1291,7 @@ class YARPP {
                     'orderby'   => $orders[0],
                     'order'     => $orders[1],
                     'showposts' => $limit,
-                    'post_type' => (isset($args['post_type']) ? $args['post_type'] : $this->get_post_types())
+                    'post_type' => $this->get_query_post_types($reference_ID, $args)
                 )
             );
         }
@@ -1157,16 +1306,36 @@ class YARPP {
 
         $related_query = $wp_query; // backwards compatibility
         $related_count = $related_query->post_count;
-
-        $output .= "<div class='container'><div class='";
-        if ($domain === 'website') {
-            $output .= "yarpp-related yarpp-related-krantali";
-        } else {
-            $output .= "yarpp-related-{$domain}";
+				
+				// CSS class "yarpp-related" exists for backwards compatibility in-case older custom themes are dependent on it
+        $output .= "<div class='yarpp yarpp-related";
+				
+				// Add CSS class to identify domain
+        if (isset($domain) && $domain) {
+            $output .= " yarpp-related-{$domain}";
         }
-
+				
+				// Add CSS class to identify no results
         if ($related_count < 1) {
             $output .= " yarpp-related-none";
+        }
+				
+				// Add CSS class to identify template				
+        if (isset($template) && $template) {
+						// Normalize "thumbnail" and "thumbnails" to reference the same inbuilt template
+						if ($template === "thumbnail") {
+							$template = "thumbnails";
+						}
+						// Sanitize template name; remove file extension if exists
+						if (strpos($template, '.php')) {
+							$template_css_class_suffix = preg_replace('/'. preg_quote('.php', '/') . '$/', '', $template);
+						} else {
+							$template_css_class_suffix = $template;
+						}
+            $output .= " yarpp-template-$template_css_class_suffix";
+        } else {
+					// fallback to default template ("list")
+        	$output .= " yarpp-template-list";
         }
 
         $output .= "'>\n";
@@ -1174,16 +1343,30 @@ class YARPP {
         // Be careful to avoid infinite recursion, because those templates might show each related posts' body or
 		// excerpt, which would trigger finding its related posts, which would show its related posts body or excerpt...
         $this->rendering_related_content = true;
+
+		// avoid any monkeying around where someone could trya custom template like a template name like
+		// "yarpp-template-;../../wp-config.php". YARPP custom templates are only supported in the theme's root folder.
+        $template = str_replace('/', '', $template);
         if ($domain === 'metabox') {
             include(YARPP_DIR.'/includes/template_metabox.php');
         } else if ((bool) $template && $template === 'thumbnails') {
             include(YARPP_DIR.'/includes/template_thumbnails.php');
-        } else if ((bool) $template && file_exists(STYLESHEETPATH.'/'.$template)) {
-            global $post;
-            ob_start();
-            include(STYLESHEETPATH.'/'.$template);
-            $output .= ob_get_contents();
-            ob_end_clean();
+        } else if ((bool) $template && $template === 'list') {
+            include(YARPP_DIR.'/includes/template_builtin.php');
+        } else if ((bool) $template) {
+        	$named_properly = strpos($template,'yarpp-template-') === 0;
+        	$template_exists = file_exists(STYLESHEETPATH.'/'.$template);
+        	if($named_properly && $template_exists){
+		        global $post;
+		        ob_start();
+		        include(STYLESHEETPATH.'/'.$template);
+		        $output .= ob_get_contents();
+		        ob_end_clean();
+	        } else {
+        		error_log('YARPP Plugin: Could not load template "' . $template .'". ' . ($named_properly ? 'It is named properly.' : 'It is NOT named properly') . ' ' . ($template_exists ? 'It exists' : 'It does NOT exist') . '. Falling back to default template.');
+		        include(YARPP_DIR.'/includes/template_builtin.php');
+	        }
+
         } else if ($domain === 'widget') {
             include(YARPP_DIR.'/includes/template_widget.php');
         } else {
@@ -1214,7 +1397,7 @@ class YARPP {
                 "</p>\n";
         }
 
-        $output .= "</div>\n</div>\n";
+        $output .= "</div>\n";
 
         if ($echo) echo $output;
 		return $output;
@@ -1227,7 +1410,6 @@ class YARPP {
 	public function get_related($reference_ID = null, $args = array()) {
 		// Avoid infinite recursion here.
 		if ( $this->do_not_query_for_related()) return false;
-		$this->enforce();
 
 
 		if (is_numeric($reference_ID)) {
@@ -1247,9 +1429,7 @@ class YARPP {
 		extract($this->parse_args($args, $options));
 
 		$cache_status = $this->active_cache->enforce($reference_ID);
-		if ($cache_status === YARPP_DONT_RUN || $cache_status === YARPP_NO_RELATED) {
-			return array();
-		}
+		if ( in_array($cache_status, array(YARPP_DONT_RUN, YARPP_NO_RELATED), true)) return array();
 					
 		/* Get ready for YARPP TIME! */
 		$this->active_cache->begin_yarpp_time($reference_ID, $args);
@@ -1261,7 +1441,7 @@ class YARPP {
 			'orderby'   => $orders[0],
 			'order'     => $orders[1],
 			'showposts' => $limit,
-			'post_type' => (isset($args['post_type'])) ? $args['post_type'] : $this->get_post_types()
+			'post_type' => $this->get_query_post_types($reference_ID, $args)
 		));
 	
 		$related_query->posts = apply_filters(
@@ -1285,7 +1465,6 @@ class YARPP {
 	public function related_exist($reference_ID = null, $args = array()) {
 		// Avoid infinite recursion here.
 		if ($this->do_not_query_for_related()) return false;
-		$this->enforce();	
 	
 		if (is_numeric($reference_ID)) {
 			$reference_ID = (int) $reference_ID;
@@ -1299,10 +1478,9 @@ class YARPP {
 		$this->setup_active_cache($args);
 	
 		$cache_status = $this->active_cache->enforce($reference_ID);
-	
-		if ($cache_status === YARPP_NO_RELATED) {
-			return false;
-		}
+
+		if (in_array($cache_status, array(YARPP_DONT_RUN, YARPP_NO_RELATED), true)) return false;
+
 
         /* Get ready for YARPP TIME! */
 		$this->active_cache->begin_yarpp_time($reference_ID, $args);
@@ -1310,7 +1488,7 @@ class YARPP {
 		$related_query->query(array(
 			'p'         => $reference_ID,
 			'showposts' => 1,
-			'post_type' => (isset($args['post_type'])) ? $args['post_type'] : $this->get_post_types()
+			'post_type' => $this->get_query_post_types($reference_ID, $args)
 		));
 		
 		$related_query->posts = apply_filters(
@@ -1355,7 +1533,7 @@ class YARPP {
 		if ($domain === 'website') {
 			$output .= "yarpp-related";
         } else {
-			$output .= "yarpp-related-{$domain}";
+			$output .= "yarpp-related yarpp-related-{$domain}";
         }
 		$output .= "'>\n";
 
@@ -1482,7 +1660,19 @@ class YARPP {
          */
 		$wp_query->is_single = false;
 	}
-	
+	/*
+	 * Return true if user disabled the YARPP related post for the current post, false otherwise.
+	 * 
+	 * @return bool
+	 */
+	public function yarpp_disabled_for_this_post() {
+		global $post;
+		$yarpp_meta = get_post_meta( $post->ID, 'yarpp_meta', true );
+		if ( isset( $yarpp_meta['yarpp_display_for_this_post'] ) && 0 === (int) $yarpp_meta['yarpp_display_for_this_post'] ) {
+			return true;
+		}
+		return false;
+	}	
 	/*
 	 * DEFAULT CONTENT FILTERS
 	 */
@@ -1490,6 +1680,10 @@ class YARPP {
 	public function the_content($content) {
 		// Avoid infinite recursion.
 		if (is_feed() || $this->do_not_query_for_related()) return $content;
+		// If YARPP related post is disabled for this post then return original content.
+		if ( true === $this->yarpp_disabled_for_this_post() ) {
+			return $content;
+		}
 
 		/* If the content includes <!--noyarpp-->, don't display */
 		if (!stristr($content, '<!--noyarpp-->')) {
@@ -1505,18 +1699,9 @@ class YARPP {
 		/* If the content includes <!--noyarpp-->, don't display */
 		if (stristr($content, '<!--noyarpp-->') !== false) return $content;
 
-		if ($this->get_option('cross_relate')) {
-			$post_types = $this->get_post_types();
-        } else {
-			$post_types = array(get_post_type());
-        }
-
-		$post_types = apply_filters('yarpp_map_post_types', $post_types, 'rss');
-	
 		return $content.$this->display_related(
             null,
             array(
-			    'post_type' => $post_types,
 			    'domain'    => 'rss'
 		    ),
             false
@@ -1529,15 +1714,8 @@ class YARPP {
 		/* If the content includes <!--noyarpp-->, don't display */
 		if (stristr($content, '<!--noyarpp-->') !== false) return $content;
 
-		if ($this->get_option('cross_relate')) {
-			$type = $this->get_post_types();
-        } else if (get_post_type() === 'page') {
-			$type = array('page');
-        } else {
-			$type = array('post');
-        }
-	
-		return $content . $this->clean_pre($this->display_related(null, array('post_type' => $type, 'domain' => 'rss'), false));
+
+		return $content . $this->clean_pre($this->display_related(null, array('domain' => 'rss'), false));
 	}
 	
 	/*
@@ -1662,6 +1840,13 @@ class YARPP {
 			'week' => __('week(s)','yarpp'),
 			'month' => __('month(s)','yarpp')
 		);
+	}
+
+	/**
+	 * Adds YARPP's content to bbPress topics.
+	 */
+	public function add_to_bbpress(){
+		echo $this->display_basic();
 	}
 
 	/**

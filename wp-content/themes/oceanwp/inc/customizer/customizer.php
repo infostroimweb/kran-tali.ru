@@ -107,7 +107,7 @@ if ( ! class_exists( 'OceanWP_Customizer' ) ) :
 			$wp_customize->get_setting( 'blogdescription' )->transport 	= 'postMessage';
 
 			// Move custom logo setting
-			$wp_customize->get_control( 'custom_logo' )->section 		= 'ocean_header_logo';
+			$wp_customize->get_control( 'custom_logo' )->section = 'ocean_header_logo';
 
             if ( ! function_exists( 'owp_fs' ) ) {
                 // Add our upsell section
@@ -133,7 +133,7 @@ if ( ! class_exists( 'OceanWP_Customizer' ) ) :
                     $wp_customize->add_section( new OceanWP_Customizer_Upsell_Section_Control( $wp_customize, 'oceanwp_upsell_section', array(
                         'title'    => esc_html__( 'Premium Addons Available', 'oceanwp' ),
                         'url'      => $url . $aff_ref . $utm,
-                        'priority' => 0,
+                        'priority' => 1,
                     ) ) );
 
                 }

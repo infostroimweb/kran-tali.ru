@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2021-02-24 11:47">
+<yml_catalog date="2021-04-23 10:30">
     <shop>
-        <name>ООО «Росттехмаш»</name>
-        <company>ООО «Росттехмаш»</company>
+        <name>ООО«Росттехмаш»</name>
+        <company>ООО«Росттехмаш»</company>
         <url>https://kran-tali.ru</url>
         <currencies>
             <currency id="RUR" rate="1"/>
         </currencies>
+
         <categories>
-            <category id="1">Мостовые краны</category>
+            <category id="11">Мостовые краны</category>
         </categories>
         <offers>
             <offer id="9012">
@@ -17,13 +18,231 @@
                 <picture>https://kran-tali.ru/wp-content/uploads/2020/07/kbp.jpg</picture>
                 <price>159000</price>
                 <currencyId>RUR</currencyId>
-                <categoryId>1</categoryId>
+                <categoryId>11</categoryId>
                 <description>
                     <![CDATA[     
-                    <div class="elementor-text-editor elementor-clearfix"><p><span style="font-weight: 400;">Мостовой однобалочный подвесной кран </span><span style="font-weight: 400;">—</span><span style="font-weight: 400;"> отличное решение для перемещения груза в помещениях с ограниченным пространством.&nbsp;</span></p><p><span style="font-weight: 400;">Мы производим мостовые однобалочные краны разных модификаций. Характеристики стандартных моделей представлены на этой странице. Также мы готовы спроектировать и изготовить&nbsp; грузоподъемное оборудование данного типа по индивидуальным размерам и параметрам, для эксплуатации в определенных производственных условиях.</span></p><p><span style="font-weight: 400;">С учетом среды, в которой должен работать кран мы покрываем узлы оборудования в базовом исполнении краской, устойчивой к работе в температурном режиме от -20°C до +40°C, а также под заказ возможен вариант покрытия специальной краской, устойчивой к термическому и химическому воздействиям, которая выдерживает температурный режим от -60°C до +60°C (пожаробезопасное, взрывозащищенное исполнение).</span></p><p><a href="/wp-content/uploads/2020/03/podvesg.gif"><noscript><img class="aligncenter wp-image-591 size-full" src="/wp-content/uploads/2020/03/podvesg.gif" alt="" width="464" height="250" /></noscript><img class="aligncenter wp-image-591 size-full lazyloaded" src="/wp-content/uploads/2020/03/podvesg.gif" data-src="/wp-content/uploads/2020/03/podvesg.gif" alt="" width="464" height="250"></a></p></div>
+                    <p>Производим под заказ краны мостовые однобалочные подвесные <b>грузоподъёмностью 0,5&nbsp;–&nbsp;16&nbsp;т</b>, <b>длиной пролета 3&nbsp;–&nbsp;15&nbsp;м</b>, двухпролётные <b>от&nbsp;9&nbsp;+&nbsp;9&nbsp;м до&nbsp;12&nbsp;+&nbsp;12&nbsp;м</b>, <b>высотой подъёма 3–36 м</b>.
+                    <p>Ручной или электрический (червячный, шестеренный) привод; общепромышленное, пожаробезопасное или взрывозащищенное исполнение. Варианты управления краном: приводная цепь, подвесной пульт, радиоуправление.</p>	
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1042">
+                <name>Кран мостовой однобалочный опорный</name>
+                <url>https://kran-tali.ru/mostovye-krany/kran-mostovoj-odnobalochnyj-opornyj/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/11-1.jpg</picture>
+                <price>156000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>11</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны мостовые однобалочные опорные <b>грузоподъёмностью 0,5 – 20 т</b>, <b>длиной пролета 3 – 35 м</b>, <b>высотой подъёма 3 – 36 м</b>.</p>
+                    <p>Ручной или электрический (червячный, шестеренный) привод, общепромышленное, пожаробезопасное или взрывозащищенное исполнение. Варианты управления краном: приводная цепь, подвесной пульт, радиоуправление, стационарная кабина.</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1033">
+                <name>Кран мостовой двухбалочный</name>
+                <url>https://kran-tali.ru/mostovye-krany/kran-mostovoj-dvuhbalochnyj/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/1-3.jpg</picture>
+                <price>1068000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>11</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны мостовые двухбалочные опорные <b>грузоподъёмностью 5 – 50 т</b>, <b>длиной пролёта 3 – 40 м</b> (и более, по спецзаказу), <b>высотой подъёма 6 – 36 м</b>.</p>
+                    <p>Ручной или электрический (червячный, шестеренный) привод; общепромышленное, пожаробезопасное или взрывозащищенное исполнение. Варианты управления краном: подвесной пульт, радиоуправление, стационарная кабина.</p>
                     ]]>
                 </description>
             </offer>
         </offers>
+
+        <categories>
+            <category id="13">Козловыве краны</category>
+        </categories>
+        <offers>
+            <offer id="1086">
+                <name>Кран козловой мобильный</name>
+                <url>https://kran-tali.ru/kozlovye-krany/krany-kozlovye-mobilnye/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/11-6.jpg</picture>
+                <price>69000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>13</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ мобильные козловые краны (МПУ) <b>грузоподъёмностью 0,5 – 6,3 т</b>, <b>длиной пролета 3 – 8 м</b>, <b>высотой подъёма 3 – 9 м</b>.</p>
+                    <p>Ручной или электрический (червячный, шестеренный) тип привода. Общепромышленное, пожаробезопасное или взрывозащищенное исполнение. Варианты управления краном: ручной, подвесной пульт, радиоуправление.</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1079">
+                <name>Кран козловой электрический</name>
+                <url>https://kran-tali.ru/kozlovye-krany/kran-kozlovoj-ehlektricheskij/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/3-2.jpg</picture>
+                <price>1600000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>13</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны козловые электрические однобалочные и двухбалочные <b>грузоподъёмностью 5 – 50 т</b>, <b>длиной пролета 12 – 40 м</b>, <b>высотой подъёма 6 – 20 м</b>.</p>
+                    <p>Электрический червячный или шестеренный тип привода, общепромышленное, пожаробезопасное или взрывозащищенное исполнение. Варианты управления краном: подвесной пульт, радиоуправление, стационарная кабина.</p>
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+
+        <categories>
+            <category id="12">Консольные краны</category>
+        </categories>		
+        <offers>
+            <offer id="1069">
+                <name>Кран консольный поворотный настенный</name>
+                <url>https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-nastennyj/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/1659397862_w640_h640_1659397862.jpg</picture>
+                <price>51000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>12</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны консольные настенные <b>грузоподъёмностью 0,25 – 3,2 т</b>, <b>с вылетом стрелы 2 – 7 м</b>, <b>высотой подъёма до 10 м</b>, с ручным или электрическим червячным приводом, в общепромышленном, пожаробезопасном или взрывозащищенном исполнении. Варианты управления краном: цепь, подвесной пульт, радиоуправление.</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1063">
+                <name>Кран консольный поворотный на колонне ручной</name>
+                <url>https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ruchnoj/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/1659397862_w640_h640_1659397862.jpg</picture>
+                <price>134000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>12</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны консольные стационарные (на колонне) <b>ручные грузоподъёмностью 0,25 – 10 т<b>, <b>вылет стрелы 2 – 7 м<b>, <b>высотой подъёма до 10 м<b>, в общепромышленном, пожаробезопасном или взрывозащищенном исполнении. Варианты управления краном: цепь.</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1056">
+                <name>Кран консольный поворотный на колонне электрический</name>
+                <url>https://kran-tali.ru/konsolnye-krany/kran-konsolnyj-povorotnyj-na-kolonne-ehlektricheskij/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/11-5.jpg</picture>
+                <price>182000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>12</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ краны консольные стационарные (на колонне) электрические <b>грузоподъёмностью 0,25 – 10 т</b>, <b>с вылетом стрелы 2 – 7 м</b>, <b>высотой подъёма до 10 м</b>, в общепромышленном, пожаробезопасном или взрывозащищенном исполнении. Варианты управления краном: подвесной пульт, радиоуправление.</p>
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+
+        <categories>
+            <category id="14">Тельферы / тали</category>
+        </categories>		
+        <offers>
+            <offer id="1095">
+                <name>Тали электрические (Россия)</name>
+                <url>https://kran-tali.ru/telfery-tali/tali-ehlektricheskie-rossiya/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/03/tal2.jpg</picture>
+                <price>71000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>14</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Выполняем поставку, а также комплектацию кранов собственного производства тельферами электрическими российского производства. Доступны к заказу тельферы по типу перемещения: <b>стационарные, передвижные,</b> по типу поднимающего механизма: <b>канатные, цепные</b>; <b>грузоподъёмностью 0,5–10 т</b>, <b>с высотой подъема 6,3–36 м</b> (нормальные, пониженные), <b>скоростью подъёма 4–8,4 м/мин</b> (возможна микроскорость).</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1063">
+                <name>Тали электрические (Болгария)</name>
+                <url>https://kran-tali.ru/telfery-tali/tali-ehlektricheskie-bolgariya/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/03/telfer_1t.jpg</picture>
+                <price>83000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>14</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Выполняем поставку, а также комплектацию кранов собственного производства тельферами электрическими болгарского производства. Доступны к заказу тельферы по типу перемещения: <b>стационарные, передвижные</b>, по типу поднимающего механизма: <b>канатные, цепные</b>; <b>грузоподъёмностью 0,5–10 т</b>, <b>с высотой подъема 6,3–36 м</b> (нормальные, пониженные), <b>скоростью подъёма 4–8,4 м/мин</b> (возможна микроскорость).</p> 
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1108">
+                <name>Траверсы</name>
+                <url>https://kran-tali.ru/telfery-tali/traversy/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/03/travers12.jpg</picture>
+                <price>78000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>14</categoryId>
+                <description>
+                    <![CDATA[     
+                    <Производим под заказ траверсы <b>линейные</b>, <b>Н-образные</b>, <b>Т-образные</b>, <b>для труб</b>, <b>контейнеров</b>, <b>полотенец</b>, <b>траверсы-спредеры</b>; <b>грузоподъёмностью 0,5–48 т, <b>длиной 1130–20350 м</b>, <b>шириной 160–4500 м</b>. 
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+
+        <categories>
+            <category id="15">Лебедки электрические</category>
+        </categories>		
+        <offers>
+            <offer id="1140">
+                <name>Лебедки маневровые</name>
+                <url>https://kran-tali.ru/lebedki-ehlektricheskie/lebedki-manevrovye/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/11-3.jpg</picture>
+                <price>102000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>15</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ лебедки электрические маневровые с <b>тяговым усилием 5000 – 25000 кгс</b>, <b>масса груза в ЖД вагонах 315 – 1450 т</b>, <b>скорость навивки каната на 1 слое 0,035 – 0,69 м/с</b>. </p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1133">
+                <name>Лебедки тяговые</name>
+                <url>https://kran-tali.ru/lebedki-ehlektricheskie/lebedki-tyagovye/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/11-4.jpg</picture>
+                <price>56000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>15</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ лебедки тяговые электрические с <b>тяговым усилием 250 – 30000 кгс, <b>мощностью электродвигателя: 1,5 – 110 кВт</b>, <b>со скоростью навивки каната на 1 слое 0,028 – 0,72 м/с</b>.</p> 
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+
+        <categories>
+            <category id="16">Ангары и крановые эстакады</category>
+        </categories>		
+        <offers>
+            <offer id="1126">
+                <name>Крановые эстакады</name>
+                <url>https://kran-tali.ru/angary-i-kranovye-ehstakady/kranovye-ehstakady/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/1.jpg</picture>
+                <price>9000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>16</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ открытые и встроенные крановые эстакады, крановые пути <b>длиной от 3 м</b>, <b>грузоподъемностью 0,5–32 т</b>, <b>длиной пролета 3–28 м</b>, <b>высотой подъема 0от 1 м</b>.</p>
+                    ]]>
+                </description>
+            </offer>
+            <offer id="1121">
+                <name>Ангары</name>
+                <url>https://kran-tali.ru/angary-i-kranovye-ehstakady/angary/</url>
+                <picture>https://kran-tali.ru/wp-content/uploads/2020/07/3-1.jpg</picture>
+                <price>5000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>16</categoryId>
+                <description>
+                    <![CDATA[     
+                    <p>Производим под заказ арочные, прямостенные, шатровые, полигональные, купольные ангары <b>площадью 100 – 10000 кв. м</b>, <b>шаг колонн 3 – 9 м<b>, <b>пролетом 3 – 28 м<b>.</p> 
+                    ]]>
+                </description>
+            </offer>
+        </offers>
+
     </shop>
 </yml_catalog>

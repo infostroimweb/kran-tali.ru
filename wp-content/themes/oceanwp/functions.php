@@ -343,11 +343,13 @@ final class OCEANWP_Theme_Class {
 	}
 
 	public static function gtm_header() {
-		$gtm = "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-PPGVMFQ');</script>";
+		$gtm = "<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PPGVMFQ');</script>
+<!-- End Google Tag Manager -->";
 
 		// Apply filters for child theme tweaking
 	echo $gtm;
@@ -422,34 +424,29 @@ final class OCEANWP_Theme_Class {
 		wp_enqueue_style( 'slick', $dir .'third/slick.min.css', false, '1.6.0' );
 
 		// Main Style.css File
-		wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, $theme_version );
+		//wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, $theme_version );
+		wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, '1.1.605' );
 
-		// Register hamburgers buttons to easily use them
 		wp_register_style( 'oceanwp-hamburgers', $dir .'third/hamburgers/hamburgers.min.css', false, $theme_version );
 
-		// Register hamburgers buttons styles
 		$hamburgers = oceanwp_hamburgers_styles();
 		foreach ( $hamburgers as $class => $name ) {
 			wp_register_style( 'oceanwp-'. $class .'', $dir .'third/hamburgers/types/'. $class .'.css', false, $theme_version );
 		}
 
-		// Get mobile menu icon style
 		$mobileMenu = get_theme_mod( 'ocean_mobile_menu_open_hamburger', 'default' );
 
-		// Enqueue mobile menu icon style
 		if ( ! empty( $mobileMenu ) && 'default' != $mobileMenu ) {
 			wp_enqueue_style( 'oceanwp-hamburgers' );
 			wp_enqueue_style( 'oceanwp-'. $mobileMenu .'' );
 		}
 
-		// If Vertical header style
 		if ( 'vertical' == oceanwp_header_style() ) {
 			wp_enqueue_style( 'oceanwp-hamburgers' );
 			wp_enqueue_style( 'oceanwp-spin' );
 		}
 		wp_enqueue_style( 'modal-style', $dir .'modal_style.css', false, '1.6.0' );
 		
-
 	}
 
 	/**
@@ -503,13 +500,15 @@ final class OCEANWP_Theme_Class {
 		wp_enqueue_script( 'oceanwp-lightbox', $dir .'third/lightbox.min.js', array( 'jquery' ), $theme_version, true );
 
 		// Load minified js
-		wp_enqueue_script( 'oceanwp-main', $dir .'main.min.js', array( 'jquery' ), $theme_version, true );
+		//wp_enqueue_script( 'oceanwp-main', $dir .'main.min.js', array( 'jquery' ), $theme_version, true );
+		wp_enqueue_script( 'oceanwp-main', $dir .'main.min.js', array( 'jquery' ), 1.62, true );
 		
 		// Localize array
 		wp_localize_script( 'oceanwp-main', 'oceanwpLocalize', $localize_array );
 		
 
 	}
+
 
 	/**
 	 * Functions.js localize array
@@ -1556,6 +1555,48 @@ $output='<script type="application/ld+json">
 			{
 				"@type" : "PostalAddress",
 				"addressLocality" : "Москва",
+				"streetAddress" : "просп. Рязанский , д. 10, стр. 18 (БЦ «Хамелеон»), офис 4.1"
+			},
+			"geo": 
+			{
+				"@type": "GeoCoordinates",
+				"latitude": "55.72556777",
+				"longitude": "37.76020743"
+			},
+			"amenityFeature":
+			{
+				"name": "By Prior Call",
+				"value": "по предварительному звонку"
+			},
+			"name": "Офис"
+		},
+		{
+			"@type": "Place",
+			"address": 
+			{
+				"@type" : "PostalAddress",
+				"addressLocality" : "Краснодар",
+				"streetAddress" : "ул. Северная, д. 324А, 6 этаж, офис 641"
+			},
+			"geo": 
+			{
+				"@type": "GeoCoordinates",
+				"latitude": "45.04053796",
+				"longitude": "38.97009572"
+			},
+			"amenityFeature":
+			{
+				"name": "By Prior Call",
+				"value": "по предварительному звонку"
+			},
+			"name": "Офис"
+		},
+		{
+			"@type": "Place",
+			"address": 
+			{
+				"@type" : "PostalAddress",
+				"addressLocality" : "Москва",
 				"streetAddress" : "просп. Мира, д. 102, корп. 1, этаж 8, комната 6, офис А2Ж."
 			},
 			"geo": 
@@ -1680,7 +1721,7 @@ function extra_fields_box_func( $post ){
 	?>
 	<div style="margin-bottom: 10px">
 		<label for="info_text">Текст вверху, справа от картинки:</label>
-		<textarea name="extra[info_text]" rows="5" id="info_text" style="width: 100%; margin-top: 5px;"><?php echo get_post_meta($post->ID, 'info_text', 1);  ?><?php echo get_post_meta($post->ID, 'info_text', 1);  ?></textarea>
+		<textarea name="extra[info_text]" rows="5" id="info_text" style="width: 100%; margin-top: 5px;"><?php echo get_post_meta($post->ID, 'info_text', 1);  ?></textarea>
 	</div>
 	<div style="margin-bottom: 10px">
 		<label for="price_text">Текст перед ценой:</label>
@@ -1719,3 +1760,6 @@ function my_extra_fields_update( $post_id ){
 
 	return $post_id;
 }
+
+
+

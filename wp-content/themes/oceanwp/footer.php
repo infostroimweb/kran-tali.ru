@@ -26,8 +26,8 @@
     <div class="footer-top container">
         <div class="d-flex flex-wrap justify-content-between flex-column flex-lg-row">
             <div class="footer-col align-items-start">
-                <a href="/" class="footer-logo">
-                    <img class="lazyloaded" src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" data-src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" title="" alt="">
+                <a href="/" class="footer-logo" title="Logo РОСТТЕХМАШ">
+                    <img class="lazyloaded" src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" data-src="/wp-content/uploads/2020/11/logo-rosttehmash-vertical.png" title="" alt="Logo РОСТТЕХМАШ">
                 </a>
                 <p class="footer-description">Производство грузоподъёмного оборудования: мостовые краны, кран-балки, консольные краны, козловые краны, электротали, лебёдки, эстакады.</p>
                 <!-- <ul class="footer-socials d-flex flex-wrap">
@@ -78,6 +78,7 @@
                         ]);
                         ?>
                     </div>
+                    <a href="https://www.youtube.com/channel/UC7rm8d4UZxtFqivJrJ27aWA" class="soc-link-you" target="_blank" title="youtube" rel="nofollow noopener noreferrer" ><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youtube_logo.png" alt="youtube"></a>
                 </div>        
             </div>
         </div>
@@ -91,8 +92,6 @@
         </div>
     </div>
 </footer>
-
-
 
 <?php do_action( 'ocean_after_footer' ); ?>
 
@@ -174,7 +173,7 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
     })
 </script>
 
-<?php $zoom = is_mobile() ? '5' : '7'; ?>
+<?php $zoom = is_mobile() ? '5' : '5'; ?>
 <?php if (is_page('kontakty')): ?>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=b9282ea3-6f59-41e7-8ac1-3108161a14d9&lang=ru_RU"></script>
     <script>
@@ -183,7 +182,8 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
 
         function init () {
             myMap = new ymaps.Map('map', {
-                center: [54.664425, 41.387129],
+                //center: [54.664425, 41.387129],
+                center: [51.449469, 39.629316],
                 zoom: <?php echo $zoom; ?>,
                 controls: ['zoomControl', 'typeSelector',  'fullscreenControl']
             });
@@ -193,13 +193,25 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
             }, {
                 preset: 'islands#redStretchyIcon'
             });
+            var moscow2 = new ymaps.Placemark([55.725181, 37.760126], {
+                iconContent: 'Представительство в Москве',
+                balloonContent: 'Представительство в Москве.<br>Контактный телефон: +7&nbsp;(495)&nbsp;744&#8209;39&#8209;58.<br>109428, г.&#8201;Москва, пр-кт Рязанский, д.&#8201;10, стр.&#8201;18, (БЦ «Хамелеон»), оф.&#8201;4.1<br> E-mail: kran-tali@mail.ru'
+            }, {
+                preset: 'islands#redStretchyIcon'
+            });
             var penza = new ymaps.Placemark([53.194208, 45.001398], {
                 iconContent: 'Офис и производство',
                 balloonContent: 'г.&#8201;Пенза, ул.&#8201;Захарова, д.&#8201;1, офис 8<br> Контактный телефон: +7&nbsp;(8412)&nbsp;30&#8209;56&#8209;63.<br> E-mail: kran-tali@mail.ru'
             }, {
                 preset: 'islands#redStretchyIcon'
             });
-            myMap.geoObjects.add(moscow).add(penza);
+            var krasnodar = new ymaps.Placemark([45.040534, 38.970103], {
+                iconContent: 'Представительство в г. Краснодар',
+                balloonContent: 'Представительство в Краснодаре.<br>Контактный телефон: +7&nbsp;(861)&nbsp;290&#8209;01&#8209;92.<br>350000, г.&#8201;Краснодар, ул.&#8201;Северная, д.&#8201;324А, эт.&#8201;6, оф.&#8201;641<br> E-mail: kran-tali@mail.ru'
+            }, {
+                preset: 'islands#redStretchyIcon'
+            });
+            myMap.geoObjects.add(moscow).add(moscow2).add(penza).add(krasnodar);
             myMap.behaviors.disable('scrollZoom');
             <?php if(is_mobile()): ?>myMap.behaviors.disable('drag');<?php endif; ?>
         } 
@@ -237,6 +249,8 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
         </script>
     <?php endif; ?>
 <?php endif; ?>
+
+
 
 </body>
 </html>

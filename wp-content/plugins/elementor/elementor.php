@@ -98,3 +98,12 @@ function elementor_fail_wp_version() {
 	$html_message = sprintf( '<div class="error">%s</div>', wpautop( $message ) );
 	echo wp_kses_post( $html_message );
 }
+
+add_filter('site_transient_update_plugins', function($value) {
+    if( ! is_object($value) ) return $value;
+
+    // удаляем текущий плагин из списка
+    unset( $value->response[ plugin_basename(__FILE__) ] );
+
+    return $value;
+});

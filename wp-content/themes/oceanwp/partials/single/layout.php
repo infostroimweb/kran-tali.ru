@@ -23,14 +23,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	foreach ( $elements as $element ) {
 
 		// Featured Image
-		if ( 'featured_image' == $element
+		/*if ( 'featured_image' == $element
 			&& ! post_password_required() ) {
 
 			$format = $format ? $format : 'thumbnail';
 			
 			get_template_part( 'partials/single/media/blog-single', $format );
 
-		}
+		}*/
 
 		// Title
 		if ( 'title' == $element ) {

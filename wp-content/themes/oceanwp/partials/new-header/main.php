@@ -36,7 +36,7 @@
 					<?php echo do_shortcode('[elementor-template id="1553"]'); ?>
 				<?php endif; ?>
 			</div>			
-			<button class="new-header-mob-btn" id="mobMenuBtn">
+			<button class="new-header-mob-btn" id="mobMenuBtn" aria-label = "menu">
 				<i class="eicon-menu-bar" aria-hidden="true"></i>
 				<i class="eicon-close" aria-hidden="true" style="display:none"></i>				
 			</button>	
