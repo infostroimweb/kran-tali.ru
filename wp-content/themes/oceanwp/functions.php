@@ -1554,6 +1554,22 @@ $output='<script type="application/ld+json">
 			"address": 
 			{
 				"@type" : "PostalAddress",
+				"addressLocality" : "Краснодар",
+				"streetAddress" : "ул. Северная, д. 324А, 6 этаж, офис 641"
+			},
+			"geo": 
+			{
+				"@type": "GeoCoordinates",
+				"latitude": "45.04053796",
+				"longitude": "38.97009572"
+			},
+			"name": "Офис"
+		},
+		{
+			"@type": "Place",
+			"address": 
+			{
+				"@type" : "PostalAddress",
 				"addressLocality" : "Москва",
 				"streetAddress" : "просп. Рязанский , д. 10, стр. 18 (БЦ «Хамелеон»), офис 4.1"
 			},

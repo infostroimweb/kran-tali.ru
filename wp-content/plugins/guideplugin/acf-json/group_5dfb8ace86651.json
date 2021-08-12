@@ -1,0 +1,718 @@
+{
+    "key": "group_5dfb8ace86651",
+    "title": "Guide",
+    "fields": [
+        {
+            "key": "field_5e060eeec43de",
+            "label": "Text",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5dfb8ad6c0593",
+            "label": "Title",
+            "name": "guideplugin_title",
+            "type": "text",
+            "instructions": "This is the guide title. It will be displayed above the filter selection.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5dfb8ae2c0594",
+            "label": "Description",
+            "name": "guideplugin_description",
+            "type": "wysiwyg",
+            "instructions": "This is the guide description. It will be displayed above the filter selection.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_5e7f435df069a",
+            "label": "Filters",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5dfb8b4bc0596",
+            "label": "Filters",
+            "name": "guideplugin_filters",
+            "type": "repeater",
+            "instructions": "Here you can add, remove or move filters that are shown as steps in the guide.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "layout": "row",
+            "button_label": "Add filter",
+            "sub_fields": [
+                {
+                    "key": "field_5e06108616144",
+                    "label": "Filter",
+                    "name": "filter",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "guideplugin_filters"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
+                    "key": "field_5e2d87a973d48",
+                    "label": "Filter ID",
+                    "name": "filter_unique_identifier",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "readonly": 1
+                }
+            ]
+        },
+        {
+            "key": "field_5e060f08c43e0",
+            "label": "Design",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e8b2f055bc8b",
+            "label": "Design type",
+            "name": "guideplugin_design_type",
+            "type": "select",
+            "instructions": "Custom Design: You can set the design options right here inside this guide.\r\n\r\nPreset Design: Choose from all designs you have build.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "custom_design": "Custom Design",
+                "preset_design": "Preset Design"
+            },
+            "default_value": "custom_design",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e8b2f425bc8c",
+            "label": "Design selection",
+            "name": "guideplugin_design_selection",
+            "type": "post_object",
+            "instructions": "Choose from one of your preset designs.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e8b2f055bc8b",
+                        "operator": "==",
+                        "value": "preset_design"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "guideplugin_designs"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
+            "key": "field_5e8b2e9b8a08a",
+            "label": "Custom Design",
+            "name": "guideplugin_custom_design_group",
+            "type": "group",
+            "instructions": "Setup a custom design for this guide.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e8b2f055bc8b",
+                        "operator": "==",
+                        "value": "custom_design"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5e8b2ee35bc8a",
+                    "label": "Custom Design",
+                    "name": "custom_design",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_5e88b630a8f12"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_5e9e2656b100a",
+            "label": "Progress",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e9469c858ee2",
+            "label": "Show progress steps",
+            "name": "guideplugin_show_progress_steps",
+            "type": "true_false",
+            "instructions": "Check this option if you want to show a progress while searching for results.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5e9469e458ee3",
+            "label": "Final progress step text",
+            "name": "guideplugin_final_progress_step_text",
+            "type": "text",
+            "instructions": "You can add a text for the final progress step.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e9469c858ee2",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. \"Done! You will see your result in a second...\"",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e831e2e591a6",
+            "label": "Results",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ee0d809df765",
+            "label": "Result Settings",
+            "name": "guideplugin_result_settings",
+            "type": "group",
+            "instructions": "Here you can edit your result settings.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5ee0beccc7e05",
+                    "label": "Settings",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e831e3b591a7",
+                    "label": "Show results on",
+                    "name": "show_results_on",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "same_page": "Same page"
+                    },
+                    "default_value": "same_page",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e9193d7752cc",
+                    "label": "Result count",
+                    "name": "result_count",
+                    "type": "number",
+                    "instructions": "Number of posts to show on result page.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 1,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_5ee0bea9c7e04",
+                    "label": "Template",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e985c7577231",
+                    "label": "Template type",
+                    "name": "template_type",
+                    "type": "select",
+                    "instructions": "Basic Template: This is a minimal result template that shows only the thumbnail and title of the result post.\r\n\r\nPreset Template: Choose from one of your result templates you have build.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "basic_template": "Basic Template",
+                        "preset_template": "Preset Template"
+                    },
+                    "default_value": "basic_template",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e985c7b77232",
+                    "label": "Template selection",
+                    "name": "template_selection",
+                    "type": "post_object",
+                    "instructions": "Choose from one of your result templates you have build.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e985c7577231",
+                                "operator": "==",
+                                "value": "preset_template"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "guideplugin_template"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
+                    "key": "field_5ec06ce002584",
+                    "label": "Show Confetti",
+                    "name": "show_confetti",
+                    "type": "true_false",
+                    "instructions": "Check this option if you want to celebrate the results with a confetti bomb.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_5ee0bedfc7e06",
+                    "label": "Text",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5ee0bef4c7e07",
+                    "label": "Headline",
+                    "name": "headline",
+                    "type": "text",
+                    "instructions": "This text will be shown as a headline right above the result list.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Your personal result",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5ee0d22f79785",
+                    "label": "Badge text",
+                    "name": "badge_text",
+                    "type": "text",
+                    "instructions": "This text will be shown as the badge text for the first result.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Best match",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5ee0d9253ff65",
+                    "label": "More results",
+                    "name": "more_results",
+                    "type": "text",
+                    "instructions": "This text will be shown right below the first result.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "More results that suit you",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5e922343d0768",
+            "label": "Includes \/ Excludes",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e8b34f69b763",
+            "label": "Include \/ Exclude post types",
+            "name": "guideplugin_post_type_option",
+            "type": "select",
+            "instructions": "Include: This will INCLUDE the post types you select with the next option.\r\n\r\nExclude: This will EXCLUDE the post types you select with the next option.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "include": "Include",
+                "exclude": "Exclude"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5ec19569bbeab",
+            "label": "Post types",
+            "name": "guideplugin_post_type_selection",
+            "type": "select",
+            "instructions": "Select the post types you want to include or exclude.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 1,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e90609a47c2d",
+            "label": "Include \/ Exclude taxonomies",
+            "name": "guideplugin_taxonomy_option",
+            "type": "select",
+            "instructions": "Include: This will INCLUDE the taxonomies \/ terms you select with the next option.\r\n\r\nExclude: This will EXCLUDE the taxonomies \/ terms you select with the next option.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "include": "Include",
+                "exclude": "Exclude"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e8b35f89b767",
+            "label": "Taxonomies",
+            "name": "guideplugin_taxonomy_selection",
+            "type": "select",
+            "instructions": "Select the taxonomies \/ terms you want to include or exclude.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 1,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guideplugin_guides"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1592570689
+}

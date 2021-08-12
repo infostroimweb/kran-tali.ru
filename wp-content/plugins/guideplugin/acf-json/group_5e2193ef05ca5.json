@@ -1,0 +1,235 @@
+{
+    "key": "group_5e2193ef05ca5",
+    "title": "Settings",
+    "fields": [
+        {
+            "key": "field_5e919461b1525",
+            "label": "Indexing",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ed0fc60e63db",
+            "label": "Indexing",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5e919484b1526",
+            "label": "Posts per index loop",
+            "name": "guideplugin_posts_per_index_loop",
+            "type": "number",
+            "instructions": "Number of posts to index within one loop (every minute) Warning: This setting could impact your server performance.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 50,
+            "placeholder": "",
+            "prepend": "",
+            "append": "posts",
+            "min": 1,
+            "max": "",
+            "step": 1
+        },
+        {
+            "key": "field_5ecb049777bbd",
+            "label": "Libraries",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ecb04b877bbe",
+            "label": "Exclude FontAwesome",
+            "name": "guideplugin_font_awesome_exclude",
+            "type": "true_false",
+            "instructions": "You can exclude the FontAwesome 5 library from loading if you use a theme that already integrates FontAwesome.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5ee77d283bcdb",
+            "label": "Use Font Awesome 5 Pro",
+            "name": "guideplugin_font_awesome_pro",
+            "type": "true_false",
+            "instructions": "If you are using Font Awesome 5 Pro, you need to activate this checkbox.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5ecb04b877bbe",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f61bb929c759",
+            "label": "General",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f61bba29c75a",
+            "label": "Show your love",
+            "name": "guideplugin_credits_show",
+            "type": "true_false",
+            "instructions": "Show Powered by GuidePlugin credits inside your guides.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5f61bbe49c75b",
+            "label": "Affiliate Link",
+            "name": "guideplugin_credits_affiliate_link",
+            "type": "url",
+            "instructions": "Optional: You can add your affiliate link here to earn money if someone purchases the GuidePlugin over your link. Also see: https:\/\/www.guideplugin.com\/en\/affiliate\/",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f61bba29c75a",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5ec6644d976d7",
+            "label": "Debug",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ec66457976d8",
+            "label": "Debug information",
+            "name": "guideplugin_debug_information",
+            "type": "textarea",
+            "instructions": "You need this information if you want to create a support ticket on license.guideplugin.com.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 19,
+            "new_lines": "",
+            "readonly": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-guideplugin"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1600240951
+}

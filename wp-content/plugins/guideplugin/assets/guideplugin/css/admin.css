@@ -1,0 +1,134 @@
+/**
+ * Guideplugin Admin
+ * Author: Sebastian Kraus
+ */
+
+.guideplugin-admin {
+}
+
+.guideplugin-admin .guideplugin-indexed-posts {
+    font-weight: bold;
+    margin-right: 1rem;
+    display: inline-block;
+}
+
+/**
+ * Guide admin buttons
+ */
+.guideplugin-admin .guide-button {
+    padding: 0.4rem 1rem;
+    border-radius: 0.3rem;
+    background-color: #8834fd;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.guideplugin-admin .guide-button:hover {
+    background-color: #6522C3;
+}
+
+.guideplugin-admin .guide-button.guide-button-sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+.guideplugin-admin .guide-button.guide-button-primary {
+    background-color: #8834fd;
+    color: #fff;
+}
+.guideplugin-admin .guide-button.guide-button-primary:hover {
+    background-color: #6522C3;
+}
+
+.guideplugin-admin .guide-button.guide-button-light {
+    background-color: #f7f7f7;
+    color: #444;
+}
+.guideplugin-admin .guide-button.guide-button-light:hover {
+    background-color: #E9E9E9;
+}
+
+.guideplugin-admin .guide-indexing {
+    padding: 0.3rem 0.8rem;
+    color: #3bb21a;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+
+
+
+/**
+ * Guide spinner
+ */
+.guideplugin-spinner {
+    width: 30px;
+    display: none;
+    min-height: 20px;
+    visibility: visible !important;
+    position: relative;
+}
+
+.guideplugin-spinner>.guideplugin-spinner-container {
+    width: 30px;
+    animation: spinning 3s linear infinite;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.guideplugin-spinner>.guideplugin-spinner-container>.guideplugin-spinner-inner {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 300;
+    stroke-width: 10;
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    animation: spinning-circle 2s linear infinite;
+    stroke: #8834fd;
+    fill: transparent;
+}
+
+.guideplugin-spinner.guideplugin-spinner-lg,
+.guideplugin-spinner.guideplugin-spinner-lg>.guideplugin-spinner-container {
+    width: 40px;
+}
+
+.guideplugin-spinner.guideplugin-spinner-sm,
+.guideplugin-spinner.guideplugin-spinner-sm>.guideplugin-spinner-container {
+    width: 20px;
+}
+
+@keyframes spinning {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes spinning-circle {
+    0% {
+        stroke-dashoffset: 0
+    }
+
+    100% {
+        stroke-dashoffset: -600
+    }
+}
+
+
+
+/**
+ * Guideplugin admin menu icon
+ */
+.menu-icon-guideplugin_guides .wp-menu-image::before {
+    font-family: 'Guidefont';
+    content: '\e900';
+}

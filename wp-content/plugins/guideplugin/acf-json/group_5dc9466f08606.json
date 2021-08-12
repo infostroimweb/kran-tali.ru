@@ -1,0 +1,1134 @@
+{
+    "key": "group_5dc9466f08606",
+    "title": "Filter",
+    "fields": [
+        {
+            "key": "field_5e7f429c53766",
+            "label": "Text",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e28613487440",
+            "label": "Title",
+            "name": "guideplugin_title",
+            "type": "text",
+            "instructions": "This title will be shown above the filter selection.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e28613e87441",
+            "label": "Description",
+            "name": "guideplugin_description",
+            "type": "wysiwyg",
+            "instructions": "This description will be shown above the filter selection.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_5dc9758ee79fa",
+            "label": "Filter",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5e00922912d71",
+            "label": "Filter Type",
+            "name": "guideplugin_filter_type",
+            "type": "select",
+            "instructions": "Here you can decide which type of filter you want to use.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cards": "Cards",
+                "slider": "Slider"
+            },
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e0093c2e8c90",
+            "label": "Cards",
+            "name": "guideplugin_cards",
+            "type": "group",
+            "instructions": "Filter type: Cards\r\n\r\nHere you can setup card related settings.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e00922912d71",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5eeb35519c434",
+                    "label": "Cards",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e0092b4c7972",
+                    "label": "Card type",
+                    "name": "card_type",
+                    "type": "select",
+                    "instructions": "Checkbox: The card act's like a checkbox form field.\r\n\r\nRadio: The card act's like a radio button form field.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "checkbox": "Checkbox",
+                        "radio": "Radio"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e511fa73d1e9",
+                    "label": "Card behavior",
+                    "name": "card_behavior",
+                    "type": "select",
+                    "instructions": "Widen: The card selections will be connected by \"OR\"\r\n\r\nNarrow: The card selections will be connected by \"AND\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "widen": "Widen the results",
+                        "narrow": "Narrow the results"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5dfb91e0f4c1f",
+                    "label": "Card items",
+                    "name": "card_items",
+                    "type": "repeater",
+                    "instructions": "Here you add all the single cards each with their own conditions and image.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Add card",
+                    "sub_fields": [
+                        {
+                            "key": "field_5dfb921df4c20",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "This image will be displayed within the card as it's icon.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_5dfb922df4c21",
+                            "label": "Label",
+                            "name": "label",
+                            "type": "text",
+                            "instructions": "The label of the card will be displayed right below the image.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5e2884ce3d6f1",
+                            "label": "Card ID",
+                            "name": "card_unique_identifier",
+                            "type": "text",
+                            "instructions": "This field will be filled automatically and is really important to the functionality of the guide. Do not try to alter this value.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 1
+                        },
+                        {
+                            "key": "field_5dc94de2c8485",
+                            "label": "Conditions",
+                            "name": "conditions",
+                            "type": "flexible_content",
+                            "instructions": "Add here the facets which should be filtered with this card. All successive facets are linked with AND. But you can also add OR conditions.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layouts": {
+                                "layout_5dc94e63c8487": {
+                                    "key": "layout_5dc94e63c8487",
+                                    "name": "facet",
+                                    "label": "Facet",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_5df0eb92ea762",
+                                            "label": "Facet",
+                                            "name": "facet",
+                                            "type": "post_object",
+                                            "instructions": "Choose one of your facets here.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "33",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "post_type": [
+                                                "guideplugin_facets"
+                                            ],
+                                            "taxonomy": "",
+                                            "allow_null": 0,
+                                            "multiple": 0,
+                                            "return_format": "id",
+                                            "ui": 1
+                                        },
+                                        {
+                                            "key": "field_5df0ebeeea763",
+                                            "label": "Rule",
+                                            "name": "rule",
+                                            "type": "select",
+                                            "instructions": "Select the rule for the condition. Make sure that the rule matches your facet type.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "33",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "equal": "Equal",
+                                                "not_equal": "Not equal",
+                                                "like": "Like",
+                                                "not_like": "Not like",
+                                                "contains": "Contains",
+                                                "not_contains": "Not contains",
+                                                "greater_than": "Greater than",
+                                                "less_than": "Less than"
+                                            },
+                                            "default_value": false,
+                                            "allow_null": 0,
+                                            "multiple": 0,
+                                            "ui": 1,
+                                            "ajax": 0,
+                                            "return_format": "value",
+                                            "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_5e04dacf93098",
+                                            "label": "Behavior",
+                                            "name": "behavior",
+                                            "type": "select",
+                                            "instructions": "Widen: The card selections will be connected by \"OR\"\r\n\r\nNarrow: The card selections will be connected by \"AND\"",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "widen": "Widen the results",
+                                                "narrow": "Narrow the results"
+                                            },
+                                            "default_value": false,
+                                            "allow_null": 0,
+                                            "multiple": 0,
+                                            "ui": 1,
+                                            "ajax": 0,
+                                            "return_format": "value",
+                                            "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_5ea71c439a644",
+                                            "label": "Value selection",
+                                            "name": "value_selection",
+                                            "type": "select",
+                                            "instructions": "Here you can decide if you want to enter the value manually or select a value from your global dataset.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "value_list": "Value list",
+                                                "manual": "Manual"
+                                            },
+                                            "default_value": "value_list",
+                                            "allow_null": 0,
+                                            "multiple": 0,
+                                            "ui": 0,
+                                            "return_format": "value",
+                                            "ajax": 0,
+                                            "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_5e04d85aafd39",
+                                            "label": "Values",
+                                            "name": "values",
+                                            "type": "repeater",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "collapsed": "",
+                                            "min": 0,
+                                            "max": 0,
+                                            "layout": "table",
+                                            "button_label": "Add value",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_5e04d867afd3a",
+                                                    "label": "Value (manual)",
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": [
+                                                        [
+                                                            {
+                                                                "field": "field_5ea71c439a644",
+                                                                "operator": "==",
+                                                                "value": "manual"
+                                                            }
+                                                        ]
+                                                    ],
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "placeholder": "",
+                                                    "prepend": "",
+                                                    "append": "",
+                                                    "maxlength": ""
+                                                },
+                                                {
+                                                    "key": "field_5ea71d529a647",
+                                                    "label": "Value (list)",
+                                                    "name": "value",
+                                                    "type": "select",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": [
+                                                        [
+                                                            {
+                                                                "field": "field_5ea71c439a644",
+                                                                "operator": "==",
+                                                                "value": "value_list"
+                                                            }
+                                                        ]
+                                                    ],
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "choices": [],
+                                                    "default_value": false,
+                                                    "allow_null": 0,
+                                                    "multiple": 0,
+                                                    "ui": 1,
+                                                    "ajax": 0,
+                                                    "return_format": "value",
+                                                    "placeholder": ""
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                "layout_5dc94df752d83": {
+                                    "key": "layout_5dc94df752d83",
+                                    "name": "or_condition",
+                                    "label": "OR condition",
+                                    "display": "block",
+                                    "sub_fields": [],
+                                    "min": "",
+                                    "max": ""
+                                }
+                            },
+                            "button_label": "Add facet\/condition",
+                            "min": "",
+                            "max": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_5eeb355c9c435",
+                    "label": "Settings",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5eeb35669c436",
+                    "label": "Image width",
+                    "name": "image_width",
+                    "type": "number",
+                    "instructions": "Here you can edit the card image width.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 100,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_5eeb35859c437",
+                    "label": "Image height",
+                    "name": "image_height",
+                    "type": "number",
+                    "instructions": "Here you can edit the card image height.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 100,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                }
+            ]
+        },
+        {
+            "key": "field_5e0094d10c7df",
+            "label": "Slider",
+            "name": "guideplugin_slider",
+            "type": "group",
+            "instructions": "Filter type: Slider\r\n\r\nHere you can setup slider related settings.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e00922912d71",
+                        "operator": "==",
+                        "value": "slider"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5eeb35a69c438",
+                    "label": "Slider",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e0093035f60a",
+                    "label": "Slider type",
+                    "name": "slider_type",
+                    "type": "select",
+                    "instructions": "Single: The slider contains only a single handle to change the value.\r\n\r\nRange: The slider contains two handles to set the minimum and maximum value.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "single": "Single",
+                        "range": "Range"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e62707b40c56",
+                    "label": "Behavior",
+                    "name": "behavior",
+                    "type": "select",
+                    "instructions": "Widen: The slider conditions will be connected by \"OR\"\r\n\r\nNarrow: The slider conditions will be connected by \"AND\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "widen": "Widen results",
+                        "narrow": "Narrow results"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e626e73072bc",
+                    "label": "Conditions",
+                    "name": "conditions",
+                    "type": "repeater",
+                    "instructions": "Set the facets the slider should be based on.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 1,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add Condition",
+                    "sub_fields": [
+                        {
+                            "key": "field_5e0093035f648",
+                            "label": "Facet",
+                            "name": "facet",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "guideplugin_facets"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_5e49276407648",
+                            "label": "Rule",
+                            "name": "rule_single",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5e0093035f60a",
+                                        "operator": "==",
+                                        "value": "single"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "slider_single_less_than": "Slider Single: Less than",
+                                "slider_single_greater_than": "Slider Single: Greater than"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_5e626feda9ec2",
+                            "label": "Rule",
+                            "name": "rule_range",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5e0093035f60a",
+                                        "operator": "==",
+                                        "value": "range"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "slider_range_between": "Slider Range: Between",
+                                "slider_range_not_between": "Slider Range: Not Between"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_5e492063e988b",
+                    "label": "Slider images",
+                    "name": "slider_images",
+                    "type": "repeater",
+                    "instructions": "Add images to make your slider look beautiful.\r\n\r\nIf you select 1 image: The Image will be centered\r\nIf you select 2 images: One image will the on the right, the other on the left",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "button_label": "Add image",
+                    "sub_fields": [
+                        {
+                            "key": "field_5e8ccbd42cae6",
+                            "label": "Slider image",
+                            "name": "slider_image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_5eeb35af9c439",
+                    "label": "Settings",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e00af37770e0",
+                    "label": "Lower limit",
+                    "name": "lower_limit",
+                    "type": "number",
+                    "instructions": "This will overwrite the calculated lower limit. This setting should be used with care.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5e00af84770e1",
+                    "label": "Upper limit",
+                    "name": "upper_limit",
+                    "type": "number",
+                    "instructions": "This will overwrite the calculated upper limit. This setting should be used with care.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5e8c94381a7ae",
+                    "label": "Prefix",
+                    "name": "prefix",
+                    "type": "text",
+                    "instructions": "You can add a prefix to the slider values. E.g. \"€\" or \"$\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5e8c94671a7af",
+                    "label": "Suffix",
+                    "name": "suffix",
+                    "type": "text",
+                    "instructions": "You can add a suffix to the slider values. E.g. \"km\" or \"miles\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5eeb35d09c43c",
+                    "label": "Image width",
+                    "name": "image_width",
+                    "type": "number",
+                    "instructions": "Here you can edit the slider image width.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 80,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_5eeb35ce9c43b",
+                    "label": "Image height",
+                    "name": "image_height",
+                    "type": "number",
+                    "instructions": "Here you can edit the slider image width.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 80,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "px",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_5f92acdca5502",
+                    "label": "Prettify values",
+                    "name": "prettify_values",
+                    "type": "true_false",
+                    "instructions": "Should values such as 1,000,000 be converted into 1million?",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5f705ccdbfbc0",
+            "label": "Next on select",
+            "name": "guideplugin_next_on_select",
+            "type": "true_false",
+            "instructions": "If you enable this option the user get's to the next step as soon as he selects an option.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5e8c5358bf7f5",
+            "label": "Input required",
+            "name": "guideplugin_input_required",
+            "type": "true_false",
+            "instructions": "If you enable this option the user has to select something. \r\n\r\nKeep in mind: Sometimes it could be suitable for the user to not select something.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5dc975abe79fb",
+            "label": "Help",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5dc975c5e79fc",
+            "label": "Show help",
+            "name": "guideplugin_show_help",
+            "type": "true_false",
+            "instructions": "Whether help for the user should be displayed or not.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5dc975ece79fd",
+            "label": "Help Text",
+            "name": "guideplugin_help_text",
+            "type": "wysiwyg",
+            "instructions": "Help your user with some further explanations about this question.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_5dc97b22a4210",
+            "label": "Progress",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5dc97b36a4211",
+            "label": "Show in progress",
+            "name": "guideplugin_show_in_progress",
+            "type": "true_false",
+            "instructions": "Whether a progress text should be displayed or not.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5dc9781f93328",
+            "label": "Progress Label",
+            "name": "guideplugin_progress_text",
+            "type": "text",
+            "instructions": "E.g. \"We are searching in your budget\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guideplugin_filters"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1603449911
+}

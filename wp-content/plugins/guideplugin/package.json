@@ -1,0 +1,36 @@
+{
+  "name": "guideplugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sekra24/guideplugin.git",
+  "author": "Sebastian Kraus <mail@sebastian-kraus.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-css-useref": "^0.0.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-debug": "^3.2.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-minify": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sequence": "^1.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "bootstrap": "^4.4.1",
+    "canvas-confetti": "^1.2.0",
+    "guidefont": "https://github.com/sekra24/guidefont",
+    "gulp-json-transform": "^0.4.7",
+    "ion-rangeslider": "^2.3.1",
+    "jQuery.serializeObject": "https://github.com/hongymagic/jQuery.serializeObject",
+    "jquery.easing": "^1.4.1",
+    "popper.js": "^1.14.7",
+    "slick-carousel": "^1.8.1",
+    "tippy.js": "^6.2.3"
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * Guideplugin Admin Tooltip
+ * Author: Sebastian Kraus
+ */
+
+.acf-field .acf-label [data-guideplugin-tippy-content] {
+	display: none;
+}
+
+#acf-group_5dfb8ace86651 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5dbc5da7e067b .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5dc9466f08606 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e2193ef05ca5 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e29f139d8cbc .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e88b630a8f12 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e8b2e13af264 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e9862d14f82b .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e996f1908565 .acf-field .acf-label [data-guideplugin-tippy-content],
+#acf-group_5e99950d5b69a .acf-field .acf-label [data-guideplugin-tippy-content] {
+    display: inline-block;
+}
+
+#acf-group_5dfb8ace86651 .acf-field .acf-label .description,
+#acf-group_5dbc5da7e067b .acf-field .acf-label .description,
+#acf-group_5dc9466f08606 .acf-field .acf-label .description,
+#acf-group_5e2193ef05ca5 .acf-field .acf-label .description,
+#acf-group_5e29f139d8cbc .acf-field .acf-label .description,
+#acf-group_5e88b630a8f12 .acf-field .acf-label .description,
+#acf-group_5e8b2e13af264 .acf-field .acf-label .description,
+#acf-group_5e9862d14f82b .acf-field .acf-label .description,
+#acf-group_5e996f1908565 .acf-field .acf-label .description,
+#acf-group_5e99950d5b69a .acf-field .acf-label .description {
+    display: none;
+}
+
+#acf-group_5dfb8ace86651 .acf-field .acf-label span.tooltip,
+#acf-group_5dbc5da7e067b .acf-field .acf-label span.tooltip,
+#acf-group_5dc9466f08606 .acf-field .acf-label span.tooltip,
+#acf-group_5e2193ef05ca5 .acf-field .acf-label span.tooltip,
+#acf-group_5e29f139d8cbc .acf-field .acf-label span.tooltip,
+#acf-group_5e88b630a8f12 .acf-field .acf-label span.tooltip,
+#acf-group_5e8b2e13af264 .acf-field .acf-label span.tooltip,
+#acf-group_5e9862d14f82b .acf-field .acf-label span.tooltip,
+#acf-group_5e996f1908565 .acf-field .acf-label span.tooltip,
+#acf-group_5e99950d5b69a .acf-field .acf-label span.tooltip {
+    display: none;
+}

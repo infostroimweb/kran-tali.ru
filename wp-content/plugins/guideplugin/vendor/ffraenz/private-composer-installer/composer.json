@@ -1,0 +1,49 @@
+{
+  "name": "ffraenz/private-composer-installer",
+  "description": "A composer install helper for private packages",
+  "type": "composer-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fränz Friederes",
+      "email": "fraenz@frieder.es",
+      "homepage": "https://fraenz.frieder.es"
+    }
+  ],
+  "keywords": [
+    "composer",
+    "plugin",
+    "env",
+    "private",
+    "wordpress",
+    "wp"
+  ],
+  "require": {
+    "php": "^7.1",
+    "composer-plugin-api": "^1.0.0",
+    "vlucas/phpdotenv": "^4.0"
+  },
+  "require-dev": {
+    "composer/composer": "1.0.*",
+    "phpunit/phpunit": "^8.0",
+    "laminas/laminas-coding-standard": "^1.0"
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit --colors=always",
+    "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+  },
+  "autoload": {
+    "psr-4": {
+      "FFraenz\\PrivateComposerInstaller\\": "src/PrivateComposerInstaller"
+    }
+  },
+  "extra": {
+    "class": "FFraenz\\PrivateComposerInstaller\\Plugin"
+  }
+}

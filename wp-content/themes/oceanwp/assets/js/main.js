@@ -13,6 +13,7 @@ jQuery(document).ready( function() {
 		}
 	}, false );
 
+
 	jQuery('.custom-logo').attr({
 	 height: '45px',
 	 width: '164px'
@@ -22,7 +23,5 @@ jQuery(document).ready( function() {
 	 height: '114px',
 	 width: '200px'
 	});
-
-
 });
 

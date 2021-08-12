@@ -1,0 +1,2061 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GuidePlugin\n"
+"POT-Creation-Date: 2020-10-23 12:45+0200\n"
+"PO-Revision-Date: 2020-10-23 12:46+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: guideplugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: lib\n"
+
+#: dist/acf-php/design.php:4
+msgid "Colors"
+msgstr "Farben"
+
+#: dist/acf-php/design.php:16
+msgid "Basic color"
+msgstr "Standard Farbe"
+
+#: dist/acf-php/design.php:19
+msgid ""
+"This is the basic color that is used for borders of cards and the slider bar."
+msgstr ""
+"Dies ist die Grundfarbe, die für die Border der Cards und den Slider "
+"verwendet wird."
+
+#: dist/acf-php/design.php:27
+msgid "Slider progress color"
+msgstr "Slider Fortschrittsfarbe"
+
+#: dist/acf-php/design.php:30
+msgid ""
+"This is the color for the progress indicator on the top of the filter "
+"container."
+msgstr "Dies ist die Farbe für die Fortschrittsanzeige."
+
+#: dist/acf-php/design.php:38 dist/acf-php/gutenberg_block.php:4
+#: hooks/GutenbergHooks.php:32 hooks/PostTypeHooks.php:198
+msgid "Guide"
+msgstr "Guide"
+
+#: dist/acf-php/design.php:50 dist/acf-php/design.php:206
+msgid "Title Color"
+msgstr "Titelfarbe"
+
+#: dist/acf-php/design.php:61 dist/acf-php/design.php:217
+msgid "Title Font Size"
+msgstr "Titel Schriftgröße"
+
+#: dist/acf-php/design.php:78 dist/acf-php/design.php:234
+msgid "Description Color"
+msgstr "Beschreibungs- Farbe"
+
+#: dist/acf-php/design.php:89 dist/acf-php/design.php:245
+msgid "Description Font Size"
+msgstr "Schriftgröße für Inhalt"
+
+#: dist/acf-php/design.php:106
+msgid "Guide Background"
+msgstr "Guide Hintergrund"
+
+#: dist/acf-php/design.php:118
+msgid "Background color (start)"
+msgstr "Hintergrundfarbe (Start)"
+
+#: dist/acf-php/design.php:121
+msgid "This is the start color of the background gradient."
+msgstr "Die Startfarbe des Hintergrundfarbverlaufs."
+
+#: dist/acf-php/design.php:129
+msgid "Background color (end)"
+msgstr "Hintergrundfarbe (Ende)"
+
+#: dist/acf-php/design.php:132
+msgid "This is the end color of the background gradient."
+msgstr "Die Endfarbe des Hintergrundfarbverlaufs."
+
+#: dist/acf-php/design.php:140
+msgid "Background image"
+msgstr "Hintergrundbild"
+
+#: dist/acf-php/design.php:143
+msgid ""
+"This background image will be displayed above the background gradient. Tip: "
+"Use a png graphic to add some awesome effects."
+msgstr ""
+"Dieses Hintergrundbild wird über dem Hintergrundverlaufs angezeigt. Tipp: "
+"Verwenden Sie eine png-Grafik, um einige tolle Effekte hinzuzufügen."
+
+#: dist/acf-php/design.php:160
+msgid "Background direction"
+msgstr "Hintergrundrichtung"
+
+#: dist/acf-php/design.php:163
+msgid "The gradient direction of the background."
+msgstr "Die Verlaufsrichtung des Hintergrunds."
+
+#: dist/acf-php/design.php:177
+msgid "Background tilt"
+msgstr "Hintergrundschräge"
+
+#: dist/acf-php/design.php:180
+msgid "The background can be tilted. You can set values from -10 to 10."
+msgstr ""
+"Der Hintergrund kann gekippt werden. Du kannst Werte von -10 bis 10 "
+"einstellen."
+
+#: dist/acf-php/design.php:194 dist/acf-php/filter.php:46
+#: dist/acf-php/guide.php:73 dist/acf-php/logic_rules.php:49
+#: dist/acf-php/logic_rules.php:171
+msgid "Filter"
+msgstr "Filter"
+
+#: dist/acf-php/design.php:262
+msgid "Result"
+msgstr "Ergebnis"
+
+#: dist/acf-php/design.php:274
+msgid "Title color"
+msgstr "Titelfarbe"
+
+#: dist/acf-php/design.php:277
+msgid "This is the color of the &quot;your results&quot; title."
+msgstr "Dies ist die Farbe des Titels \"Deine Ergebnisse\"."
+
+#: dist/acf-php/design.php:285
+msgid "Highlight border thickness"
+msgstr "Highlight Rahmendicke"
+
+#: dist/acf-php/design.php:288
+msgid ""
+"The first result will be highlighted. Here you can choose what border "
+"thickness you want to add to the first result."
+msgstr ""
+"Das erste Ergebnis wird hervorgehoben. Hier kannst du auswählen, welche "
+"Randstärke beim ersten Ergebnis verwendet wird."
+
+#: dist/acf-php/design.php:302
+msgid "Highlight border color"
+msgstr "Highlight Rahmenfarbe"
+
+#: dist/acf-php/design.php:305
+msgid ""
+"The first result will be highlighted. Here you can choose the border color "
+"of the first result."
+msgstr ""
+"Das erste Ergebnis wird hervorgehoben. Hier kannst du die Randfarbe des "
+"ersten Ergebnisses wählen."
+
+#: dist/acf-php/design.php:313
+msgid "Highlight badge background color"
+msgstr "Highlight Badge Hintergrundfarbe"
+
+#: dist/acf-php/design.php:324
+msgid "Highlight badge text color"
+msgstr "Highlight Badge Textfarbe"
+
+#: dist/acf-php/design_post.php:4 dist/acf-php/design_post.php:15
+#: dist/acf-php/guide.php:105
+msgid "Design"
+msgstr "Design"
+
+#: dist/acf-php/facet.php:4
+msgid "Slug"
+msgstr "Slug"
+
+#: dist/acf-php/facet.php:7
+msgid ""
+"A unique identifier for this facet. Only lowercase characters and _ are "
+"valid."
+msgstr ""
+"Ein eindeutiger Bezeichner für diese Facette. Nur Kleinbuchstaben und _ sind "
+"gültig."
+
+#: dist/acf-php/facet.php:19
+msgid "Source"
+msgstr "Quelle"
+
+#: dist/acf-php/facet.php:22
+msgid "The data source for this facet."
+msgstr "Die Datenquelle für diese Facette."
+
+#: dist/acf-php/filter.php:4 dist/acf-php/guide.php:4
+#: dist/acf-php/guide.php:364 dist/acf-php/template.php:129
+#: dist/acf-php/template.php:144
+msgid "Text"
+msgstr "Text"
+
+#: dist/acf-php/filter.php:16 dist/acf-php/guide.php:16
+#: dist/acf-php/template.php:69
+msgid "Title"
+msgstr "Titel"
+
+#: dist/acf-php/filter.php:19
+msgid "This title will be shown above the filter selection."
+msgstr "Der Titel wird über dem Filter angezeigt."
+
+#: dist/acf-php/filter.php:31 dist/acf-php/guide.php:31
+msgid "Description"
+msgstr "Beschreibung"
+
+#: dist/acf-php/filter.php:34
+msgid "This description will be shown above the filter selection."
+msgstr "Die Beschreibung wird über dem Filter angezeigt."
+
+#: dist/acf-php/filter.php:58
+msgid "Filter Type"
+msgstr "Filtertyp"
+
+#: dist/acf-php/filter.php:61
+msgid "Here you can decide which type of filter you want to use."
+msgstr ""
+"Hier kannst du entscheiden, welchen Filter Typen du verwenden möchtest."
+
+#: dist/acf-php/filter.php:77 dist/acf-php/filter.php:92
+msgid "Cards"
+msgstr "Cards"
+
+#: dist/acf-php/filter.php:80
+msgid ""
+"Filter type: Cards\n"
+"\n"
+"Here you can setup card related settings."
+msgstr ""
+"Filter Typ: Cards\n"
+"\n"
+"Hier kannst du alle Einstellungen der Cards vornehmen."
+
+#: dist/acf-php/filter.php:104
+msgid "Card type"
+msgstr "Card Typ"
+
+#: dist/acf-php/filter.php:107
+msgid ""
+"Checkbox: The card act&#039;s like a checkbox form field.\n"
+"\n"
+"Radio: The card act&#039;s like a radio button form field."
+msgstr ""
+"Checkbox: Die Card verhält sich wie eine Checkbox in einem Web Formular.\n"
+"\n"
+"Radio: Die Card verhält sich wie ein Radio Button in einem Web Formular."
+
+#: dist/acf-php/filter.php:125
+msgid "Card behavior"
+msgstr "Card Verhalten"
+
+#: dist/acf-php/filter.php:128 dist/acf-php/filter.php:270
+msgid ""
+"Widen: The card selections will be connected by &quot;OR&quot;\n"
+"\n"
+"Narrow: The card selections will be connected by &quot;AND&quot;"
+msgstr ""
+"Widen: Die Card Auswahl wird mit &quot;OR&quot; verbunden.\n"
+"\n"
+"Narrow: Die Card Auswahl wird mit &quot;AND&quot; verbunden."
+
+#: dist/acf-php/filter.php:146
+msgid "Card items"
+msgstr "Card Objekte"
+
+#: dist/acf-php/filter.php:149
+msgid ""
+"Here you add all the single cards each with their own conditions and image."
+msgstr ""
+"Hier kannst du die einzelnen Cards mit den jeweiligen Bedingungen für die "
+"Filterung hinzufügen."
+
+#: dist/acf-php/filter.php:159
+msgid "Add card"
+msgstr "Card hinzufügen"
+
+#: dist/acf-php/filter.php:161
+msgid "Image"
+msgstr "Bild"
+
+#: dist/acf-php/filter.php:164
+msgid "This image will be displayed within the card as it&#039;s icon."
+msgstr "Dieses Bild wird als Icon für die Card angezeigt."
+
+#: dist/acf-php/filter.php:181 dist/acf-php/template.php:221
+#: dist/acf-php/template.php:300
+msgid "Label"
+msgstr "Beschriftung"
+
+#: dist/acf-php/filter.php:184
+msgid "The label of the card will be displayed right below the image."
+msgstr "Das Label der Card wird direkt unter dem Bild angezeigt."
+
+#: dist/acf-php/filter.php:196
+msgid "Card ID"
+msgstr "Card ID"
+
+#: dist/acf-php/filter.php:199
+msgid ""
+"This field will be filled automatically and is really important to the "
+"functionality of the guide. Do not try to alter this value."
+msgstr ""
+"Dieses Feld wird automatisch ausgefüllt und ist für die Funktionalität des "
+"Leitfadens wirklich wichtig. Versuche nicht, diesen Wert zu ändern."
+
+#: dist/acf-php/filter.php:212 dist/acf-php/filter.php:484
+#: dist/acf-php/logic_rules.php:35
+msgid "Conditions"
+msgstr "Bedingungen"
+
+#: dist/acf-php/filter.php:215
+msgid ""
+"Add here the facets which should be filtered with this card. All successive "
+"facets are linked with AND. But you can also add OR conditions."
+msgstr ""
+"Fügen Sie hier die Facetten hinzu, die mit dieser Card gefiltert werden "
+"sollten. Alle aufeinanderfolgenden Facetten sind mit UND verknüpft. Du "
+"kannst aber auch ODER-Bedingungen hinzufügen."
+
+#: dist/acf-php/filter.php:223 dist/acf-php/filter.php:226
+#: dist/acf-php/filter.php:499
+msgid "Facet"
+msgstr "Facet"
+
+#: dist/acf-php/filter.php:229
+msgid "Choose one of your facets here."
+msgstr "Wähle einer deiner Facetten aus."
+
+#: dist/acf-php/filter.php:242 dist/acf-php/filter.php:515
+#: dist/acf-php/filter.php:536 dist/acf-php/logic_rules.php:65
+msgid "Rule"
+msgstr "Regel"
+
+#: dist/acf-php/filter.php:245
+msgid ""
+"Select the rule for the condition. Make sure that the rule matches your "
+"facet type."
+msgstr ""
+"Wähle die Regel für die Bedingung aus. Stelle sicher, dass die Regel mit "
+"deinem Facettentyp übereinstimmt."
+
+#: dist/acf-php/filter.php:267 dist/acf-php/filter.php:463
+msgid "Behavior"
+msgstr "Verhalten"
+
+#: dist/acf-php/filter.php:288 dist/acf-php/logic_rules.php:90
+msgid "Value selection"
+msgstr "Value Typ"
+
+#: dist/acf-php/filter.php:291 dist/acf-php/logic_rules.php:93
+msgid ""
+"Here you can decide if you want to enter the value manually or select a "
+"value from your global dataset."
+msgstr ""
+"Hier kannst du entscheiden, ob du den Wert manuell eingeben oder einen Wert "
+"aus deinem globalen Datenbestand auswählen möchtest."
+
+#: dist/acf-php/filter.php:307
+msgid "Values"
+msgstr "Values"
+
+#: dist/acf-php/filter.php:320
+msgid "Add value"
+msgstr "Value hinzufügen"
+
+#: dist/acf-php/filter.php:322 dist/acf-php/logic_rules.php:109
+msgid "Value (manual)"
+msgstr "Values (Manuell)"
+
+#: dist/acf-php/filter.php:339 dist/acf-php/logic_rules.php:126
+msgid "Value (list)"
+msgstr "Values (Liste)"
+
+#: dist/acf-php/filter.php:361
+msgid "OR condition"
+msgstr "ODER-Bedingung"
+
+#: dist/acf-php/filter.php:365
+msgid "Add facet/condition"
+msgstr "Facette/Condition hinzufügen"
+
+#: dist/acf-php/filter.php:369 dist/acf-php/filter.php:595
+#: dist/acf-php/guide.php:251 dist/acf-php/template.php:97
+#: dist/acf-php/template.php:159 dist/acf-php/template.php:253
+#: dist/acf-php/template.php:315 dist/acf-php/template.php:379
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: dist/acf-php/filter.php:381 dist/acf-php/filter.php:671
+#: dist/acf-php/template.php:480
+msgid "Image width"
+msgstr "Bild Breite"
+
+#: dist/acf-php/filter.php:384
+msgid "Here you can edit the card image width."
+msgstr "Hier kannst du die Bildbreite anpassen."
+
+#: dist/acf-php/filter.php:398 dist/acf-php/filter.php:688
+#: dist/acf-php/template.php:497
+msgid "Image height"
+msgstr "Bild Höhe"
+
+#: dist/acf-php/filter.php:401
+msgid "Here you can edit the card image height."
+msgstr "Hier kannst du die Bildhöhe anpassen."
+
+#: dist/acf-php/filter.php:415 dist/acf-php/filter.php:430
+msgid "Slider"
+msgstr "Slider"
+
+#: dist/acf-php/filter.php:418
+msgid ""
+"Filter type: Slider\n"
+"\n"
+"Here you can setup slider related settings."
+msgstr ""
+"Filter Typ: Slider\n"
+"\n"
+"Hier kannst du alle Einstellungen für den Slider einstellen."
+
+#: dist/acf-php/filter.php:442
+msgid "Slider type"
+msgstr "Slider Typ"
+
+#: dist/acf-php/filter.php:445
+msgid ""
+"Single: The slider contains only a single handle to change the value.\n"
+"\n"
+"Range: The slider contains two handles to set the minimum and maximum value."
+msgstr ""
+"Single: Der Slider enthält nur einen einzigen Griff zum Ändern des Wertes.\n"
+"\n"
+"Range: Der Slider enthält zwei Griffe zum Einstellen des Minimal- und "
+"Maximalwertes."
+
+#: dist/acf-php/filter.php:466
+msgid ""
+"Widen: The slider conditions will be connected by &quot;OR&quot;\n"
+"\n"
+"Narrow: The slider conditions will be connected by &quot;AND&quot;"
+msgstr ""
+"Widen: Die Slider Bedingungen werden mit &quot;OR&quot; verbunden.\n"
+"\n"
+"Narrow: Die Slider Bedingungen werden mit &quot;AND&quot; verbunden."
+
+#: dist/acf-php/filter.php:487
+msgid "Set the facets the slider should be based on."
+msgstr "Lege die Facetten fest, auf denen der Slider basieren soll."
+
+#: dist/acf-php/filter.php:497 dist/acf-php/logic_rules.php:152
+msgid "Add Condition"
+msgstr "Condition hinzufügen"
+
+#: dist/acf-php/filter.php:557
+msgid "Slider images"
+msgstr "Slider Bilder"
+
+#: dist/acf-php/filter.php:560
+msgid ""
+"Add images to make your slider look beautiful.\n"
+"\n"
+"If you select 1 image: The Image will be centered\n"
+"If you select 2 images: One image will the on the right, the other on the "
+"left"
+msgstr ""
+"Füge Bilder zu deinem Slider hinzu, um ihn aussagekräftiger zu machen.\n"
+"\n"
+"Wenn du 1 Bild zuweist: Das Bild wird zentriert angezeigt.\n"
+"Wenn du 2 Bilder zuweist: Die Bilder werden links und rechts angezeigt."
+
+#: dist/acf-php/filter.php:573
+msgid "Add image"
+msgstr "Bild hinzufügen"
+
+#: dist/acf-php/filter.php:575
+msgid "Slider image"
+msgstr "Slider Bild"
+
+#: dist/acf-php/filter.php:607
+msgid "Lower limit"
+msgstr "Untere Grenze"
+
+#: dist/acf-php/filter.php:610
+msgid ""
+"This will overwrite the calculated lower limit. This setting should be used "
+"with care."
+msgstr ""
+"Dieser Wert überschreibt das kalkulierte untere Limit. Bitte mit Bedacht "
+"einsetzen."
+
+#: dist/acf-php/filter.php:624
+msgid "Upper limit"
+msgstr "Obere Grenze"
+
+#: dist/acf-php/filter.php:627
+msgid ""
+"This will overwrite the calculated upper limit. This setting should be used "
+"with care."
+msgstr ""
+"Dieser Wert überschreibt das kalkulierte obere Limit. Bitte mit Bedacht "
+"einsetzen."
+
+#: dist/acf-php/filter.php:641
+msgid "Prefix"
+msgstr "Präfix"
+
+#: dist/acf-php/filter.php:644
+msgid ""
+"You can add a prefix to the slider values. E.g. &quot;€&quot; or &quot;"
+"$&quot;"
+msgstr ""
+"Du kannst ein Präfix zum Slider Wert hinzufügen: z.B. &quot;km&quot; or "
+"&quot;miles&quot;"
+
+#: dist/acf-php/filter.php:656
+msgid "Suffix"
+msgstr "Suffix"
+
+#: dist/acf-php/filter.php:659
+msgid ""
+"You can add a suffix to the slider values. E.g. &quot;km&quot; or &quot;"
+"miles&quot;"
+msgstr ""
+"Du kannst ein Suffix zum Slider Wert hinzufügen: z.B. &quot;km&quot; or "
+"&quot;miles&quot;"
+
+#: dist/acf-php/filter.php:674 dist/acf-php/filter.php:691
+msgid "Here you can edit the slider image width."
+msgstr "Hier kannst du die Bildbreite einstellen."
+
+#: dist/acf-php/filter.php:705
+msgid "Prettify values"
+msgstr "Werte anpassen"
+
+#: dist/acf-php/filter.php:708
+msgid "Should values such as 1,000,000 be converted into 1million?"
+msgstr "Sollen Werte wie z.B. 1.000.000 in 1Mio umgewandelt werden?"
+
+#: dist/acf-php/filter.php:720
+msgid "Next on select"
+msgstr "Weiter bei Auswahl"
+
+#: dist/acf-php/filter.php:723
+msgid ""
+"If you enable this option the user get&#039;s to the next step as soon as he "
+"selects an option."
+msgstr ""
+"Wenn du diese Option aktivierst, gelangt der Benutzer zum nächsten Schritt, "
+"sobald er eine Option auswählt."
+
+#: dist/acf-php/filter.php:735
+msgid "Input required"
+msgstr "Eingabe erforderlich"
+
+#: dist/acf-php/filter.php:738
+msgid ""
+"If you enable this option the user has to select something. \n"
+"\n"
+"Keep in mind: Sometimes it could be suitable for the user to not select "
+"something."
+msgstr ""
+"Falls du diese Option aktivierst, muss der Besucher etwas auswählen. \n"
+"\n"
+"Aber bedenke: Manchmal kann es Sinn machen, dass es deinem Besucher frei "
+"steht eine Auswahl zu treffen oder nicht."
+
+#: dist/acf-php/filter.php:752 templates/guide/modals/filterHelpModal.php:4
+msgid "Help"
+msgstr "Hilfe"
+
+#: dist/acf-php/filter.php:764
+msgid "Show help"
+msgstr "Hilfe anzeigen"
+
+#: dist/acf-php/filter.php:767
+msgid "Whether help for the user should be displayed or not."
+msgstr "Gibt an, ob Hilfe für den Benutzer angezeigt werden soll oder nicht."
+
+#: dist/acf-php/filter.php:779
+msgid "Help Text"
+msgstr "Hilfetext"
+
+#: dist/acf-php/filter.php:782
+msgid "Help your user with some further explanations about this question."
+msgstr ""
+"Helfen Sie Ihrem Benutzer mit einigen weiteren Erklärungen zu dieser Frage."
+
+#: dist/acf-php/filter.php:794 dist/acf-php/guide.php:184
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: dist/acf-php/filter.php:806
+msgid "Show in progress"
+msgstr "Im Fortschritt zeigen"
+
+#: dist/acf-php/filter.php:809
+msgid "Whether a progress text should be displayed or not."
+msgstr "Gibt an, ob ein Fortschrittstext angezeigt werden soll oder nicht."
+
+#: dist/acf-php/filter.php:821
+msgid "Progress Label"
+msgstr "Fortschrittsbezeichnung"
+
+#: dist/acf-php/filter.php:824
+msgid "E.g. &quot;We are searching in your budget&quot;"
+msgstr "Z.B. &quot;Wir suchen in deinem Budget&quot;"
+
+#: dist/acf-php/guide.php:19
+msgid ""
+"This is the guide title. It will be displayed above the filter selection."
+msgstr ""
+"Das ist der Titel des Guides. Dieser wird oberhalb des Filter Sliders "
+"angezeigt."
+
+#: dist/acf-php/guide.php:34
+msgid ""
+"This is the guide description. It will be displayed above the filter "
+"selection."
+msgstr ""
+"Das ist die Beschreibung des Guides. Diese wird oberhalb des Filter Sliders "
+"angezeigt."
+
+#: dist/acf-php/guide.php:46 dist/acf-php/guide.php:58
+#: hooks/PostTypeHooks.php:127
+msgid "Filters"
+msgstr "Filter"
+
+#: dist/acf-php/guide.php:61
+msgid ""
+"Here you can add, remove or move filters that are shown as steps in the "
+"guide."
+msgstr "Hier kannst du Filter hinzufügen, löschen oder verschieben."
+
+#: dist/acf-php/guide.php:71
+msgid "Add filter"
+msgstr "Filter hinzufügen"
+
+#: dist/acf-php/guide.php:89
+msgid "Filter ID"
+msgstr "Filter ID"
+
+#: dist/acf-php/guide.php:117
+msgid "Design type"
+msgstr "Designtyp"
+
+#: dist/acf-php/guide.php:120
+msgid ""
+"Custom Design: You can set the design options right here inside this guide.\n"
+"\n"
+"Preset Design: Choose from all designs you have build."
+msgstr ""
+"Custom Design: Du kannst für diesen Guide ein individuelles Design "
+"erstellen\n"
+"\n"
+"Preset Design: Wähle aus einem deiner erstellten Designs aus (empfohlen)."
+
+#: dist/acf-php/guide.php:138
+msgid "Design selection"
+msgstr "Designauswahl"
+
+#: dist/acf-php/guide.php:141
+msgid "Choose from one of your preset designs."
+msgstr "Wähle von einem deiner erstellten Designs."
+
+#: dist/acf-php/guide.php:156 dist/acf-php/guide.php:169
+msgid "Custom Design"
+msgstr "Individuelles Design"
+
+#: dist/acf-php/guide.php:159
+msgid "Setup a custom design for this guide."
+msgstr "Erstelle ein individuelles Design für diesen Guide."
+
+#: dist/acf-php/guide.php:196
+msgid "Show progress steps"
+msgstr "Zeige den Fortschritt bei der Suche"
+
+#: dist/acf-php/guide.php:199
+msgid ""
+"Check this option if you want to show a progress while searching for results."
+msgstr ""
+"Aktiviere diese Option, wenn du einen Suchprozess anzeigen lassen willst."
+
+#: dist/acf-php/guide.php:211
+msgid "Final progress step text"
+msgstr "Finaler Fortschrittstext"
+
+#: dist/acf-php/guide.php:214
+msgid "You can add a text for the final progress step."
+msgstr ""
+"Du kannst einen Text für den finalen Schritt des Suchprozesses eingeben."
+
+#: dist/acf-php/guide.php:228
+msgid "Results"
+msgstr "Ergebnisse"
+
+#: dist/acf-php/guide.php:240
+msgid "Result Settings"
+msgstr "Ergebnis Einstellungen"
+
+#: dist/acf-php/guide.php:243
+msgid "Here you can edit your result settings."
+msgstr "Hier kannst du deine Ergebnis Einstellungen anpassen."
+
+#: dist/acf-php/guide.php:263
+msgid "Show results on"
+msgstr "Ergebnisse anzeigen auf"
+
+#: dist/acf-php/guide.php:281
+msgid "Result count"
+msgstr "Anzahl der Ergebnisse"
+
+#: dist/acf-php/guide.php:284
+msgid "Number of posts to show on result page."
+msgstr ""
+"Anzahl der Beiträge, die auf der Ergebnisseite angezeigt werden sollen."
+
+#: dist/acf-php/guide.php:298
+msgid "Template"
+msgstr "Template"
+
+#: dist/acf-php/guide.php:310
+msgid "Template type"
+msgstr "Template Type"
+
+#: dist/acf-php/guide.php:313
+msgid ""
+"Basic Template: This is a minimal result template that shows only the "
+"thumbnail and title of the result post.\n"
+"\n"
+"Preset Template: Choose from one of your result templates you have build."
+msgstr ""
+"Basic Template: Das ist das Standard Template, welches lediglich das Post "
+"Thumbnail und den Titel anzeigt.\n"
+"\n"
+"Preset Template: Hier kannst du von einem deiner erstellten Ergebnis "
+"Templates wählen."
+
+#: dist/acf-php/guide.php:331
+msgid "Template selection"
+msgstr "Designauswahl"
+
+#: dist/acf-php/guide.php:334
+msgid "Choose from one of your result templates you have build."
+msgstr "Wähle eines deiner Ergebnis Templates aus."
+
+#: dist/acf-php/guide.php:349
+msgid "Show Confetti"
+msgstr "Zeige Konfettianimation"
+
+#: dist/acf-php/guide.php:352
+msgid ""
+"Check this option if you want to celebrate the results with a confetti bomb."
+msgstr ""
+"Aktiviere diese Option, wenn du die Konfetti Kanone einsetzen willst, sobald "
+"die Ergebnisse geladen sind."
+
+#: dist/acf-php/guide.php:376
+msgid "Headline"
+msgstr "Überschrift"
+
+#: dist/acf-php/guide.php:379
+msgid "This text will be shown as a headline right above the result list."
+msgstr "Dieser Text wird als Überschrift der Ergebnisse angezeigt."
+
+#: dist/acf-php/guide.php:391
+msgid "Badge text"
+msgstr "Badge Text"
+
+#: dist/acf-php/guide.php:394
+msgid "This text will be shown as the badge text for the first result."
+msgstr "Dieser Text wird als Badge des ersten Ergebnisposts angezeigt."
+
+#: dist/acf-php/guide.php:406 templates/result/basic/resultItem.php:22
+msgid "More results"
+msgstr "Weitere passende Ergebnisse"
+
+#: dist/acf-php/guide.php:409
+msgid "This text will be shown right below the first result."
+msgstr "Dieser Text wird direkt unter dem ersten Ergebnispost angezeigt."
+
+#: dist/acf-php/guide.php:421
+msgid "Includes / Excludes"
+msgstr "Ein-/Ausschließen"
+
+#: dist/acf-php/guide.php:433
+msgid "Include / Exclude post types"
+msgstr "Ein- oder Ausschließen von Post Types"
+
+#: dist/acf-php/guide.php:436
+msgid ""
+"Include: This will INCLUDE the post types you select with the next option.\n"
+"\n"
+"Exclude: This will EXCLUDE the post types you select with the next option."
+msgstr ""
+"Include: Diese Option wird alle von dir gewählten Post Types einschließen.\n"
+"\n"
+"Exclude: Diese Option wird alle von dir gewählten Post Types ausschließen."
+
+#: dist/acf-php/guide.php:454
+msgid "Post types"
+msgstr "Post Types"
+
+#: dist/acf-php/guide.php:457
+msgid "Select the post types you want to include or exclude."
+msgstr "Wähle die Post Types, die du ein- / ausschließen willst."
+
+#: dist/acf-php/guide.php:470
+msgid "Include / Exclude taxonomies"
+msgstr "Ein- oder Ausschließen von Taxonomien"
+
+#: dist/acf-php/guide.php:473
+msgid ""
+"Include: This will INCLUDE the taxonomies / terms you select with the next "
+"option.\n"
+"\n"
+"Exclude: This will EXCLUDE the taxonomies / terms you select with the next "
+"option."
+msgstr ""
+"Include: Diese Option wird alle von dir gewählten Taxonomien / Terms "
+"einschließen.\n"
+"\n"
+"Exclude: Diese Option wird alle von dir gewählten Taxonomien / Terms "
+"ausschließen."
+
+#: dist/acf-php/guide.php:491
+msgid "Taxonomies"
+msgstr "Taxonomien"
+
+#: dist/acf-php/guide.php:494
+msgid "Select the taxonomies / terms you want to include or exclude."
+msgstr "Wähle Taxonomien / Terms aus, die du ein- / ausschließen willst."
+
+#: dist/acf-php/logic_rules.php:4 hooks/PostTypeHooks.php:197
+#: hooks/PostTypeHooks.php:199 hooks/PostTypeHooks.php:204
+msgid "Guides"
+msgstr "Guides"
+
+#: dist/acf-php/logic_rules.php:7
+msgid ""
+"Use only on this guide(s). If no guide is selected this logic is used on all "
+"guides."
+msgstr ""
+"Verwende dies nur für diese Guides. Wenn kein Guide ausgewählt ist, wird "
+"diese Logik auf alle Guides verwendet."
+
+#: dist/acf-php/logic_rules.php:20
+msgid "Rulesets"
+msgstr "Rulesets"
+
+#: dist/acf-php/logic_rules.php:23
+msgid "You can create multiple rulesets here."
+msgstr "Hier kannst du mehrere Zeilen anlegen."
+
+#: dist/acf-php/logic_rules.php:33
+msgid "Add Ruleset"
+msgstr "Ruleset hinzufügen"
+
+#: dist/acf-php/logic_rules.php:38
+msgid ""
+"All successive conditions are linked with AND. But you can also add OR "
+"conditions."
+msgstr ""
+"Alle aufeinanderfolgenden Bedingungen sind mit UND verknüpft. Du kannst aber "
+"auch ODER-Bedingungen hinzufügen."
+
+#: dist/acf-php/logic_rules.php:46
+msgid "Filter Condition"
+msgstr "Filterbedingung"
+
+#: dist/acf-php/logic_rules.php:52
+msgid "Select a filter that the condition should base on."
+msgstr "Wähle den Filter aus, auf dem die Bedingung basieren soll."
+
+#: dist/acf-php/logic_rules.php:68
+msgid ""
+"Select the rule for the condition. Make sure that the rule matches your "
+"filter type."
+msgstr ""
+"Wähle eine Regel für die Bedingung aus. Achte darauf, dass die Auswahl zum "
+"Filter Typ passt."
+
+#: dist/acf-php/logic_rules.php:148
+msgid "OR Condition"
+msgstr "ODER-Bedingung"
+
+#: dist/acf-php/logic_rules.php:156
+msgid "Actions"
+msgstr "Aktionen"
+
+#: dist/acf-php/logic_rules.php:169
+msgid "Add Action"
+msgstr "Aktion hinzufügen"
+
+#: dist/acf-php/logic_rules.php:187
+msgid "Action"
+msgstr "Aktion"
+
+#: dist/acf-php/settings.php:4 dist/acf-php/settings.php:16
+msgid "Indexing"
+msgstr "Indexierung"
+
+#: dist/acf-php/settings.php:29
+msgid "Posts per index loop"
+msgstr "Beiträge pro Indexschleife"
+
+#: dist/acf-php/settings.php:32
+msgid ""
+"Number of posts to index within one loop (every minute) Warning: This "
+"setting could impact your server performance."
+msgstr ""
+"Anzahl der Beiträge, die innerhalb eines Loops indexiert werden sollen. "
+"Warnung: Diese Einstellung kann sich auf die Serverleistung auswirken."
+
+#: dist/acf-php/settings.php:46
+msgid "Libraries"
+msgstr "Libraries"
+
+#: dist/acf-php/settings.php:58
+msgid "Exclude FontAwesome"
+msgstr "FontAwesome ausschließen"
+
+#: dist/acf-php/settings.php:61
+msgid ""
+"You can exclude the FontAwesome 5 library from loading if you use a theme "
+"that already integrates FontAwesome."
+msgstr ""
+"Du kannst FontAwesome 5 vom Laden ausschließen, falls dein Theme bereits "
+"FontAwesome verwendet."
+
+#: dist/acf-php/settings.php:73
+msgid "Use Font Awesome 5 Pro"
+msgstr "Verwende Font Awesome 5 Pro"
+
+#: dist/acf-php/settings.php:76
+msgid ""
+"If you are using Font Awesome 5 Pro, you need to activate this checkbox."
+msgstr ""
+"Falls du Font Awesome 5 Pro verwendest musst du diese Option aktivieren."
+
+#: dist/acf-php/settings.php:90
+msgid "General"
+msgstr "Allgemein"
+
+#: dist/acf-php/settings.php:102
+msgid "Show your love"
+msgstr "Zeige deine Liebe"
+
+#: dist/acf-php/settings.php:105
+msgid "Show Powered by GuidePlugin credits inside your guides."
+msgstr "Zeige ein Powered by GuidePlugin Text bei deinen Guides."
+
+#: dist/acf-php/settings.php:117
+msgid "Affiliate Link"
+msgstr "Affiliate Link"
+
+#: dist/acf-php/settings.php:120
+msgid ""
+"Optional: You can add your affiliate link here to earn money if someone "
+"purchases the GuidePlugin over your link. Also see: https://www.guideplugin."
+"com/en/affiliate/"
+msgstr ""
+"Optional: Hier kannst du deinen Affiliate Link einfügen. Immer wenn jemand "
+"über deinen Link das GuidePlugin kauft verdienst du mit. Siehe: https://www."
+"guideplugin.com/affiliate/"
+
+#: dist/acf-php/settings.php:131
+msgid "Debug"
+msgstr "Debug"
+
+#: dist/acf-php/settings.php:143
+msgid "Debug information"
+msgstr "Debug Informationen"
+
+#: dist/acf-php/settings.php:146
+msgid ""
+"You need this information if you want to create a support ticket on license."
+"guideplugin.com."
+msgstr ""
+"Diese Debug Informationen brauchst du, wenn du ein Support Ticket über "
+"license.guideplugin.com erstellst."
+
+#: dist/acf-php/template.php:4
+msgid "Template Builder"
+msgstr "Template Builder"
+
+#: dist/acf-php/template.php:16
+msgid "Template rows"
+msgstr "Template Zeile"
+
+#: dist/acf-php/template.php:19
+msgid "Here you can add multiple rows."
+msgstr "Hier kannst du mehrere Zeilen anlegen."
+
+#: dist/acf-php/template.php:29
+msgid "Add row"
+msgstr "Zeile hinzufügen"
+
+#: dist/acf-php/template.php:31
+msgid "Row"
+msgstr "Zeile"
+
+#: dist/acf-php/template.php:34
+msgid ""
+"This is a template row. You can add multiple columns in here with different "
+"sizes."
+msgstr ""
+"Das ist eine Template Zeile. Du kannst hier so viele Spalten anlegen, wie du "
+"möchtest."
+
+#: dist/acf-php/template.php:44
+msgid "Add column"
+msgstr "Spalte hinzufügen"
+
+#: dist/acf-php/template.php:46 dist/acf-php/template.php:58
+msgid "Modules"
+msgstr "Module"
+
+#: dist/acf-php/template.php:61
+msgid "Add different modules to your template."
+msgstr "Füge verschiedene Module zu deinem Template hinzu."
+
+#: dist/acf-php/template.php:72 dist/acf-php/template.php:132
+#: dist/acf-php/template.php:194 dist/acf-php/template.php:288
+#: dist/acf-php/template.php:350
+msgid "Module"
+msgstr "Modul"
+
+#: dist/acf-php/template.php:84
+msgid "Modul: Title"
+msgstr "Modul: Titel"
+
+#: dist/acf-php/template.php:109 dist/acf-php/template.php:171
+#: dist/acf-php/template.php:265 dist/acf-php/template.php:327
+#: dist/acf-php/template.php:391 dist/acf-php/template.php:425
+msgid "Template Clone"
+msgstr "Template Klon"
+
+#: dist/acf-php/template.php:147
+msgid ""
+"With this module you can add static text that is displayed on every result."
+msgstr ""
+"Mit diesem Modul kannst du statischen Text hinzufügen, der immer angezeigt "
+"werden soll."
+
+#: dist/acf-php/template.php:191 dist/acf-php/template.php:206
+msgid "List"
+msgstr "Liste"
+
+#: dist/acf-php/template.php:209
+msgid ""
+"With this module you can add a list of properties (ACF fields, Categories, "
+"Post Title, ...)."
+msgstr ""
+"Mit diesem Modul kannst du eine Liste von Eigenschaften hinzufügen (z.B. ACF "
+"Felder, Kategorien, Post Titel, …)."
+
+#: dist/acf-php/template.php:236 dist/acf-php/template.php:362
+msgid "Data Source"
+msgstr "Datenquelle"
+
+#: dist/acf-php/template.php:285
+msgid "Button"
+msgstr "Button"
+
+#: dist/acf-php/template.php:303
+msgid ""
+"This module adds a button on this position. You can set the button label "
+"here."
+msgstr ""
+"Dieses Modul fügt einen Button hinzu. Du kannst den Text des Button hier "
+"anpassen."
+
+#: dist/acf-php/template.php:347
+msgid "Data"
+msgstr "Data"
+
+#: dist/acf-php/template.php:365
+msgid "With this module you can display any data source."
+msgstr "Mit diesem Modul kannst du flexibel Daten anzeigen lassen."
+
+#: dist/acf-php/template.php:409
+msgid "Add module"
+msgstr "Modul hinzufügen"
+
+#: dist/acf-php/template.php:413
+msgid "Column Settings"
+msgstr "Spalteneinstellungen"
+
+#: dist/acf-php/template.php:442 dist/acf-php/template.php:454
+msgid "Image Settings"
+msgstr "Bildeinstellungen"
+
+#: dist/acf-php/template.php:465
+msgid "Show image"
+msgstr "Zeige Bild"
+
+#: dist/acf-php/template.php:468
+msgid "Check this option if you want to display the post thumbnail."
+msgstr ""
+"Aktiviere diese Option, wenn du das Post Thumbnail anzeigen lassen möchtest."
+
+#: dist/acf-php/template.php:483
+msgid "Here you can set the image width of the post thumbnail."
+msgstr "Hier kannst du die Bildbreite des Post Thumbnails einstellen."
+
+#: dist/acf-php/template.php:500
+msgid "Here you can set the image height of the post thumbnail."
+msgstr "Hier kannst du die Bildhöhe des Post Thumbnails einstellen."
+
+#: dist/acf-php/template.php:514
+msgid "Fitting"
+msgstr "Einpassung des Bildes"
+
+#: dist/acf-php/template.php:517
+msgid ""
+"Cover: The image will be cropped so it can fit on the image size.\n"
+"\n"
+"Contain: The image will be fitted inside the image size."
+msgstr ""
+"Cover: Das Bild wird so beschnitten, dass es auf die Bildgröße passt.\n"
+"\n"
+"Contain: Das Bild wird innerhalb der Bildgröße eingepasst."
+
+#: dist/acf-php/template_fields.php:4
+msgid "Column Width"
+msgstr "Spaltenbreite"
+
+#: dist/acf-php/template_fields.php:7
+msgid "Set the column width."
+msgstr "Stelle hier die Spaltenbreite ein."
+
+#: dist/acf-php/template_fields.php:21
+msgid "Align"
+msgstr "Ausrichtung"
+
+#: dist/acf-php/template_fields.php:24
+msgid "Set the text alignment of the content."
+msgstr "Lege hier die Textausrichtung des Inhalts fest."
+
+#: dist/acf-php/template_fields.php:41
+msgid "Margin top"
+msgstr "Abstand von Oben"
+
+#: dist/acf-php/template_fields.php:44
+msgid "Here you can add some space to the top."
+msgstr "Hier kannst du den Abstand nach oben einstellen."
+
+#: dist/acf-php/template_fields.php:58
+msgid "Hide on mobile"
+msgstr "Auf mobil ausblenden"
+
+#: dist/acf-php/template_fields.php:61
+msgid "Check this option if you want to hide this element on mobile devices."
+msgstr ""
+"Markiere diese Option, wenn du dieses Element auf mobilen Geräten ausblenden "
+"möchtest."
+
+#: dist/acf-php/template_fields.php:73
+msgid "Vertical align"
+msgstr "Vertikale Ausrichtung"
+
+#: dist/acf-php/template_fields.php:76
+msgid "Here you can set the vertical alignment of the element."
+msgstr "Hier kannst du die vertikale Ausrichtung des Elements einstellen."
+
+#: hooks/AcfHooks.php:107
+msgid "GuidePlugin Settings"
+msgstr "GuidePlugin Einstellungen"
+
+#. Plugin Name of the plugin/theme
+#: hooks/AcfHooks.php:108
+msgid "GuidePlugin"
+msgstr "GuidePlugin"
+
+#: hooks/AdminHooks.php:38
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: hooks/AdminHooks.php:39
+msgid "Guide ID"
+msgstr "Guide ID"
+
+#: hooks/AdminHooks.php:64
+msgid "Facet Slug"
+msgstr "Facet Slug"
+
+#: hooks/AdminHooks.php:65
+msgid "Facet Source"
+msgstr "Datenquelle"
+
+#: hooks/ConditionFacetHooks.php:108
+msgid "False"
+msgstr "Nein"
+
+#: hooks/ConditionFacetHooks.php:108
+msgid "True"
+msgstr "Ja"
+
+#: hooks/CronTaskHooks.php:20
+msgid "Every 1 minutes"
+msgstr "Jede Minute"
+
+#: hooks/FacetSlugHooks.php:34
+msgid "Only use lowercase (a-z), numbers (0-9) and underscore for slug."
+msgstr "Nur Kleinbuchstaben (a-z), Nummern (0-9) und Unterstrich sind erlaubt."
+
+#: hooks/FacetSlugHooks.php:64
+msgid "This facet slug already exists. Please use unique slug."
+msgstr ""
+"Dieser Facet Slug ist bereits belegt. Bitte achte darauf, dass der Facet "
+"Slug einzigartig ist."
+
+#: hooks/GutenbergHooks.php:33
+msgid "Add a guide from guideplugin."
+msgstr "Füge einen Guide aus dem Guideplugin hinzu."
+
+#: hooks/PostTypeHooks.php:20 hooks/PostTypeHooks.php:27
+msgid "Guide Templates"
+msgstr "Guide Templates"
+
+#: hooks/PostTypeHooks.php:21
+msgid "Guide Template"
+msgstr "Guide Template"
+
+#: hooks/PostTypeHooks.php:22
+msgid "Templates"
+msgstr "Templates"
+
+#: hooks/PostTypeHooks.php:23
+msgid "Edit Template"
+msgstr "Template editieren"
+
+#: hooks/PostTypeHooks.php:55 hooks/PostTypeHooks.php:62
+msgid "Guide Designs"
+msgstr "Guide Designs"
+
+#: hooks/PostTypeHooks.php:56
+msgid "Guide Design"
+msgstr "Guide Design"
+
+#: hooks/PostTypeHooks.php:57
+msgid "Designs"
+msgstr "Designs"
+
+#: hooks/PostTypeHooks.php:58
+msgid "Edit Design"
+msgstr "Design editieren"
+
+#: hooks/PostTypeHooks.php:90 hooks/PostTypeHooks.php:97
+msgid "Guide Logics"
+msgstr "Guide Logics"
+
+#: hooks/PostTypeHooks.php:91
+msgid "Guide Logic"
+msgstr "Guide Logic"
+
+#: hooks/PostTypeHooks.php:92
+msgid "Logic"
+msgstr "Logic"
+
+#: hooks/PostTypeHooks.php:93
+msgid "Edit Logic"
+msgstr "Logik editieren"
+
+#: hooks/PostTypeHooks.php:125 hooks/PostTypeHooks.php:126
+#: hooks/PostTypeHooks.php:132
+msgid "Guide Filters"
+msgstr "Guide Filters"
+
+#: hooks/PostTypeHooks.php:128
+msgid "Edit Filter"
+msgstr "Filter editieren"
+
+#: hooks/PostTypeHooks.php:161 hooks/PostTypeHooks.php:162
+#: hooks/PostTypeHooks.php:168
+msgid "Guide Facets"
+msgstr "Guide Facets"
+
+#: hooks/PostTypeHooks.php:163
+msgid "Facets"
+msgstr "Facets"
+
+#: hooks/PostTypeHooks.php:164
+msgid "Edit Facet"
+msgstr "Facet editieren"
+
+#: hooks/PostTypeHooks.php:200
+msgid "Edit Guide"
+msgstr "Guide editieren"
+
+#: templates/guide/filter/filter.php:20
+msgid "Подсказка"
+msgstr "Ich brauche Hilfe dabei"
+
+#: templates/guide/filter/filter.php:27
+msgid "Предыдущий параметр"
+msgstr "Vorheriger Schritt"
+
+#: templates/guide/filter/filter.php:28
+msgid "Следующий параметр"
+msgstr "Nächster Schritt"
+
+#: templates/guide/filter/filter.php:29
+msgid "Показать результат"
+msgstr "Ergebnisse anzeigen"
+
+#: templates/guide/filter/slider/slider.php:49
+#, php-format
+msgid "%d result"
+msgid_plural "%d results"
+msgstr[0] "%d Ergebnis"
+msgstr[1] "%d Ergebnisse"
+
+#: templates/guide/guide/guide.php:37
+msgid "Powered by"
+msgstr "Powered by"
+
+#: templates/guide/modals/inputRequiredModal.php:3
+msgid "Чего-то не хватает"
+msgstr "Hier fehlt leider etwas"
+
+#: templates/guide/modals/inputRequiredModal.php:7
+msgid "Необходимо выбрать один из предложенных параметров. Пожалуйста, сделайте свой выбор."
+msgstr ""
+"Dieser Filter benötigt eine Auswahl. Bitte wähle mindestens eine Option aus."
+
+#: templates/guide/modals/inputRequiredModal.php:8
+msgid "Понятно"
+msgstr "Ok, habe verstanden"
+
+#: templates/options/dashboard.php:2
+#, php-format
+msgid "%d indexed posts"
+msgstr "%d indexierte Beiträge"
+
+#: templates/options/dashboard.php:3
+msgid "Rebuild index"
+msgstr "Index neu indizieren"
+
+#: templates/options/dashboard.php:4
+msgid "Purge index"
+msgstr "Index löschen"
+
+#: templates/options/dashboard.php:9
+#, php-format
+msgid "Indexing is running! %d indexed so far..."
+msgstr "Die Indizierung wird ausgeführt! %d bisher indexiert..."
+
+#: templates/result/result.php:38
+msgid "Oh no! There are no posts that match your desires"
+msgstr ""
+"Oh nein! Wir konnten keine Beiträge finden, die zu deiner Auswahl passen"
+
+#: templates/result/result.php:45
+msgid "Load more"
+msgstr "Mehr laden"
+
+#: templates/result/result.php:47
+msgid "Back to guide"
+msgstr "Eingaben ändern"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://www.guideplugin.com"
+msgstr "https://www.guideplugin.com"
+
+#. Description of the plugin/theme
+msgid "Create awesome guides to help your visitors finding the right content."
+msgstr ""
+"Erstelle tolle Anleitungen, die deinen Besuchern helfen, die richtigen "
+"Inhalte zu finden."
+
+#. Author of the plugin/theme
+msgid "Sebastian Kraus"
+msgstr "Sebastian Kraus"
+
+#, php-format
+#~ msgid "Found %d"
+#~ msgstr "%d gefunden"
+
+#~ msgid "The title"
+#~ msgstr "Der Titel"
+
+#~ msgid "This field will be filled automatically."
+#~ msgstr "Dieses Feld wird automatisch ausgefüllt."
+
+#~ msgid "Result page"
+#~ msgstr "Ergebnisseite"
+
+#~ msgid "On this page you have to include the shortcode [guideplugin_results]"
+#~ msgstr ""
+#~ "Auf dieser Seite musst du folgenden Shortcode einfügen "
+#~ "[guideplugin_results]"
+
+#~ msgid "Your personal result"
+#~ msgstr "Dein persönliches Ergebnis"
+
+#~ msgid "The perfect match"
+#~ msgstr "Das passende Match"
+
+#~ msgid "Result label"
+#~ msgstr "Ergebnisbezeichnung"
+
+#~ msgid "Exclude post types"
+#~ msgstr "Ausschließen von Post Types"
+
+#~ msgid "Exclude taxonomies"
+#~ msgstr "Ausschließen von Taxonomien"
+
+#~ msgid "Reindex interval"
+#~ msgstr "Reindex-Intervall"
+
+#~ msgid ""
+#~ "Set the interval for reindexing the facets. The standard value is 6 hours."
+#~ msgstr ""
+#~ "Lege das Intervall für die Neuindizierung der Facetten fest. Der "
+#~ "Standardwert beträgt 6 Stunden."
+
+#~ msgid "Every 6 hours"
+#~ msgstr "Alle 6 Stunden"
+
+#, fuzzy
+#~| msgid "Add row"
+#~ msgid "Add New"
+#~ msgstr "Zeile hinzufügen"
+
+#, fuzzy
+#~| msgid "View details"
+#~ msgid "View Field"
+#~ msgstr "Details anzeigen"
+
+#, fuzzy
+#~| msgid "Slider image"
+#~ msgid "Select Image"
+#~ msgstr "Slider Bild"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Select File"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Value is equal to"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Value is not equal to"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Value contains"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Value is greater than"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Value is less than"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgctxt "verb"
+#~ msgid "Select"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Add image"
+#~ msgid "All images"
+#~ msgstr "Bild hinzufügen"
+
+#, fuzzy
+#~| msgid "Action"
+#~ msgid "Location"
+#~ msgstr "Aktion"
+
+#, fuzzy
+#~| msgid "Action"
+#~ msgid "Active"
+#~ msgstr "Aktion"
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgid "Resources"
+#~ msgstr "Quelle"
+
+#, fuzzy, php-format
+#~| msgid "Selection"
+#~ msgid "Select %s"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgid "Bulk Actions"
+#~ msgstr "Aktionen"
+
+#, fuzzy
+#~| msgid "Custom Design"
+#~ msgid "Custom Fields"
+#~ msgstr "Individuelles Design"
+
+#, fuzzy
+#~| msgid "Conditions"
+#~ msgid "Conditional Logic"
+#~ msgstr "Bedingungen"
+
+#, fuzzy
+#~| msgid "Label"
+#~ msgid "Field Label"
+#~ msgstr "Beschriftung"
+
+#, fuzzy
+#~| msgid "Filter Type"
+#~ msgid "Field Type"
+#~ msgstr "Filtertyp"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgid "Instructions"
+#~ msgstr "Aktionen"
+
+#, fuzzy
+#~| msgid "Input required"
+#~ msgid "Required?"
+#~ msgstr "Eingabe erforderlich"
+
+#, fuzzy
+#~| msgid "Add image"
+#~ msgid "+ Add Field"
+#~ msgstr "Bild hinzufügen"
+
+#, fuzzy
+#~| msgid "Rule"
+#~ msgid "Rules"
+#~ msgstr "Regel"
+
+#, fuzzy
+#~| msgid "Conditions"
+#~ msgid "Position"
+#~ msgstr "Bedingungen"
+
+#, fuzzy
+#~| msgid "Result label"
+#~ msgid "Below labels"
+#~ msgstr "Ergebnisbezeichnung"
+
+#, fuzzy
+#~| msgid "Hide on mobile"
+#~ msgid "Hide on screen"
+#~ msgstr "Auf mobil ausblenden"
+
+#, fuzzy
+#~| msgctxt "the plugin title"
+#~| msgid "The %s plugin is up to date."
+#~ msgid "Site is up to date"
+#~ msgstr "Das %s Plugin ist aktuell."
+
+#, fuzzy
+#~| msgid "Filter Condition"
+#~ msgid "Flexible Content"
+#~ msgstr "Filterbedingung"
+
+#, fuzzy
+#~| msgid "Basic color"
+#~ msgid "Basic"
+#~ msgstr "Standard Farbe"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Relational"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Button"
+#~ msgid "Button Group"
+#~ msgstr "Button"
+
+#, fuzzy
+#~| msgid "Slider Value"
+#~ msgid "Return Value"
+#~ msgstr "Slider Value"
+
+#~ msgid "Value"
+#~ msgstr "Value"
+
+#, fuzzy
+#~| msgid "Title Color"
+#~ msgid "Select Color"
+#~ msgstr "Titelfarbe"
+
+#, fuzzy
+#~| msgid "Следующий параметр"
+#~ msgctxt "Date Picker JS nextText"
+#~ msgid "Next"
+#~ msgstr "Nächster Schritt"
+
+#, fuzzy
+#~| msgid "Custom Design"
+#~ msgid "Custom:"
+#~ msgstr "Individuelles Design"
+
+#, fuzzy
+#~| msgid "Row"
+#~ msgctxt "Date Time Picker JS currentText"
+#~ msgid "Now"
+#~ msgstr "Zeile"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgctxt "Date Time Picker JS selectText"
+#~ msgid "Select"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "PS"
+#~ msgctxt "Date Time Picker JS pmTextShort"
+#~ msgid "P"
+#~ msgstr "PS"
+
+#, fuzzy
+#~| msgid "Add filter"
+#~ msgid "Add File"
+#~ msgstr "Filter hinzufügen"
+
+#, fuzzy
+#~| msgid "Guide ID"
+#~ msgid "File ID"
+#~ msgstr "Guide ID"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Clear location"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Add image"
+#~ msgid "Add Image"
+#~ msgstr "Bild hinzufügen"
+
+#, fuzzy
+#~| msgid "Image"
+#~ msgid "Image Array"
+#~ msgstr "Bild"
+
+#, fuzzy
+#~| msgid "Image"
+#~ msgid "Image URL"
+#~ msgstr "Bild"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Select Link"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Filter Type"
+#~ msgid "Filter by Post Type"
+#~ msgstr "Filtertyp"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "All post types"
+#~ msgstr "Post Types"
+
+#, fuzzy
+#~| msgid "Filter Type"
+#~ msgid "Filter by Taxonomy"
+#~ msgstr "Filtertyp"
+
+#, fuzzy
+#~| msgid "Taxonomies"
+#~ msgid "All taxonomies"
+#~ msgstr "Taxonomien"
+
+#, fuzzy
+#~| msgid "Button"
+#~ msgid "Radio Button"
+#~ msgstr "Button"
+
+#, fuzzy
+#~| msgid "Include/Exclude post types"
+#~ msgid "Select post type"
+#~ msgstr "Ein-/Ausschließen von Post Types"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Select taxonomy"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgctxt "noun"
+#~ msgid "Select"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Slider Value"
+#~ msgid "Multiple Values"
+#~ msgstr "Slider Value"
+
+#, fuzzy
+#~| msgid "Slider Value"
+#~ msgid "Single Value"
+#~ msgstr "Slider Value"
+
+#, fuzzy
+#~| msgid "Button"
+#~ msgid "Radio Buttons"
+#~ msgstr "Button"
+
+#, fuzzy
+#~| msgid "Add row"
+#~ msgid "Add"
+#~ msgstr "Zeile hinzufügen"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgid "Text Area"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgid "On Text"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgid "Off Text"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Filter Type"
+#~ msgid "Filter by role"
+#~ msgstr "Filtertyp"
+
+#, fuzzy
+#~| msgid "Filter ID"
+#~ msgid "User ID"
+#~ msgstr "Filter ID"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgctxt "Name for the Text editor tab (formerly HTML)"
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgid "Text Only"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Post updated"
+#~ msgstr "Post Types"
+
+#, fuzzy
+#~| msgid "Current license key:"
+#~ msgid "Current User Role"
+#~ msgstr "Aktueller Lizenzschlüssel:"
+
+#, fuzzy
+#~| msgid "Current license key:"
+#~ msgid "Current User"
+#~ msgstr "Aktueller Lizenzschlüssel:"
+
+#, fuzzy
+#~| msgid "Guide Template"
+#~ msgid "Page Template"
+#~ msgstr "Guide Template"
+
+#, fuzzy
+#~| msgid "Result template"
+#~ msgid "Default Template"
+#~ msgstr "Ergebnis Template"
+
+#, fuzzy
+#~| msgid "Filter Type"
+#~ msgid "Page Type"
+#~ msgstr "Filtertyp"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Posts Page"
+#~ msgstr "Post Types"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Post Category"
+#~ msgstr "Post Types"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Post Status"
+#~ msgstr "Post Types"
+
+#, fuzzy
+#~| msgid "Taxonomies"
+#~ msgid "Post Taxonomy"
+#~ msgstr "Taxonomien"
+
+#, fuzzy
+#~| msgid "Add Condition"
+#~ msgid "Add / Edit"
+#~ msgstr "Condition hinzufügen"
+
+#, fuzzy
+#~| msgid "Templates"
+#~ msgid "Updates"
+#~ msgstr "Templates"
+
+#, fuzzy
+#~| msgid "Manage license"
+#~ msgid "Deactivate License"
+#~ msgstr "Lizenz verwalten"
+
+#, fuzzy
+#~| msgid "License key to change:"
+#~ msgid "License Key"
+#~ msgstr "Lizenzschlüssel zum Ändern:"
+
+#, fuzzy
+#~| msgid "GuidePlugin"
+#~ msgid "Update Plugin"
+#~ msgstr "GuidePlugin"
+
+#, fuzzy
+#~| msgid "Value selection"
+#~ msgid "Maximum selection reached"
+#~ msgstr "Value Typ"
+
+#, fuzzy
+#~| msgid "Add row"
+#~ msgid "Add Row"
+#~ msgstr "Zeile hinzufügen"
+
+#, fuzzy
+#~| msgid "Add value"
+#~ msgid "Add layout"
+#~ msgstr "Value hinzufügen"
+
+#, fuzzy
+#~| msgid "Button"
+#~ msgid "Button Label"
+#~ msgstr "Button"
+
+#, fuzzy
+#~| msgid "Action"
+#~ msgid "Caption"
+#~ msgstr "Aktion"
+
+#, fuzzy
+#~| msgid "Help Text"
+#~ msgid "Alt Text"
+#~ msgstr "Hilfetext"
+
+#, fuzzy
+#~| msgid "Add value"
+#~ msgid "Add to gallery"
+#~ msgstr "Value hinzufügen"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgid "Bulk actions"
+#~ msgstr "Aktionen"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Minimum Selection"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Selection"
+#~ msgid "Maximum Selection"
+#~ msgstr "Auswahl"
+
+#, fuzzy
+#~| msgid "Template rows"
+#~ msgid "Remove row"
+#~ msgstr "Template Zeile"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgid "Options"
+#~ msgstr "Aktionen"
+
+#~ msgid "View details"
+#~ msgstr "Details anzeigen"
+
+#~ msgid "Check for updates"
+#~ msgstr "Auf Aktualisierungen prüfen"
+
+#, php-format
+#~ msgctxt "the plugin title"
+#~ msgid "The %s plugin is up to date."
+#~ msgstr "Das %s Plugin ist aktuell."
+
+#, php-format
+#~ msgctxt "the plugin title"
+#~ msgid "A new version of the %s plugin is available."
+#~ msgstr "Eine neue Version des Plugins %s ist verfügbar."
+
+#, php-format
+#~ msgctxt "the plugin title"
+#~ msgid "Could not determine if updates are available for %s."
+#~ msgstr "Konnte nicht prüfen, ob Updates für das Plugin %s verfügbar sind."
+
+#, php-format
+#~ msgid "Unknown update checker status \"%s\""
+#~ msgstr "Unbekannter Status für Aktualisierungscheck \"%s\""
+
+#~ msgid "There is no changelog available."
+#~ msgstr "Es steht kein Änderungsprotokoll zur Verfügung."
+
+#~ msgid "Sorry, you are not allowed to access this page."
+#~ msgstr "Entschuldigung, Sie haben kein Zugriff auf diese Seite."
+
+#~ msgid "Theme License - "
+#~ msgstr "Themenlizenz -"
+
+#~ msgid "Manage license"
+#~ msgstr "Lizenz verwalten"
+
+#~ msgid ""
+#~ "Unexpected Error! The query to retrieve the license data returned a "
+#~ "malformed response."
+#~ msgstr ""
+#~ "Unerwarteter Fehler! Die Abfrage zum Abrufen der Lizenzdaten hat eine "
+#~ "fehlerhafte Antwort zurückgegeben."
+
+#~ msgid "The license is already in use for this domain."
+#~ msgstr "Die Lizenz wird bereits für diese Domäne verwendet."
+
+#~ msgid ""
+#~ "The license has reached the maximum number of activations and cannot be "
+#~ "activated for this domain."
+#~ msgstr ""
+#~ "Die Lizenz hat die maximale Anzahl von Aktivierungen erreicht und kann "
+#~ "für diese Domäne nicht aktiviert werden."
+
+#~ msgid "The license is already inactive for this domain."
+#~ msgstr "Die Lizenz ist für diese Domäne bereits inaktiv."
+
+#, php-format
+#~ msgid "The license expired on %s and needs to be renewed to be updated."
+#~ msgstr ""
+#~ "Die Lizenz ist auf %s abgelaufen und muss erneuert werden, um "
+#~ "aktualisiert zu werden."
+
+#~ msgid "The license expired and needs to be renewed to be updated."
+#~ msgstr ""
+#~ "Die Lizenz ist abgelaufen und muss erneuert werden, um aktualisiert zu "
+#~ "werden."
+
+#~ msgid ""
+#~ "The license is blocked and cannot be updated anymore. Please use another "
+#~ "license key."
+#~ msgstr ""
+#~ "Die Lizenz ist blockiert und kann nicht mehr aktualisiert werden. Bitte "
+#~ "verwenden Sie einen anderen Lizenzschlüssel."
+
+#~ msgid ""
+#~ "The license has not been activated and its status is stil pending. Please "
+#~ "try again or use another license key."
+#~ msgstr ""
+#~ "Die Lizenz wurde nicht aktiviert, und ihr Status ist stil ausstehend. "
+#~ "Versuchen Sie es erneut, oder verwenden Sie einen anderen Lizenzschlüssel."
+
+#~ msgid "The provided license key is invalid. Please use another license key."
+#~ msgstr ""
+#~ "Der angegebene Lizenzschlüssel ist ungültig. Bitte verwenden Sie einen "
+#~ "anderen Lizenzschlüssel."
+
+#~ msgid ""
+#~ "The provided license key does not appear to be valid. Please use another "
+#~ "license key."
+#~ msgstr ""
+#~ "Der angegebene Lizenzschlüssel scheint ungültig zu sein. Bitte verwenden "
+#~ "Sie einen anderen Lizenzschlüssel."
+
+#~ msgid ""
+#~ "An active license is required to update the plugin. Please provide a "
+#~ "valid license key in Plugins > Installed Plugins."
+#~ msgstr ""
+#~ "Eine aktive Lizenz ist erforderlich, um das Plugin zu aktualisieren. "
+#~ "Bitte geben Sie einen gültigen Lizenzschlüssel in Plugins > Installierte "
+#~ "Plugins an."
+
+#~ msgid ""
+#~ "An active license is required to update the theme. Please provide a valid "
+#~ "license key in Appearence > Theme License."
+#~ msgstr ""
+#~ "Eine aktive Lizenz ist erforderlich, um das Design zu aktualisieren. "
+#~ "Bitte geben Sie einen gültigen Lizenzschlüssel in Der Appearence > Theme "
+#~ "License an."
+
+#~ msgid ""
+#~ "An unexpected error has occured. Please try again. If the problem "
+#~ "persists, please contact the author of the plugin."
+#~ msgstr ""
+#~ "Unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut. Wenn "
+#~ "das Problem weiterhin besteht, wenden Sie sich bitte an den Autor des "
+#~ "Plugins."
+
+#~ msgid ""
+#~ "An unexpected error has occured. Please try again. If the problem "
+#~ "persists, please contact the author of the theme."
+#~ msgstr ""
+#~ "Unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut. Wenn "
+#~ "das Problem weiterhin besteht, wenden Sie sich bitte an den Autor des "
+#~ "Themas."
+
+#~ msgid "Current license key:"
+#~ msgstr "Aktueller Lizenzschlüssel:"
+
+#~ msgid "License key to change:"
+#~ msgstr "Lizenzschlüssel zum Ändern:"
+
+#~ msgid "Model year"
+#~ msgstr "Modelljahr"
+
+#~ msgid "Color"
+#~ msgstr "Farbe"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Country"
+#~ msgstr "Land"
+
+#~ msgid "New"
+#~ msgstr "Neu"
+
+#~ msgid "KM"
+#~ msgstr "KM"
+
+#~ msgid ""
+#~ "This text will be displayed all over the results. Tipp: You can use "
+#~ "shortcodes."
+#~ msgstr ""
+#~ "Dieser Text wird in allen Ergebnissen angezeigt. Tipp: Du kannst "
+#~ "Shortcodes verwenden."
+
+#~ msgid "The width of the current column."
+#~ msgstr "Die Breite der aktuellen Spalte."
