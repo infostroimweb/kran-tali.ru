@@ -2644,7 +2644,6 @@ if ( ! class_exists( 'OceanWP_General_Customizer' ) ) :
 				'input[type="reset"]',
 				'input[type="submit"]',
 				'button[type="submit"]',
-				'.button',
 				'#site-navigation-wrap .dropdown-menu > li.btn > a > span',
 				'.thumbnail:hover i',
 				'.post-quote-content',
@@ -2697,7 +2696,6 @@ if ( ! class_exists( 'OceanWP_General_Customizer' ) ) :
 				'input[type="reset"]:focus',
 				'input[type="submit"]:focus',
 				'button[type="submit"]:focus',
-				'.button:hover',
 				'#site-navigation-wrap .dropdown-menu > li.btn > a:hover > span',
 				'.post-quote-author',
 				'.omw-modal .omw-close-modal:hover',
@@ -3376,27 +3374,27 @@ if ( ! class_exists( 'OceanWP_General_Customizer' ) ) :
 
 			// Theme buttons border radius
 			if ( ! empty( $theme_button_border_radius ) && '0' != $theme_button_border_radius ) {
-				$css .= '.theme-button,input[type="submit"],button[type="submit"],button,.button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{border-radius:'. $theme_button_border_radius .'px;}';
+				$css .= '.theme-button,input[type="submit"],button[type="submit"],button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{border-radius:'. $theme_button_border_radius .'px;}';
 			}
 
 			// Theme buttons background color
 			if ( ! empty( $theme_button_bg ) && '#13aff0' != $theme_button_bg ) {
-				$css .= 'body .theme-button,body input[type="submit"],body button[type="submit"],body button,body .button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{background-color:'. $theme_button_bg .';}';
+				$css .= 'body .theme-button,body input[type="submit"],body button[type="submit"],body button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{background-color:'. $theme_button_bg .';}';
 			}
 
 			// Theme buttons background color
 			if ( ! empty( $theme_button_hover_bg ) && '#0b7cac' != $theme_button_hover_bg ) {
-				$css .= 'body .theme-button:hover,body input[type="submit"]:hover,body button[type="submit"]:hover,body button:hover,body .button:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:active, body div.wpforms-container-full .wpforms-form button[type=submit]:hover, body div.wpforms-container-full .wpforms-form button[type=submit]:active, body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover, body div.wpforms-container-full .wpforms-form .wpforms-page-button:active{background-color:'. $theme_button_hover_bg .';}';
+				$css .= 'body .theme-button:hover,body input[type="submit"]:hover,body button[type="submit"]:hover,body button:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:active, body div.wpforms-container-full .wpforms-form button[type=submit]:hover, body div.wpforms-container-full .wpforms-form button[type=submit]:active, body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover, body div.wpforms-container-full .wpforms-form .wpforms-page-button:active{background-color:'. $theme_button_hover_bg .';}';
 			}
 
 			// Theme buttons background color
 			if ( ! empty( $theme_button_color ) && '#ffffff' != $theme_button_color ) {
-				$css .= 'body .theme-button,body input[type="submit"],body button[type="submit"],body button,body .button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{color:'. $theme_button_color .';}';
+				$css .= 'body .theme-button,body input[type="submit"],body button[type="submit"],body button, body div.wpforms-container-full .wpforms-form input[type=submit], body div.wpforms-container-full .wpforms-form button[type=submit], body div.wpforms-container-full .wpforms-form .wpforms-page-button{color:'. $theme_button_color .';}';
 			}
 
 			// Theme buttons hover color
 			if ( ! empty( $theme_button_hover_color ) && '#ffffff' != $theme_button_hover_color ) {
-				$css .= 'body .theme-button:hover,body input[type="submit"]:hover,body button[type="submit"]:hover,body button:hover,body .button:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:active, body div.wpforms-container-full .wpforms-form button[type=submit]:hover, body div.wpforms-container-full .wpforms-form button[type=submit]:active, body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover, body div.wpforms-container-full .wpforms-form .wpforms-page-button:active{color:'. $theme_button_hover_color .';}';
+				$css .= 'body .theme-button:hover,body input[type="submit"]:hover,body button[type="submit"]:hover,body button:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:hover, body div.wpforms-container-full .wpforms-form input[type=submit]:active, body div.wpforms-container-full .wpforms-form button[type=submit]:hover, body div.wpforms-container-full .wpforms-form button[type=submit]:active, body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover, body div.wpforms-container-full .wpforms-form .wpforms-page-button:active{color:'. $theme_button_hover_color .';}';
 			}
 
 			// If page Both Sidebars layout

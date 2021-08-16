@@ -14,7 +14,7 @@
 						<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>
 					</li>
 				</ul>
-				<?php echo do_shortcode('[elementor-template id="1553"]'); ?>
+				<button class="button jsModalOpen" data-id-modal="callback">Закажите звонок</button>
 			</div>
 		</div>
 	<?php endif; ?>
@@ -33,7 +33,7 @@
 							<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>
 						</li>
 					</ul>
-					<?php echo do_shortcode('[elementor-template id="1553"]'); ?>
+					<button class="button jsModalOpen" data-id-modal="callback">Закажите звонок</button>
 				<?php endif; ?>
 			</div>			
 			<button class="new-header-mob-btn" id="mobMenuBtn" aria-label = "menu">

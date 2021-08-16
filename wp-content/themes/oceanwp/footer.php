@@ -47,7 +47,7 @@
                         </a>
                     </li>
                 </ul> -->
-                <?php echo do_shortcode('[elementor-template id="1553"]'); ?>
+                <button class="button jsModalOpen" data-id-modal="callback" style="margin-bottom: 20px;">Закажите звонок</button>
                 <a href="/sitemap/">Карта сайта</a>
             </div>
             <div class="footer-col align-items-start align-items-lg-center">
@@ -166,10 +166,12 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
             }            
         })
 
-        $('.footer-menu-title').on('click', function() {
-            $(this).toggleClass('active')
-            $(this).next('.footer-menu-container').slideToggle()
-        })
+        if (window.screen.width < 1024) {
+            $('.footer-menu-title').on('click', function() {
+                $(this).toggleClass('active')
+                $(this).next('.footer-menu-container').slideToggle()
+            })
+        }        
     })
 </script>
 
@@ -244,7 +246,6 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
                     "itemOffered": "производство под заказ",
                     "itemCondition": "новый" 
                 }
-
             }
         </script>
     <?php endif; ?>

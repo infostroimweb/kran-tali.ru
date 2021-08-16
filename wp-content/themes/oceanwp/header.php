@@ -44,7 +44,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  			<?php do_action( 'ocean_before_main' ); ?>
 
- 			<main id="main" class="site-main clr <?php if (!is_front_page()) echo 'inner-main'; ?>"<?php oceanwp_schema_markup( 'main' ); ?> role="main">
+ 			<main id="main" class="site-main clr <?php if (is_front_page()) echo 'front-main'; else echo 'inner-main'; ?>"<?php oceanwp_schema_markup( 'main' ); ?> role="main">
 
  				<?php do_action( 'ocean_page_header' ); ?>
 
@@ -90,7 +90,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<div class="prod-info-block">
 										<div class="prod-info-block__col">
 											<div class="prod-info-block__img d-flex justify-content-center">
-												<?php the_post_thumbnail('full') ?>
+												<a href="<?php the_post_thumbnail_url();  ?>">
+													<?php the_post_thumbnail('full') ?>
+												</a>												
 											</div>
 										</div>
 										<div class="prod-info-block__col">

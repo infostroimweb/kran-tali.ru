@@ -497,7 +497,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 		// Load the lightbox scripts
 		wp_enqueue_script( 'magnific-popup', $dir .'third/magnific-popup.min.js', array( 'jquery' ), $theme_version, true );
-		wp_enqueue_script( 'oceanwp-lightbox', $dir .'third/lightbox.min.js', array( 'jquery' ), $theme_version, true );
+		//wp_enqueue_script( 'oceanwp-lightbox', $dir .'third/lightbox.min.js', array( 'jquery' ), $theme_version, true );
 
 		// Load minified js
 		//wp_enqueue_script( 'oceanwp-main', $dir .'main.min.js', array( 'jquery' ), $theme_version, true );
@@ -1778,4 +1778,6 @@ function my_extra_fields_update( $post_id ){
 }
 
 
-
+//Запрет автоматического проставления абзацев и переносов строк
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );

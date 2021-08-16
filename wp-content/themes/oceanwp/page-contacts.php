@@ -1,6 +1,5 @@
 <?php
-/*
-Template Name: contacts
+/* Template Name: contacts
  *
  * The template for displaying all pages.
  *
@@ -10,7 +9,6 @@ Template Name: contacts
  *
  * @package OceanWP WordPress theme
  */
-
 get_header(); ?>
 
 	<?php do_action( 'ocean_before_content_wrap' ); ?>
