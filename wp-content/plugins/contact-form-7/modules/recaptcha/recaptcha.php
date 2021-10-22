@@ -343,6 +343,7 @@ class WPCF7_RECAPTCHA extends WPCF7_Service {
 		}
 
 		$response_body = wp_remote_retrieve_body( $response );
+file_put_contents(get_home_path().'/captcha-log/'.date('Y_m_d_h_i_s').'.json', $response_body);
 		$response_body = json_decode( $response_body, true );
 
 		$this->last_score = $score = isset( $response_body['score'] )
@@ -367,7 +368,7 @@ class WPCF7_RECAPTCHA extends WPCF7_Service {
 	}
 
 	public function get_threshold() {
-		return apply_filters( 'wpcf7_recaptcha_threshold', 0.50 );
+		return apply_filters( 'wpcf7_recaptcha_threshold', 0.69 );
 	}
 
 	public function get_last_score() {

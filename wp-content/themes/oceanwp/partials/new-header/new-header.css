@@ -5,7 +5,7 @@
 	position: sticky;
 	top: 0;
 	z-index: 999;
-
+	font-display: swap;
 }
 
 .new-header-top {
@@ -212,6 +212,7 @@
 	font-weight: 500;
 	padding: 10px 25px;
 	transition: all .3s ease;
+	font-display: swap;
 }
 
 @media (min-width: 1025px) {
@@ -231,7 +232,12 @@
 	color: #fff;
 	background-color: transparent;
 	border: none;
-	font-size: 36px;
+	font-size: 0;
+	padding: 10px;
+}
+
+.new-header-mob-btn i {
+	font-size: 22px;
 }
 
 @media (min-width: 1025px) {
@@ -255,6 +261,7 @@
 	line-height: 1.2;
 	color: #fff;
 	margin-bottom: 40px;
+	font-display: swap;
 }
 
 @media (min-width: 1025px) {
@@ -278,6 +285,7 @@
 	font-size: 16px;
 	font-weight: 500;
 	color: #fff;
+	font-display: swap;
 }
 
 #main-page-top .button-link {
@@ -290,6 +298,7 @@
 	background-color: #FFBA00;
 	padding: 15px 30px;
 	margin-top: 20px;
+	font-display: swap;
 }
 
 #main-page-top .button-link:hover {
@@ -314,6 +323,7 @@
 	line-height: 1.2;
 	color: #54595F;
 	margin-bottom: 0;
+	font-display: swap;
 }
 
 @media (min-width: 1025px) {

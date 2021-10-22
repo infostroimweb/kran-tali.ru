@@ -412,7 +412,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		wp_deregister_style( 'fontawesome' );
 
 		// Load font awesome style
-		wp_enqueue_style( 'font-awesome', OCEANWP_THEME_URI .'/assets/fonts/fontawesome/css/all.min.css', false, '5.11.2' );
+		wp_enqueue_style( 'font-awesome', OCEANWP_THEME_URI .'/assets/fonts/fontawesome/css/all.min.css', false, '5.11.6' );
 
 		// Register simple line icons style
 		wp_enqueue_style( 'simple-line-icons', $dir .'third/simple-line-icons.min.css', false, '2.4.0' );
@@ -425,7 +425,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 		// Main Style.css File
 		//wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, $theme_version );
-		wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, '1.1.605' );
+		wp_enqueue_style( 'oceanwp-style', $dir .'style.min.css', false, '1.1.639' );
 
 		wp_register_style( 'oceanwp-hamburgers', $dir .'third/hamburgers/hamburgers.min.css', false, $theme_version );
 

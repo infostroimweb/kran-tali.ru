@@ -78,7 +78,7 @@
                         ]);
                         ?>
                     </div>
-                    <a href="https://www.youtube.com/channel/UC7rm8d4UZxtFqivJrJ27aWA" class="soc-link-you" target="_blank" title="youtube" rel="nofollow noopener noreferrer" ><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youtube_logo.png" alt="youtube"></a>
+                    <a href="https://www.youtube.com/channel/UC7rm8d4UZxtFqivJrJ27aWA" class="soc-link-you" target="_blank" title="youtube" rel="nofollow noopener noreferrer" ><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youtube_logo.png" alt="youtube" width="46" height="46"></a>
                 </div>        
             </div>
         </div>
@@ -220,9 +220,30 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
     </script>
 <?php endif ?>
 
+<!-- Begin Verbox -->
+<script type='text/javascript'>
+(function(d, w, m) {
+window.supportAPIMethod = m;
+var s = d.createElement('script');
+s.type ='text/javascript'; s.id = 'supportScript'; s.charset = 'utf-8';
+s.async = true;
+var id = '51dbf19c00bc96b484430af212c35080';
+s.src = 'https://admin.verbox.ru/support/support.js?h='+id;
+var sc = d.getElementsByTagName('script')[0];
+w[m] = w[m] || function() { (w[m].q = w[m].q || []).push(arguments); };
+if (sc) sc.parentNode.insertBefore(s, sc);
+else d.documentElement.firstChild.appendChild(s);
+})(document, window, 'Verbox');
+</script>
+<!-- End Verbox -->
+
 <?php if (is_single()): ?>
     <?php if($price = get_post_meta($post->ID, 'price', 1)): ?>
-        <?php $prodDescription = get_post_meta($post->ID, 'info_text', 1) ?? preg_replace('/\[contact-form-7.+\]/', '', strip_tags(get_the_content())); ?>
+        <?php 
+        $prodDescription = get_post_meta($post->ID, 'info_text', 1) ?? preg_replace('/\[contact-form-7.+\]/', '', strip_tags(get_the_content()));
+        $dateAt = strtotime(date() . '+1 MONTH');
+        $priceValidUntil = date('Y-m-d', $dateAt);
+        ?>
         <script type="application/ld+json">
             {
                 "@context": "http://schema.org",
@@ -232,6 +253,7 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
                 "name": "<?php the_title(); ?>",
                 "description": "<?php echo $prodDescription ?>",
                 "brand": "Росттехмаш",
+                "sku": "<?php the_ID(); ?>",
                 "offers": 
                 {
                     "@type": "Offer",
@@ -239,6 +261,7 @@ if ( 'fullscreen' == oceanwp_mobile_menu_style() ) {
                     "url": "<?php echo get_permalink($post->ID) ?>",
                     "price": "<?php echo number_format($price, 2, '.', ''); ?>",
                     "priceCurrency": "RUB",
+                    "priceValidUntil": "<?php echo $priceValidUntil; ?>",
                     "availableDeliveryMethod": "собственным транспортом или компанией",
                     "seller": "ООО «Росттехмаш»",
                     "offeredBy": "ООО «Росттехмаш»",
