@@ -44,7 +44,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  			<?php do_action( 'ocean_before_main' ); ?>
 
- 			<main id="main" class="site-main clr <?php if (is_front_page()) echo 'front-main'; else echo 'inner-main'; ?>"<?php oceanwp_schema_markup( 'main' ); ?> role="main">
+ 			<main id="main" class="site-main clr <?php if (is_front_page()) echo 'front-main'; else echo 'inner-main'; ?>"<?php oceanwp_schema_markup( 'main' ); ?> >
 
  				<?php do_action( 'ocean_page_header' ); ?>
 

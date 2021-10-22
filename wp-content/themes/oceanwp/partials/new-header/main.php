@@ -8,7 +8,7 @@
 						<span><i class="fas fa-map-marker-alt"></i>г. Пенза, ул. Захарова, д. 1, офис 8</span>
 					</li>
 					<li>
-						<a href="mailto:kran-tali@mail.ru"><i class="far fa-envelope-open"></i>kran-tali@mail.ru</span></a>
+						<a href="mailto:kran-tali@mail.ru"><i class="far fa-envelope-open"></i><span>kran-tali@mail.ru</span></a>
 					</li>
 					<li>
 						<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>

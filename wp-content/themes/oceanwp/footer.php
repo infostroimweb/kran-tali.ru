@@ -74,7 +74,7 @@
                             'menu'       => '24', 
                             'container'  => false, 
                             'menu_class' => 'footer-menu flex-column',
-                            'menu_id'    => 'footerProduction'
+                            'menu_id'    => 'footerServices'
                         ]);
                         ?>
                     </div>
@@ -130,9 +130,9 @@ if ( 'sidebar' == oceanwp_mobile_menu_style() ) {
 
     <?php
     // Mobile search form
-    if ( get_theme_mod( 'ocean_mobile_menu_search', true ) ) {
+    /*if ( get_theme_mod( 'ocean_mobile_menu_search', true ) ) {
         get_template_part( 'partials/mobile/mobile-search' );
-    }
+    }*/
 
 } ?>
 
