@@ -3,12 +3,11 @@
 namespace WebpConverter\Loader;
 
 use WebpConverter\HookableInterface;
-use WebpConverter\PluginAccessInterface;
 
 /**
  * Interface for class that supports method of loading images.
  */
-interface LoaderInterface extends HookableInterface, PluginAccessInterface {
+interface LoaderInterface extends HookableInterface {
 
 	/**
 	 * Returns mime types for loader.

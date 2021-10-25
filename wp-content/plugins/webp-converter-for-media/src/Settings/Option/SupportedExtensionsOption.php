@@ -2,49 +2,45 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-
 /**
- * Handles data about "Supported files extensions" field in plugin settings.
+ * {@inheritdoc}
  */
-class SupportedExtensionsOption extends OptionAbstract implements OptionInterface {
+class SupportedExtensionsOption extends OptionAbstract {
 
-	const LOADER_TYPE = 'extensions';
+	const OPTION_NAME = 'extensions';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
-	public function get_name(): string {
-		return self::LOADER_TYPE;
+	public function get_priority(): int {
+		return 20;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
+	 */
+	public function get_name(): string {
+		return self::OPTION_NAME;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'List of supported files extensions', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * @return string[]
 	 */
 	public function get_values( array $settings ): array {
 		return [
@@ -56,22 +52,18 @@ class SupportedExtensionsOption extends OptionAbstract implements OptionInterfac
 	}
 
 	/**
-	 * Returns default value of field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[]|null $settings Plugin settings.
-	 *
-	 * @return string[] Default value of field.
+	 * @return string[]
 	 */
 	public function get_default_value( array $settings = null ): array {
 		return [ 'jpg', 'jpeg', 'png' ];
 	}
 
 	/**
-	 * Returns default value of field when debugging.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Default value of field for debug.
+	 * @return string[]
 	 */
 	public function get_value_for_debug( array $settings ): array {
 		return [ 'png2', 'png' ];

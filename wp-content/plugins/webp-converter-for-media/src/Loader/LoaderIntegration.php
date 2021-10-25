@@ -2,16 +2,12 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
-use WebpConverter\Loader\LoaderInterface;
-use WebpConverter\Loader\LoaderAbstract;
 
 /**
  * Adds integration with active method of loading images.
  */
-class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class LoaderIntegration implements HookableInterface {
 
 	/**
 	 * Object of image loader method.
@@ -20,19 +16,12 @@ class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInte
 	 */
 	private $loader;
 
-	/**
-	 * LoaderIntegration constructor.
-	 *
-	 * @param LoaderInterface $loader .
-	 */
 	public function __construct( LoaderInterface $loader ) {
 		$this->loader = $loader;
 	}
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'plugins_loaded', [ $this, 'load_loader_actions' ] );
@@ -62,9 +51,7 @@ class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInte
 	 * @internal
 	 */
 	public function refresh_loader( bool $is_active, bool $is_debug = false ) {
-		$has_errors = ( apply_filters( 'webpc_server_errors', [], true ) !== [] );
-
-		if ( ( ( $is_active && ! $has_errors ) || $is_debug ) && $this->loader->is_active_loader() ) {
+		if ( ( $is_active || $is_debug ) && $this->loader->is_active_loader() ) {
 			$this->loader->activate_loader( $is_debug );
 		} else {
 			$this->loader->deactivate_loader();

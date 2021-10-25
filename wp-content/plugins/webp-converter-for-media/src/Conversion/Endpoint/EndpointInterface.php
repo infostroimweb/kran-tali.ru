@@ -2,12 +2,10 @@
 
 namespace WebpConverter\Conversion\Endpoint;
 
-use WebpConverter\PluginAccessInterface;
-
 /**
  * Interface for class that supports endpoint.
  */
-interface EndpointInterface extends PluginAccessInterface {
+interface EndpointInterface {
 
 	/**
 	 * Returns route of endpoint.

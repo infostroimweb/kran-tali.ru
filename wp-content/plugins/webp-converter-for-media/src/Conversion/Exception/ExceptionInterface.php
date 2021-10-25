@@ -8,8 +8,6 @@ namespace WebpConverter\Conversion\Exception;
 interface ExceptionInterface {
 
 	/**
-	 * ExceptionInterface constructor.
-	 *
 	 * @param string[]|string $value Params of exception.
 	 */
 	public function __construct( $value = [] );

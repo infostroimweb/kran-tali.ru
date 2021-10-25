@@ -2,35 +2,34 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Loader\LoaderInterface;
+use WebpConverter\Settings\Option\ExtraFeaturesOption;
+use WebpConverter\Settings\Option\LoaderTypeOption;
+use WebpConverter\Settings\Option\SupportedExtensionsOption;
 
 /**
  * Supports method of loading images using rewrites from .htaccess file.
  */
-class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
+class HtaccessLoader extends LoaderAbstract {
 
 	const LOADER_TYPE = 'htaccess';
 
 	/**
-	 * Returns status if loader is active.
-	 *
-	 * @return bool Is loader active?
+	 * {@inheritdoc}
 	 */
 	public function is_active_loader(): bool {
-		$settings = $this->get_plugin()->get_settings();
-		return ( ! isset( $settings['loader_type'] ) || ( $settings['loader_type'] === self::LOADER_TYPE ) );
+		$settings = $this->plugin_data->get_plugin_settings();
+		return ( ( $settings[ LoaderTypeOption::OPTION_NAME ] ?? '' ) === self::LOADER_TYPE );
 	}
 
 	/**
-	 * Initializes actions for activating loader.
-	 *
-	 * @param bool $is_debug Is debugging?
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function activate_loader( bool $is_debug = false ) {
-		$settings = ( $is_debug ) ? $this->get_plugin()->get_settings_debug() : $this->get_plugin()->get_settings();
+		if ( is_multisite() ) {
+			return;
+		}
+
+		$settings = ( $is_debug ) ? $this->plugin_data->get_debug_settings() : $this->plugin_data->get_plugin_settings();
 
 		$this->add_rewrite_rules_to_wp_content( true, $settings );
 		$this->add_rewrite_rules_to_uploads( true, $settings );
@@ -38,12 +37,14 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	}
 
 	/**
-	 * Initializes actions for deactivating loader.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function deactivate_loader() {
-		$settings = $this->get_plugin()->get_settings();
+		if ( is_multisite() ) {
+			return;
+		}
+
+		$settings = $this->plugin_data->get_plugin_settings();
 
 		$this->add_rewrite_rules_to_wp_content( false, $settings );
 		$this->add_rewrite_rules_to_uploads( false, $settings );
@@ -94,6 +95,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 		$content    = $this->add_comments_to_rules(
 			[
 				$this->get_mod_rewrite_rules( $settings, end( $path_parts ) ),
+				$this->get_mod_headers_rules( $settings ),
 			]
 		);
 
@@ -120,6 +122,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 			[
 				$this->get_mod_mime_rules( $settings ),
 				$this->get_mod_expires_rules( $settings ),
+				$this->get_mod_headers_rules( $settings ),
 			]
 		);
 
@@ -137,7 +140,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	private function get_mod_rewrite_rules( array $settings, $output_path = null ): string {
 		$content = '';
-		if ( ! $settings['extensions'] ) {
+		if ( ! $settings[ SupportedExtensionsOption::OPTION_NAME ] ) {
 			return $content;
 		}
 
@@ -151,19 +154,35 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 		foreach ( $this->get_mime_types() as $format => $mime_type ) {
 			$content .= '<IfModule mod_rewrite.c>' . PHP_EOL;
 			$content .= '  RewriteEngine On' . PHP_EOL;
-			foreach ( $settings['extensions'] as $ext ) {
+			foreach ( $settings[ SupportedExtensionsOption::OPTION_NAME ] as $ext ) {
 				$content .= "  RewriteCond %{HTTP_ACCEPT} ${mime_type}" . PHP_EOL;
 				$content .= "  RewriteCond %{DOCUMENT_ROOT}${prefix_path}${path}/$1.${ext}.${format} -f" . PHP_EOL;
-				if ( ! in_array( 'referer_disabled', $settings['features'] ) ) {
+				if ( ! in_array( ExtraFeaturesOption::OPTION_VALUE_REFERER_DISABLED, $settings[ ExtraFeaturesOption::OPTION_NAME ] ) ) {
 					$content .= "  RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} ^([^@]*)@@https?://\\1/.*" . PHP_EOL;
 				}
-				$content .= "  RewriteRule (.+)\.${ext}$ ${prefix_rule}${path}/$1.${ext}.${format} [NC,T=${mime_type},E=cache-control:no-cache,L]" . PHP_EOL;
+				$content .= "  RewriteRule (.+)\.${ext}$ ${prefix_rule}${path}/$1.${ext}.${format} [NC,T=${mime_type},L]" . PHP_EOL;
 			}
-			$content .= '</IfModule>';
-			$content .= PHP_EOL;
+			$content .= '</IfModule>' . PHP_EOL;
 		}
 
 		return apply_filters( 'webpc_htaccess_mod_rewrite', trim( $content ), $path );
+	}
+
+	/**
+	 * Generates rules for mod_headers.
+	 *
+	 * @param mixed[] $settings Plugin settings.
+	 *
+	 * @return string Rules for .htaccess file.
+	 */
+	private function get_mod_headers_rules( array $settings ): string {
+		$content = '';
+
+		$content .= '<IfModule mod_headers.c>' . PHP_EOL;
+		$content .= '  Header always set Cache-Control "private"' . PHP_EOL;
+		$content .= '</IfModule>';
+
+		return apply_filters( 'webpc_htaccess_mod_headers', $content );
 	}
 
 	/**
@@ -175,7 +194,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	private function get_mod_expires_rules( array $settings ): string {
 		$content = '';
-		if ( ! in_array( 'mod_expires', $settings['features'] ) ) {
+		if ( ! in_array( ExtraFeaturesOption::OPTION_VALUE_MOD_EXPIRES, $settings[ ExtraFeaturesOption::OPTION_NAME ] ) ) {
 			return $content;
 		}
 
@@ -196,7 +215,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	private function get_mod_mime_rules( array $settings ): string {
 		$content = '';
-		if ( ! $settings['extensions'] ) {
+		if ( ! $settings[ SupportedExtensionsOption::OPTION_NAME ] ) {
 			return $content;
 		}
 

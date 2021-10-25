@@ -2,13 +2,14 @@
 /**
  * Main tab of plugin settings page.
  *
- * @var string[] $errors             List of errors detected by plugin.
- * @var mixed[]  $options            Options of plugin settings.
- * @var string   $submit_value       Value of submit button.
- * @var string   $settings_url       URL of plugin settings page (default view).
- * @var string   $settings_debug_url URL of plugin settings page (debug view).
- * @var string   $api_paths_url      URL of REST API endpoint.
- * @var string   $api_regenerate_url URL of REST API endpoint.
+ * @var string[][] $errors_messages    .
+ * @var string[]   $errors_codes       .
+ * @var mixed[]    $options            Options of plugin settings.
+ * @var string     $submit_value       Value of submit button.
+ * @var string     $settings_url       URL of plugin settings page (default view).
+ * @var string     $settings_debug_url URL of plugin settings page (debug view).
+ * @var string     $api_paths_url      URL of REST API endpoint.
+ * @var string     $api_regenerate_url URL of REST API endpoint.
  * @package WebP Converter for Media
  */
 

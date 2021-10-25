@@ -2,58 +2,52 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-
 /**
- * Handles data about "Images quality" field in plugin settings.
+ * {@inheritdoc}
  */
-class ImagesQualityOption extends OptionAbstract implements OptionInterface {
+class ImagesQualityOption extends OptionAbstract {
 
-	const LOADER_TYPE = 'quality';
+	const OPTION_NAME = 'quality';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
-	public function get_name(): string {
-		return self::LOADER_TYPE;
+	public function get_priority(): int {
+		return 60;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
+	 */
+	public function get_name(): string {
+		return self::OPTION_NAME;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_QUALITY;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'Images quality', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return __( 'Adjust the quality of the images being converted. Remember that higher quality also means larger file sizes. The recommended value is 85%.', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * @return string[]
 	 */
 	public function get_values( array $settings ): array {
 		return [
@@ -67,11 +61,7 @@ class ImagesQualityOption extends OptionAbstract implements OptionInterface {
 	}
 
 	/**
-	 * Returns default value of field.
-	 *
-	 * @param mixed[]|null $settings Plugin settings.
-	 *
-	 * @return string Default value of field.
+	 * {@inheritdoc}
 	 */
 	public function get_default_value( array $settings = null ): string {
 		return '85';

@@ -2,28 +2,31 @@
 
 namespace WebpConverter\Conversion\Endpoint;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\Conversion\Endpoint\EndpointInterface;
+use WebpConverter\PluginData;
 
 /**
  * Abstract class for class that supports image conversion method.
  */
-abstract class EndpointAbstract extends PluginAccessAbstract implements PluginAccessInterface, EndpointInterface {
+abstract class EndpointAbstract implements EndpointInterface {
 
 	/**
-	 * Returns list of params for endpoint.
-	 *
-	 * @return array[] Params of endpoint.
+	 * @var PluginData
+	 */
+	protected $plugin_data;
+
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_route_args(): array {
 		return [];
 	}
 
 	/**
-	 * Returns URL of endpoint.
-	 *
-	 * @return string Endpoint URL.
+	 * {@inheritdoc}
 	 */
 	public function get_route_url(): string {
 		return get_rest_url(

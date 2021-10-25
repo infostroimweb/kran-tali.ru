@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionInterface;
-
 /**
  * Abstract class for class that supports notice displayed in admin panel.
  */
@@ -12,33 +10,24 @@ abstract class OptionAbstract implements OptionInterface {
 	const OPTION_TYPE_CHECKBOX = 'checkbox';
 	const OPTION_TYPE_RADIO    = 'radio';
 	const OPTION_TYPE_QUALITY  = 'quality';
+	const OPTION_TYPE_INPUT    = 'input';
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
-	public function get_info(): string {
-		return '';
+	public function get_info() {
+		return null;
 	}
 
 	/**
-	 * Returns unavailable values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
+	 * {@inheritdoc}
 	 */
-	public function get_disabled_values( array $settings ): array {
-		return [];
+	public function get_disabled_values( array $settings ) {
+		return null;
 	}
 
 	/**
-	 * Returns default value of field when debugging.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string|string[] Default value of field for debug.
+	 * {@inheritdoc}
 	 */
 	public function get_value_for_debug( array $settings ) {
 		return $this->get_default_value( $settings );

@@ -1,15 +1,15 @@
-=== WebP Converter for Media ===
+=== WebP Converter for Media - Convert WebP & Optimize Images ===
 Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=readme-donate
 Tags: convert webp, webp, optimize images, compress images, webp converter
 Requires at least: 4.9
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Speed up your website by serving WebP images instead of standard formats JPEG, PNG and GIF.
+Convert WebP just now! Speed up your website by serving WebP images instead of standard formats JPEG, PNG and GIF.
 
 == Description ==
 
@@ -17,17 +17,17 @@ Speed up your website by serving WebP images. By replacing files in standard JPE
 
 After installing the plugin you do not have to do anything more. Your current images will be converted into a new format. When compress images is finished, users will automatically receive new, much lighter images than the original ones.
 
-As of today, over 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Now you can speed up it in a few seconds without much effort!
+As of today, over 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Using convert WebP, now you can and speed up it in a few seconds without much effort!
 
 This will be a profit both for your users who will not have to download so much data, but also for a server that will be less loaded. Remember that a better optimized website also affects your Google ranking.
 
 #### Support for additional directories
 
-Now you can optimize images not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
+Now you can convert WebP and optimize images not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
 
 #### How does this work?
 
-- By adding images to your Media Library, they are automatically converted and saved in a separate directory.
+- By adding images to your Media Library, convert WebP starts automatically and WebP images are saved in a separate directory.
 - If you have just installed the plugin, you can optimize images with one click.
 - As WebP you will see all the images added to the Media Library and other selected directories.
 - When the browser tries to download an image file, the server verifies if it supports `image/webp` files and if the file exists.
@@ -38,7 +38,7 @@ Now you can optimize images not only from `/uploads` directory but also from `/p
 - In case rewriting by rules from .htaccess file is blocked, a mode is available which loads images via PHP file. Then image URLs are changed, but the logic of operation is the same as in the case of the default mode.
 - The final result is that your users download less than half of the data, and the website itself loads faster!
 
-#### WebP images are the future!
+#### Convert WebP - it is the future!
 
 Optimize images and raise your website to a new level now! Install the plugin and enjoy the website that loads faster by image optimization. Surely you and your users will appreciate it.
 
@@ -70,7 +70,7 @@ When adding a thread, follow these steps and reply to each of them:
 
 **1.** Do you have any error on the plugin settings page? Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) if you have any errors.
 
-**2.** URL of your website. If your site is not publicly available, add it to test environment.
+**2.** URL of your website.
 
 **3.** Configuration of your server *(link to it can be found on the settings page of plugin in the section **"We are waiting for your message"**)* - please take a screenshot of the ENTIRE page and send it to me.
 
@@ -78,11 +78,13 @@ When adding a thread, follow these steps and reply to each of them:
 
 **5.** Please do the test, which is described in the FAQ in question `How to check if plugin works?`. Please send a screenshot of Devtools with test results.
 
-**6.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
+**6.** Enable [debugging to the file](https://wordpress.org/support/article/debugging-in-wordpress/#wp_debug_log) and check if any errors are generated in the debug.log file when the works. Provide their content.
 
-**7.** What plugin version are you using? If it is not the latest then update and check everything again.
+**7.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
 
-**8.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
+**8.** What plugin version are you using? If it is not the latest then update and check everything again.
+
+**9.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
 
 Please remember to include the answers for all questions by adding a thread. It is much easier and accelerate the solution of your problem.
 
@@ -91,17 +93,6 @@ Please remember to include the answers for all questions by adding a thread. It 
 If you have an error on the plugin settings screen, first of all please read it carefully. They are displayed when there is a problem with the configuration of your server or website.
 
 The messages are designed to reduce the number of support requests that are repeated. It saves your and our time. Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) for more information.
-
-= Server configuration error on Cloudflare =
-
-For Cloudflare servers, a recurring problem is the error code **rewrites_cached**. To solve this problem, you need to disable the cache for the website from the server.
-
-Please follow the steps below:
-- Enter Cloudflare management panel and then to **Page Rules** Tab.
-- Click **Create page rule** button.
-- Enter your domain name.
-- Choose **Cache Level** option, set **Bypass** value and click **Save** button.
-- Click **Save and Deploy** button.
 
 = Error while converting? =
 
@@ -240,6 +231,34 @@ add_filter( 'webpc_dir_name', function( $path, $directory ) {
 
 After setting the filters go to `Settings -> WebP Converter` in the admin panel and click the `Save Changes` button. `.htaccess` files with appropriate rules should be created in the directories `/uploads` and `/uploads-webpc`.
 
+= How to exclude paths from converting? =
+
+To exclude selected directories, use the following filter:
+
+`add_filter( 'webpc_supported_source_directory', function( bool $status, string $directory_name, string $server_path ): bool {
+    $excluded_directories = [ 'my-directory' ];
+    if ( ! $status || in_array( $directory_name, $excluded_directories ) ) {
+        return false;
+    }
+
+    return $status;
+}, 10, 3 );`
+
+To exclude selected files use the following filter:
+
+`add_filter( 'webpc_supported_source_file', function( bool $status, string $file_name, string $server_path ): bool {
+    $excluded_files = [ 'my-image.jpg' ];
+    if ( ! $status || in_array( $file_name, $excluded_files ) ) {
+        return false;
+    }
+
+    return $status;
+}, 10, 3 );`
+
+Argument `$server_path` is the absolute server path to a directory or file. Inside the filters, you can apply more complicated rules as needed.
+
+Filters run before images are converted - they no longer support converted images. You have to delete them manually if they should not be converted.
+
 = How to run manually conversion? =
 
 By default, all images are converted when you click on the `Regenerate All` button. In addition, conversion is automatic when you add new files to your Media Library.
@@ -267,12 +286,6 @@ To manually start converting selected files, you can use the action to which you
 An alternative method is to manually start converting the selected attachment by passing the post ID from the Media Library. Remember to run this action after registering all image sizes *(i.e. after running the `add_image_size` function)*:
 
 `do_action( 'webpc_convert_attachment', $post_id );`
-
-In addition, you can edit the list of files that will be converted. For example, to add some to the exceptions. To do this, use the following filter, which by default returns a list of all paths:
-
-`add_filter( 'webpc_files_paths', function( $paths, $skip_exists ) {
-	return $paths;
-}, 10, 2 );`
 
 Argument `$paths` is array of absolute server paths and `$skip_exists` means whether to skip converted images.
 
@@ -373,6 +386,7 @@ and add below code in this file *(add these lines to very beginning of file if p
 `			break;`
 `		}`
 `		add_header Vary Accept;`
+`		add_header Cache-Control "private" always;`
 `		expires 365d;`
 `		try_files /wp-content/uploads-webpc/$path.$ext.webp $uri =404;`
 `	}`
@@ -393,13 +407,16 @@ Please manually paste the following code **at the beginning of .htaccess file** 
 	RewriteEngine On
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpg.webp -f
-	RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,L]
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
-	RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,L]
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.webp -f
-	RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,L]
+</IfModule>
+<IfModule mod_headers.c>
+  Header Set Cache-Control "private"
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -414,6 +431,9 @@ And the following code **at the beginning of .htaccess file** in the `/wp-conten
 <IfModule mod_expires.c>
 	ExpiresActive On
 	ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  Header Set Cache-Control "private"
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -438,224 +458,25 @@ This is all very important to us and allows us to do even better things for you!
 
 == Changelog ==
 
-= 3.0.3 (2021-05-22) =
-* `[Fixed]` Rewrite rules for via .htaccess loading mode
+= 3.2.3 (2021-10-15) =
+* `[Added]` Exclusion of re-converting images that caused regeneration error
 
-= 3.0.2 (2021-05-22) =
-* `[Fixed]` Rewrite rules for servers where DOCUMENT_ROOT is different from ABSPATH
+= 3.2.2 (2021-09-26) =
+* `[Changed]` Option "Force redirections to WebP for all domains" as default
+* `[Added]` Debug information for regeneration error
 
-= 3.0.1 (2021-05-09) =
-* `[Fixed]` Filters using for change server paths
-* `[Added]` Excluding directories when uploading images to Media Library
+= 3.2.1 (2021-09-12) =
+* `[Fixed]` Skipping converted images when converting all images
 
-= 3.0.0 (2021-05-02) =
-* `[Removed]` Filter `webpc_get_values`
-* `[Removed]` Filter `webpc_get_options`
-* `[Removed]` Filter `webpc_get_methods`
-* `[Changed]` Error messages on plugin settings page
-* `[Added]` Conversion of images to multiple output formats
-* `[Added]` Compatibility with NextGEN Gallery plugin
-* `[Added]` Data displayed on "Server configuration" tab on plugin settings page
-* `[Added]` Changes to improve performance of plugin
-* `[Added]` Changes to improve security of plugin
+= 3.2.0 (2021-09-12) =
+* `[Removed]` Filter `webpc_files_paths`
+* `[Removed]` Filter `webpc_dir_excluded`
+* `[Changed]` Error handling when converting images
+* `[Added]` Filter `webpc_supported_source_file` to exclude paths to files from converting
+* `[Added]` Filter `webpc_supported_source_directory` to exclude paths to directories from converting
+* `[Added]` Modifications to appearance of plugin settings page
 
-= 2.4.0 (2021-02-28) =
-* `[Fixed]` Error detection of redirects without .png as supported file extension
-* `[Fixed]` Pass Thru loading mode for servers not supporting `getallheaders()` function
-* `[Changed]` Level of error for cached redirects of images to WebP files
-* `[Added]` Skip re-converting images that were larger than original after converting to WebP
-
-= 2.3.0 (2021-01-31) =
-* `[Fixed]` Encoding paths to files
-* `[Fixed]` Retaining PNG transparency using Gd method
-* `[Added]` Cron to convert images uploaded to Media Library
-
-= 2.2.0 (2021-01-13) =
-* `[Added]` Support for WordPress Multisite
-
-= 2.1.3 (2020-12-28) =
-* `[Fixed]` Regex for Pass Thru loading mode
-
-= 2.1.2 (2020-12-27) =
-* `[Fixed]` Converting images using Imagick method
-
-= 2.1.1 (2020-12-21) =
-* `[Fixed]` Modal when deactivating plugin
-
-= 2.1.0 (2020-12-21) =
-* `[Changed]` Structure of conversion methods
-* `[Changed]` Structure of error detection methods
-
-= 2.0.1 (2020-12-16) =
-* `[Fixed]` Actions initiated after plugin update
-
-= 2.0.0 (2020-12-16) =
-* `[Removed]` Filter `webpc_uploads_path`
-* `[Removed]` Filter `webpc_uploads_webp`
-* `[Removed]` Filter `webpc_uploads_dir`
-* `[Removed]` Filter `webpc_uploads_root`
-* `[Changed]` Error messages in administration panel
-* `[Added]` Image loading mode: `Pass Thru` (without rewrites in .htacces files or Nginx configuration)
-* `[Added]` Filter `webpc_dir_name` to change default directory paths
-* `[Added]` Filter `webpc_site_root` to change path for root installation directory of WordPress
-* `[Added]` Filter `webpc_site_url` to change Site URL of WordPress
-
-= 1.6.0 (2020-12-12) =
-* `[Added]` Escaping functions for translated phrases
-* `[Added]` Error codes in error messages on plugin settings page
-* `[Added]` Modal when deactivating plugin
-
-= 1.5.1 (2020-11-02) =
-* `[Changed]` Error messages related to non-working redirects from .htaccess file
-
-= 1.5.0 (2020-10-28) =
-* `[Added]` Filter `webpc_files_paths` to modify paths of images to be converted
-* `[Added]` Filter `webpc_convert_error` to management of errors content displayed during conversion
-* `[Added]` Filter `webpc_convert_errors` to management of errors displayed during conversion
-
-= 1.4.6 (2020-10-23) =
-* `[Fixed]` Error detection of non-working redirects without .png as supported file extension
-
-= 1.4.5 (2020-10-19) =
-* `[Fixed]` Content for translations
-
-= 1.4.4 (2020-10-18) =
-* `[Changed]` Information after conversion process is completed
-
-= 1.4.3 (2020-09-30) =
-* `[Changed]` Directory for error detection of non-working redirects of images to WebP files
-* `[Changed]` Button for `Server configuration` tab
-* `[Added]` Information about error detection in `Server configuration` tab
-
-= 1.4.2 (2020-08-24) =
-* `[Fixed]` Cache-Control for redirects of images to WebP files
-* `[Added]` Error detection of cached redirects of images to WebP files
-
-= 1.4.1 (2020-08-19) =
-* `[Changed]` Error detection method on plugin settings page
-* `[Added]` Error detection of non-working redirects of images to WebP files
-
-= 1.4.0 (2020-08-13) =
-* `[Removed]` Filter `webpc_notice_url`
-* `[Changed]` Error messages for server requirements
-* `[Changed]` Loading CSS and JS files only on plugin settings page
-* `[Changed]` Minor changes for plugin settings page
-* `[Changed]` Validation of saved settings values for security
-* `[Added]` Blocking redirects to WebP when displaying images on other domains
-* `[Added]` Cron to automatically regenerate new images outside of Media Library
-* `[Added]` Filter `webpc_cron_interval` to change cron interval
-* `[Added]` Error message for incorrect plugin settings
-* `[Added]` Error when converting when WebP file is larger than original and has been deleted
-* `[Added]` Notice after plugin installation with description of first steps
-* `[Added]` Option to log errors while converting to debug.log file
-* `[Added]` Option to preserve metadata for WebP files *(available for Imagick library)*
-* `[Added]` Value of `ABSPATH` in `Server configuration` tab
-
-= 1.3.1 (2020-07-03) =
-* `[Fixed]` Text Domain for Internationalization
-
-= 1.3.0 (2020-06-12) =
-* `[Removed]` Ability to skip converting existing images when `Regenerate All`
-* `[Fixed]` Creating `/uploads-webpc` directory webpc after re-activation plugin
-* `[Fixed]` Error message about not supporting old PHP version
-* `[Fixed]` Ignoring case sensitivity when verifying image extensions
-* `[Changed]` Error messages when converting images
-* `[Changed]` New argument for filter `webpc_htaccess_mod_rewrite` and support for multiple .htaccess files
-* `[Added]` Converting all images from `/uploads` directory *(also other than from Media Library)*.
-* `[Added]` Converting images from `/plugins` directory
-* `[Added]` Converting images from `/themes` directory
-* `[Added]` Information about used filters in `Server configuration` tab
-* `[Added]` Option to force all images to be converted again when `Regenerate All`
-
-= 1.2.7 (2020-06-11) =
-* `[Changed]` Moving converted WebP files to `/uploads-webpc/uploads` directory from `/uploads-webpc` directory *(**required manual configuration change for Nginx and WordPress Multisite**)*
-* `[Changed]` Validation when converting images
-
-= 1.2.6 (2020-05-28) =
-* `[Fixed]` Removal of WebP files larger than original during upload
-
-= 1.2.5 (2020-05-10) =
-* `[Removed]` Link to plugin settings on Network Admin Screen for WordPress Multisite
-* `[Fixed]` Path in RewriteRule for WordPress Multisite
-* `[Changed]` Error messages in administration panel
-* `[Added]` Support for `disable_functions` setting for using `set_time_limit` function
-* `[Added]` Support for blocked function `file_get_contents`
-
-= 1.2.4 (2020-04-24) =
-* `[Changed]` Error messages in administration panel
-* `[Added]` Action `webpc_delete_paths` to delete images by paths
-
-= 1.2.3 (2020-04-15) =
-* `[Added]` Blocking server cache for rewrite rules
-* `[Added]` Detecting whether requests to images are processed by server bypassing Apache
-
-= 1.2.2 (2020-04-08) =
-* `[Changed]` Moving rules for modules `mod_mime` and `mod_expires` to `/uploads-webpc/.htaccess` file
-* `[Changed]` New argument for filter `webpc_htaccess_rules` with server path of file
-
-= 1.2.1 (2020-04-07) =
-* `[Removed]` Filter `webpc_option_disabled`
-* `[Fixed]` Converting images multiple times when uploading to Media Library
-* `[Added]` Action `webpc_convert_paths` to convert images by paths
-* `[Added]` Action `webpc_convert_attachment` to convert images by Post ID
-
-= 1.2.0 (2020-04-05) =
-* `[Changed]` Moving rules from .htaccess file in root directory of WordPress to `/wp-content/uploads` directory
-* `[Added]` Ability to disable automatic removal of WebP files larger than original
-* `[Added]` Error validation for a non-writable .htaccess file
-* `[Added]` Filter `webpc_uploads_root` to change path for root installation directory of WordPress
-
-= 1.1.2 (2020-03-03) =
-* `[Added]` Zero padding at end for odd-sized WebP files using `GD` library
-
-= 1.1.1 (2020-02-13) =
-* `[Changed]` Unknown error handling when converting images
-* `[Added]` Ability to skip converting existing images when `Regenerate All`
-* `[Added]` Button for simple checking of server configuration
-
-= 1.1.0 (2020-02-10) =
-* `[Fixed]` Support for WordPress installation in subdirectory
-* `[Fixed]` Error detecting WebP support by Imagick
-
-= 1.0.9 (2020-01-03) =
-* `[Added]` Limit of maximum image resolution limit using `GD` library
-
-= 1.0.8 (2019-12-19) =
-* `[Fixed]` File deletion for custom paths with converted WebP files
-* `[Changed]` Rules management in .htaccess file when activating or deactivating plugin
-* `[Added]` Error detection system in server configuration
-* `[Added]` Blocking image conversion when `GD` or `Imagick` libraries are unavailable
-
-= 1.0.7 (2019-12-17) =
-* `[Changed]` Rewrite rules in .htaccess file
-* `[Added]` Custom path support for original uploads files
-* `[Added]` Custom path support for saving converted WebP files
-* `[Added]` Filter `webpc_uploads_path` to change path for original uploads files
-* `[Added]` Filter `webpc_uploads_webp` to change path for saving converted WebP files
-
-= 1.0.6 (2019-11-06) =
-* `[Changed]` Way of generating file path _(without `ABSPATH`)_
-* `[Added]` Automatic deletion of converted files larger than original
-
-= 1.0.5 (2019-09-16) =
-* `[Added]` Information on available FAQ
-
-= 1.0.4 (2019-07-11) =
-* `[Changed]` Limits of maximum execution time
-
-= 1.0.3 (2019-06-26) =
-* `[Added]` Additional security rules
-
-= 1.0.2 (2019-06-25) =
-* `[Changed]` Error messages
-* `[Added]` Tab in Settings page about server configuration
-
-= 1.0.1 (2019-06-23) =
-* `[Changed]` Securing access to REST API
-* `[Added]` Error handler for undefined `GD` extension
-
-= 1.0.0 (2019-06-16) =
-* The first stable release
+See [changelog.txt](https://plugins.svn.wordpress.org/webp-converter-for-media/trunk/changelog.txt) for previous versions.
 
 == Upgrade Notice ==
 

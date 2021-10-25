@@ -38,13 +38,15 @@ class PassthruLoader {
 	 * @return void
 	 */
 	private function load_converted_image( string $image_url ) {
-		$mime_types = json_decode( self::MIME_TYPES, true );
-		$header     = function_exists( 'getallheaders' )
-			? ( getallheaders()['Accept'] ?? '' )
-			: ( $_SERVER['HTTP_ACCEPT'] ?? '' ); // phpcs:ignore
+		$mime_types    = json_decode( self::MIME_TYPES, true );
+		$headers       = array_change_key_case(
+			array_merge( ( function_exists( 'getallheaders' ) ) ? getallheaders() : [], $_SERVER ),
+			CASE_UPPER
+		);
+		$accept_header = $headers['ACCEPT'] ?? ( $headers['HTTP_ACCEPT'] ?? '' );
 
 		foreach ( $mime_types as $extension => $mime_type ) {
-			if ( ( strpos( $header, $mime_type ) !== false )
+			if ( ( strpos( $accept_header, $mime_type ) !== false )
 				&& ( $source = $this->load_image_source( $image_url, $extension ) ) ) {
 				header( 'Content-Type: ' . $mime_type );
 				echo $source; // phpcs:ignore

@@ -4,7 +4,6 @@
  * Class for database schema inspection and changes.
  *
  * @package YARPP
- * @author  Mike Nelson
  * @since   5.1.7
  */
 class YARPP_DB_Schema {
@@ -20,13 +19,13 @@ class YARPP_DB_Schema {
 	 * @return bool
 	 */
 	public function title_column_has_index() {
-		$result = wp_cache_get( self::CACHE_KEY_TITLE_INDEX, self::CACHE_GROUP, false, $found );
-		if ( ! $found ) {
+		$result = wp_cache_get( self::CACHE_KEY_TITLE_INDEX, self::CACHE_GROUP, false );
+		if ( false === $result ) {
 			global $wpdb;
 			$wpdb->get_results( "SHOW INDEX FROM {$wpdb->posts} WHERE Key_name = 'yarpp_title'" );
 
 			$result = $wpdb->num_rows >= 1;
-			wp_cache_set( self::CACHE_KEY_TITLE_INDEX, $result, self::CACHE_GROUP );
+			wp_cache_set( self::CACHE_KEY_TITLE_INDEX, $result, self::CACHE_GROUP, DAY_IN_SECONDS );
 		}
 		return $result;
 	}
@@ -37,13 +36,13 @@ class YARPP_DB_Schema {
 	 * @return bool
 	 */
 	public function content_column_has_index() {
-		$result = wp_cache_get( self::CACHE_KEY_CONTENT_INDEX, self::CACHE_GROUP, false, $found );
-		if ( ! $found ) {
+		$result = wp_cache_get( self::CACHE_KEY_CONTENT_INDEX, self::CACHE_GROUP, false );
+		if ( false === $result ) {
 			global $wpdb;
 			$wpdb->get_results( "SHOW INDEX FROM {$wpdb->posts} WHERE Key_name = 'yarpp_content'" );
 
 			$result = $wpdb->num_rows >= 1;
-			wp_cache_set( self::CACHE_KEY_CONTENT_INDEX, $result, self::CACHE_GROUP );
+			wp_cache_set( self::CACHE_KEY_CONTENT_INDEX, $result, self::CACHE_GROUP, DAY_IN_SECONDS );
 		}
 		return $result;
 	}
@@ -55,18 +54,18 @@ class YARPP_DB_Schema {
 	 * @return bool
 	 */
 	public function database_supports_fulltext_indexes() {
-		$result = wp_cache_get( self::CACHE_KEY_FULLTEXT_SUPPORT, self::CACHE_GROUP, false, $found );
-		if ( ! $found ) {
+		$result = wp_cache_get( self::CACHE_KEY_FULLTEXT_SUPPORT, self::CACHE_GROUP, false );
+		if ( false === $result ) {
 			global $wpdb;
 			// Check if the database is a version that supports InnoDB fulltext indexes.
-			$innodb_fulltext_params = $wpdb->get_results( "show variables like 'innodb_ft%';" );
+			$innodb_fulltext_params = $wpdb->get_results( "SHOW VARIABLES LIKE 'innodb_ft%';" );
 			if ( ( count( $innodb_fulltext_params ) > 0 ) || ( $this->posts_table_database_engine() === 'MyISAM' ) ) {
 				$result = true;
 			} else {
 				// They don't seem to support full text indexes, sorry.
 				$result = false;
 			}
-			wp_cache_set( self::CACHE_KEY_FULLTEXT_SUPPORT, $result, self::CACHE_GROUP );
+			wp_cache_set( self::CACHE_KEY_FULLTEXT_SUPPORT, $result, self::CACHE_GROUP, DAY_IN_SECONDS );
 		}
 		return $result;
 	}
@@ -78,8 +77,8 @@ class YARPP_DB_Schema {
 	 * @return string|null
 	 */
 	public function posts_table_database_engine() {
-		$result = wp_cache_get( self::CACHE_KEY_POSTS_TABLE_DATABASE_ENGINE, self::CACHE_GROUP, false, $found );
-		if ( ! $found ) {
+		$result = wp_cache_get( self::CACHE_KEY_POSTS_TABLE_DATABASE_ENGINE, self::CACHE_GROUP, false );
+		if ( false === $result ) {
 			global $wpdb;
 			$tables = $wpdb->get_results( "SHOW TABLE STATUS WHERE Name = '{$wpdb->posts}'" );
 			foreach ( $tables as $table ) {
@@ -87,7 +86,7 @@ class YARPP_DB_Schema {
 				break;
 			}
 
-			wp_cache_set( self::CACHE_KEY_POSTS_TABLE_DATABASE_ENGINE, $result, self::CACHE_GROUP );
+			wp_cache_set( self::CACHE_KEY_POSTS_TABLE_DATABASE_ENGINE, $result, self::CACHE_GROUP, DAY_IN_SECONDS );
 		}
 		return $result;
 	}
@@ -130,19 +129,21 @@ class YARPP_DB_Schema {
 
 	/**
 	 * Finds out if the YARPP cache table was created or not
+	 *
 	 * @return bool
 	 */
-	public function cache_table_exists(){
-		$exists = wp_cache_get(self::CACHE_KEY_TABLE_EXISTS, self::CACHE_GROUP, false, $found);
-		if( ! $found ){
+	public function cache_table_exists() {
+		$exists = wp_cache_get( self::CACHE_KEY_TABLE_EXISTS, self::CACHE_GROUP, false );
+		if ( false === $exists ) {
 			global $wpdb;
 			// now check for the cache tables
-			$tabledata = $wpdb->get_col('SHOW TABLES LIKE "'. $wpdb->prefix . YARPP_TABLES_RELATED_TABLE . '"');
-			if (in_array($wpdb->prefix . YARPP_TABLES_RELATED_TABLE,$tabledata) !== false)
+			$tabledata = $wpdb->get_col( 'SHOW TABLES LIKE "' . $wpdb->prefix . YARPP_TABLES_RELATED_TABLE . '"' );
+			if ( in_array( $wpdb->prefix . YARPP_TABLES_RELATED_TABLE, $tabledata ) !== false ) {
 				$exists = true;
-			else
+			} else {
 				$exists = false;
-			wp_cache_set(self::CACHE_KEY_TABLE_EXISTS, $exists, self::CACHE_GROUP);
+			}
+			wp_cache_set( self::CACHE_KEY_TABLE_EXISTS, $exists, self::CACHE_GROUP, DAY_IN_SECONDS );
 		}
 		return $exists;
 	}
@@ -150,15 +151,19 @@ class YARPP_DB_Schema {
 	/**
 	 * Create the YARPP cache table
 	 */
-	public function create_cache_table(){
+	public function create_cache_table() {
 		global $wpdb;
 
 		$charset_collate = '';
-		if (!empty($wpdb->charset)) $charset_collate = "DEFAULT CHARACTER SET ".$wpdb->charset;
-		if (!empty($wpdb->collate)) $charset_collate .= " COLLATE ".$wpdb->collate;
+		if ( ! empty( $wpdb->charset ) ) {
+			$charset_collate = 'DEFAULT CHARACTER SET ' . $wpdb->charset;
+		}
+		if ( ! empty( $wpdb->collate ) ) {
+			$charset_collate .= ' COLLATE ' . $wpdb->collate;
+		}
 
 		$wpdb->query(
-			"CREATE TABLE IF NOT EXISTS `".$wpdb->prefix.YARPP_TABLES_RELATED_TABLE."` (
+			'CREATE TABLE IF NOT EXISTS `' . $wpdb->prefix . YARPP_TABLES_RELATED_TABLE . "` (
 			    `reference_ID`  bigint(20) unsigned NOT NULL default '0',
 			    `ID`            bigint(20) unsigned NOT NULL default '0',
 			    `score`         float unsigned NOT NULL default '0',
@@ -168,6 +173,6 @@ class YARPP_DB_Schema {
 			INDEX (`ID`)
 			)$charset_collate;"
 		);
-		wp_cache_delete(self::CACHE_KEY_TABLE_EXISTS, self::CACHE_GROUP);
+		wp_cache_delete( self::CACHE_KEY_TABLE_EXISTS, self::CACHE_GROUP );
 	}
 }

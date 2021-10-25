@@ -2,53 +2,43 @@
 
 namespace WebpConverter\Conversion\Method;
 
-use WebpConverter\Conversion\Method\MethodAbstract;
-use WebpConverter\Conversion\Method\MethodInterface;
-use WebpConverter\Conversion\Format\WebpFormat;
-use WebpConverter\Conversion\Format\AvifFormat;
 use WebpConverter\Conversion\Exception;
+use WebpConverter\Conversion\Format\AvifFormat;
+use WebpConverter\Conversion\Format\WebpFormat;
+use WebpConverter\Settings\Option\ImagesQualityOption;
+use WebpConverter\Settings\Option\SupportedExtensionsOption;
 
 /**
  * Supports image conversion method using GD library.
  */
-class GdMethod extends MethodAbstract implements MethodInterface {
+class GdMethod extends LibraryMethodAbstract {
 
-	const METHOD_NAME = 'gd';
+	const METHOD_NAME        = 'gd';
+	const MAX_METHOD_QUALITY = 99.9;
 
 	/**
-	 * Returns name of conversion method.
-	 *
-	 * @return string Method name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::METHOD_NAME;
 	}
 
 	/**
-	 * Returns label of conversion method.
-	 *
-	 * @return string Method label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
-		/* translators: %s method name */
-		return sprintf( __( '%s (recommended)', 'webp-converter-for-media' ), 'GD' );
+		return 'GD';
 	}
 
 	/**
-	 * Returns status of whether method is installed.
-	 *
-	 * @return bool Is method installed?
+	 * {@inheritdoc}
 	 */
 	public static function is_method_installed(): bool {
 		return ( extension_loaded( 'gd' ) );
 	}
 
 	/**
-	 * Returns status of whether method is active.
-	 *
-	 * @param string $format Extension of output format.
-	 *
-	 * @return bool Is method active?
+	 * {@inheritdoc}
 	 */
 	public static function is_method_active( string $format ): bool {
 		if ( ! self::is_method_installed() || ! ( $function = self::get_format_function( $format ) ) ) {
@@ -76,16 +66,14 @@ class GdMethod extends MethodAbstract implements MethodInterface {
 	}
 
 	/**
-	 * Creates image object based on source path.
-	 *
-	 * @param string $source_path Server path of source image.
+	 * {@inheritdoc}
 	 *
 	 * @return resource Image object.
 	 * @throws Exception\ExtensionUnsupportedException
 	 * @throws Exception\FunctionUnavailableException
 	 * @throws Exception\ImageInvalidException
 	 */
-	public function create_image_by_path( string $source_path ) {
+	public function create_image_by_path( string $source_path, array $plugin_settings ) {
 		$extension = strtolower( pathinfo( $source_path, PATHINFO_EXTENSION ) );
 		$methods   = apply_filters(
 			'webpc_gd_create_methods',
@@ -95,10 +83,10 @@ class GdMethod extends MethodAbstract implements MethodInterface {
 				'imagecreatefromgif'  => [ 'gif' ],
 			]
 		);
-		$settings  = $this->get_plugin()->get_settings();
 
 		foreach ( $methods as $method => $extensions ) {
-			if ( ! in_array( $extension, $settings['extensions'] ) || ! in_array( $extension, $extensions ) ) {
+			if ( ! in_array( $extension, $plugin_settings[ SupportedExtensionsOption::OPTION_NAME ] )
+				|| ! in_array( $extension, $extensions ) ) {
 				continue;
 			} elseif ( ! function_exists( $method ) ) {
 				throw new Exception\FunctionUnavailableException( $method );
@@ -153,32 +141,26 @@ class GdMethod extends MethodAbstract implements MethodInterface {
 	}
 
 	/**
-	 * Converts image and saves to output location.
+	 * {@inheritdoc}
 	 *
-	 * @param resource $image       Image object.
-	 * @param string   $source_path Server path of source image.
-	 * @param string   $output_path Server path for output image.
-	 * @param string   $format      Extension of output format.
-	 *
-	 * @return void
 	 * @throws Exception\ConversionErrorException
 	 * @throws Exception\FunctionUnavailableException
 	 * @throws Exception\ResolutionOversizeException
 	 */
-	public function convert_image_to_output( $image, string $source_path, string $output_path, string $format ) {
+	public function convert_image_to_output( $image, string $source_path, string $output_path, string $format, array $plugin_settings ) {
 		$function = self::get_format_function( $format );
 		if ( $function === null ) {
 			return;
 		}
 
-		$image    = apply_filters( 'webpc_gd_before_saving', $image, $source_path );
-		$settings = $this->get_plugin()->get_settings();
+		$image          = apply_filters( 'webpc_gd_before_saving', $image, $source_path );
+		$output_quality = min( $plugin_settings[ ImagesQualityOption::OPTION_NAME ], self::MAX_METHOD_QUALITY );
 
 		if ( ! function_exists( $function ) ) {
 			throw new Exception\FunctionUnavailableException( $function );
 		} elseif ( ( imagesx( $image ) > 8192 ) || ( imagesy( $image ) > 8192 ) ) {
 			throw new Exception\ResolutionOversizeException( $source_path );
-		} elseif ( is_callable( $function ) && ! $function( $image, $output_path, $settings['quality'] ) ) {
+		} elseif ( is_callable( $function ) && ! $function( $image, $output_path, $output_quality ) ) {
 			throw new Exception\ConversionErrorException( $source_path );
 		}
 

@@ -2,48 +2,37 @@
 
 namespace WebpConverter\Conversion\Directory;
 
-use WebpConverter\Conversion\Directory\DirectoryAbstract;
-use WebpConverter\Conversion\Directory\DirectoryInterface;
-
 /**
  * Supports data about /uploads directory.
  */
-class UploadsDirectory extends DirectoryAbstract implements DirectoryInterface {
+class UploadsDirectory extends DirectoryAbstract {
 
 	const DIRECTORY_TYPE = 'uploads';
 	const DIRECTORY_PATH = 'wp-content/uploads';
 
 	/**
-	 * Returns type of directory.
-	 *
-	 * @return string Directory type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return self::DIRECTORY_TYPE;
 	}
 
 	/**
-	 * Returns status if directory is available.
-	 *
-	 * @return bool Directory is available?
+	 * {@inheritdoc}
 	 */
 	public function is_available(): bool {
 		return true;
 	}
 
 	/**
-	 * Returns label of directory.
-	 *
-	 * @return string Directory label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return '/' . self::DIRECTORY_TYPE;
 	}
 
 	/**
-	 * Returns relative path of directory.
-	 *
-	 * @return string Relative path of directory.
+	 * {@inheritdoc}
 	 */
 	public function get_relative_path(): string {
 		return self::DIRECTORY_PATH;

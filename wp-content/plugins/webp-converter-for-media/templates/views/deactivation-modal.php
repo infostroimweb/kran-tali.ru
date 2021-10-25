@@ -2,10 +2,11 @@
 /**
  * Modal with poll displayed in list of plugins.
  *
- * @var string[] $errors   List of errors detected by plugin.
- * @var mixed[]  $reasons  Reasons for plugin deactivation.
- * @var mixed[]  $settings Plugin settings.
- * @var string   $api_url  URL of API for feedback request.
+ * @var string[] $errors         List of errors detected by plugin.
+ * @var mixed[]  $reasons        Reasons for plugin deactivation.
+ * @var mixed[]  $settings       Plugin settings.
+ * @var string   $api_url        URL of API for feedback request.
+ * @var string   $plugin_version .
  * @package WebP Converter for Media
  */
 
@@ -19,24 +20,21 @@
 			<div class="webpModal__desc">
 				<?php echo esc_html( __( 'Can you please take a moment to tell us why you are deactivating this plugin (your answer is completely anonymous)?', 'webp-converter-for-media' ) ); ?>
 			</div>
-			<table class="webpModal__table webpTable">
+			<div class="webpModal__options">
 				<?php foreach ( $reasons as $index => $reason ) : ?>
-					<tr>
-						<td>
-							<input type="radio" name="webpc_reason" value="<?php echo esc_attr( $reason['key'] ); ?>"
-								id="webpc-option-<?php echo esc_attr( $index ); ?>" class="webpCheckbox__input"
-								data-placeholder="<?php echo esc_attr( $reason['placeholder'] ); ?>"
-							>
-							<label for="webpc-option-<?php echo esc_attr( $index ); ?>"></label>
-						</td>
-						<td>
-							<label for="webpc-option-<?php echo esc_attr( $index ); ?>"
-								class="webpCheckbox__label"
-							><?php echo esc_html( $reason['label'] ); ?></label>
-						</td>
-					</tr>
+					<div class="webpField">
+						<input type="radio"
+							name="webpc_reason"
+							value="<?php echo esc_attr( $reason['key'] ); ?>"
+							id="webpc-option-<?php echo esc_attr( $index ); ?>"
+							class="webpField__input webpField__input--radio"
+							data-placeholder="<?php echo esc_attr( $reason['placeholder'] ); ?>"
+						>
+						<label for="webpc-option-<?php echo esc_attr( $index ); ?>"></label>
+						<span class="webpField__label"><?php echo esc_html( $reason['label'] ); ?></span>
+					</div>
 				<?php endforeach; ?>
-			</table>
+			</div>
 			<textarea class="webpModal__textarea" name="webpc_comment" rows="2"></textarea>
 			<ul class="webpModal__buttons">
 				<li class="webpModal__button">
@@ -57,7 +55,7 @@
 				value='<?php echo json_encode( $settings ); ?>'
 			>
 			<input type="hidden" name="webpc_plugin_version"
-				value="<?php echo esc_attr( WEBPC_VERSION ); ?>"
+				value="<?php echo esc_attr( $plugin_version ); ?>"
 			>
 		</form>
 	</div>

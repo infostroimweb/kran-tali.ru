@@ -2,12 +2,21 @@
 
 namespace WebpConverter\Helper;
 
+use WebpConverter\PluginInfo;
+
 /**
  * Supports loading views from /templates directory.
  */
 class ViewLoader {
 
-	const ROOT_DIRECTORY = WEBPC_PATH;
+	/**
+	 * @var PluginInfo
+	 */
+	private $plugin_info;
+
+	public function __construct( PluginInfo $plugin_info ) {
+		$this->plugin_info = $plugin_info;
+	}
 
 	/**
 	 * Loads view with given variables.
@@ -17,9 +26,9 @@ class ViewLoader {
 	 *
 	 * @return void
 	 */
-	public static function load_view( string $path, array $params = [] ) {
+	public function load_view( string $path, array $params = [] ) {
 		extract( $params ); // phpcs:ignore
-		$view_path = sprintf( '%1$s/templates/%2$s', self::ROOT_DIRECTORY, $path );
+		$view_path = sprintf( '%1$s/templates/%2$s', $this->plugin_info->get_plugin_directory_path(), $path );
 		if ( file_exists( $view_path ) ) {
 			/** @noinspection PhpIncludeInspection */ // phpcs:ignore
 			require_once $view_path;

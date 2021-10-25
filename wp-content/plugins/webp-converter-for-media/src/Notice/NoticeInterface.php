@@ -22,11 +22,25 @@ interface NoticeInterface {
 	public function get_default_value(): string;
 
 	/**
-	 * Returns status if notice is active.
+	 * Returns status if notice is available.
 	 *
 	 * @return bool Is notice available?
 	 */
 	public function is_available(): bool;
+
+	/**
+	 * Returns status if notice is active.
+	 *
+	 * @return bool Is notice active?
+	 */
+	public function is_active(): bool;
+
+	/**
+	 * Returns value of option meaning to hide notice.
+	 *
+	 * @return string
+	 */
+	public function get_disable_value(): string;
 
 	/**
 	 * Returns server path for view template.
@@ -45,15 +59,7 @@ interface NoticeInterface {
 	/**
 	 * Returns name of action using in WP Ajax.
 	 *
-	 * @return string Name of ajax action.
+	 * @return string|null Name of ajax action.
 	 */
-	public function get_ajax_action_to_disable(): string;
-
-	/**
-	 * Sets options to disable notice.
-	 *
-	 * @return void
-	 * @internal
-	 */
-	public static function disable_notice();
+	public function get_ajax_action_to_disable();
 }

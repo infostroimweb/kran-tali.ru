@@ -2,32 +2,23 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "larger_than_original" exception when converting images.
  */
-class LargerThanOriginalException extends ExceptionAbstract implements ExceptionInterface {
+class LargerThanOriginalException extends ExceptionAbstract {
 
 	const ERROR_MESSAGE = 'Image "%s" converted to WebP is larger than original and has been deleted.';
 	const ERROR_CODE    = 'larger_than_original';
 
 	/**
-	 * Returns message of error.
-	 *
-	 * @param string[] $values Params from class constructor.
-	 *
-	 * @return string Error message.
+	 * {@inheritdoc}
 	 */
 	public function get_error_message( array $values ): string {
 		return sprintf( self::ERROR_MESSAGE, $values[0] );
 	}
 
 	/**
-	 * Returns status of error.
-	 *
-	 * @return string Error status.
+	 * {@inheritdoc}
 	 */
 	public function get_error_status(): string {
 		return self::ERROR_CODE;

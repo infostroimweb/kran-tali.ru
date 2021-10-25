@@ -10,7 +10,7 @@ function get_the_score() {
 	global $post;
 
 	$score = $post->score;
-	return apply_filters('get_the_score', $score);
+	return apply_filters( 'get_the_score', $score );
 }
 /**
  * Get Dynamic styles for YARPP's built-in thumbnails template
@@ -41,6 +41,14 @@ function yarpp_thumbnail_inline_css( $dimension = array() ) {
 	$yarpp_css .= 'height: ' . $height . 'px;';
 	$yarpp_css .= 'margin: ' . $margin . 'px;';
 	$yarpp_css .= '}';
+
+	if ( is_admin() ) {
+		$yarpp_css .= '.yarpp-thumbnail > img {';
+		$yarpp_css .= 'width: ' . $width . 'px;';
+		$yarpp_css .= 'height: ' . $height . 'px !important;';
+		$yarpp_css .= 'margin: ' . $margin . 'px;';
+		$yarpp_css .= '}';
+	}
 
 	$yarpp_css .= '.yarpp-thumbnails-horizontal .yarpp-thumbnail-title {';
 	$yarpp_css .= 'margin: ' . $extra_margin . 'px;';

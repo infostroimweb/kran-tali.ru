@@ -2,9 +2,8 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeAbstract;
-use WebpConverter\Notice\NoticeInterface;
-use WebpConverter\Settings\Pages;
+use WebpConverter\Helper\OptionsAccess;
+use WebpConverter\Settings\Page\PageIntegration;
 
 /**
  * Supports notice displayed after plugin installation.
@@ -15,59 +14,53 @@ class WelcomeNotice extends NoticeAbstract implements NoticeInterface {
 	const NOTICE_VIEW_PATH = 'components/notices/welcome.php';
 
 	/**
-	 * Returns name for option that specifies whether to display notice.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_option_name(): string {
 		return self::NOTICE_OPTION;
 	}
 
 	/**
-	 * Returns default value for option that specifies whether to display notice.
-	 *
-	 * @return string Default value.
+	 * {@inheritdoc}
 	 */
 	public function get_default_value(): string {
 		return '1';
 	}
 
 	/**
-	 * Returns status if notice is active.
-	 *
-	 * @return bool Is notice available?
+	 * {@inheritdoc}
 	 */
 	public function is_available(): bool {
-		return ( get_option( self::NOTICE_OPTION, 0 ) === $this->get_default_value() );
+		return ( ! isset( $_GET['page'] ) || ( $_GET['page'] !== PageIntegration::ADMIN_MENU_PAGE ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
-	 * Returns server path for view template.
-	 *
-	 * @return string Server path relative to plugin root.
+	 * {@inheritdoc}
+	 */
+	public function is_active(): bool {
+		return ( OptionsAccess::get_option( $this->get_option_name() ) === $this->get_default_value() );
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_disable_value(): string {
+		return '0';
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_output_path(): string {
 		return self::NOTICE_VIEW_PATH;
 	}
 
 	/**
-	 * Returns variables with values using in view template.
-	 *
-	 * @return string[] Args extract in view template.
+	 * {@inheritdoc}
 	 */
 	public function get_vars_for_view(): array {
 		return [
-			'settings_url' => Pages::get_settings_page_url(),
+			'settings_url' => PageIntegration::get_settings_page_url(),
 		];
-	}
-
-	/**
-	 * Sets options to disable notice.
-	 *
-	 * @return void
-	 * @internal
-	 */
-	public static function disable_notice() {
-		update_option( self::NOTICE_OPTION, '0' );
 	}
 }

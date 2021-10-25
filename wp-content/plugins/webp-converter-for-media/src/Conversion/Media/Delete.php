@@ -10,9 +10,7 @@ use WebpConverter\HookableInterface;
 class Delete implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'wp_delete_file', [ $this, 'delete_attachment_file' ] );

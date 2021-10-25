@@ -51,12 +51,5 @@
 			<?php echo esc_html( apply_filters( 'webpc_uploads_prefix', '/' ) ); ?>
 		</td>
 	</tr>
-	<tr>
-	<tr>
-		<td class="e">webpc_dir_excluded</td>
-		<td class="v">
-			<?php echo esc_html( implode( ' | ', apply_filters( 'webpc_dir_excluded', [] ) ) ); ?>
-		</td>
-	</tr>
 	</tbody>
 </table>

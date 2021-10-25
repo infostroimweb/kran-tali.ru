@@ -2,10 +2,11 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeInterface;
-use WebpConverter\HookableInterface;
-use WebpConverter\Settings\AdminAssets;
+use WebpConverter\Helper\OptionsAccess;
 use WebpConverter\Helper\ViewLoader;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginInfo;
+use WebpConverter\Settings\AdminAssets;
 
 /**
  * Supports ability to display notice and its management.
@@ -13,31 +14,28 @@ use WebpConverter\Helper\ViewLoader;
 class NoticeIntegration implements HookableInterface {
 
 	/**
-	 * Object of notice.
-	 *
+	 * @var PluginInfo
+	 */
+	private $plugin_info;
+
+	/**
 	 * @var NoticeInterface
 	 */
 	private $notice;
 
-	/**
-	 * NoticeIntegration constructor.
-	 *
-	 * @param NoticeInterface $notice .
-	 */
-	public function __construct( NoticeInterface $notice ) {
-		$this->notice = $notice;
+	public function __construct( PluginInfo $plugin_info, NoticeInterface $notice ) {
+		$this->plugin_info = $plugin_info;
+		$this->notice      = $notice;
 	}
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'admin_init', [ $this, 'init_notice_hooks' ] );
 
 		if ( $ajax_action = $this->notice->get_ajax_action_to_disable() ) {
-			add_action( 'wp_ajax_' . $ajax_action, [ $this->notice, 'disable_notice' ] );
+			add_action( 'wp_ajax_' . $ajax_action, [ $this, 'set_disable_value' ] );
 		}
 	}
 
@@ -48,13 +46,16 @@ class NoticeIntegration implements HookableInterface {
 	 * @internal
 	 */
 	public function init_notice_hooks() {
-		if ( ! $this->notice->is_available() ) {
+		if ( ! $this->notice->is_available() || ! $this->notice->is_active() ) {
 			return;
 		}
 
-		( new AdminAssets() )->init_hooks();
-		add_action( 'admin_notices', [ $this, 'load_notice' ] );
-		add_action( 'network_admin_notices', [ $this, 'load_notice' ] );
+		( new AdminAssets( $this->plugin_info ) )->init_hooks();
+		if ( ! is_multisite() ) {
+			add_action( 'admin_notices', [ $this, 'load_notice' ] );
+		} else {
+			add_action( 'network_admin_notices', [ $this, 'load_notice' ] );
+		}
 	}
 
 	/**
@@ -64,11 +65,7 @@ class NoticeIntegration implements HookableInterface {
 	 * @internal
 	 */
 	public function load_notice() {
-		if ( ! $this->notice->is_available() ) {
-			return;
-		}
-
-		ViewLoader::load_view(
+		( new ViewLoader( $this->plugin_info ) )->load_view(
 			$this->notice->get_output_path(),
 			$this->notice->get_vars_for_view()
 		);
@@ -80,9 +77,19 @@ class NoticeIntegration implements HookableInterface {
 	 * @return void
 	 */
 	public function set_default_value() {
-		if ( get_option( $this->notice->get_option_name(), null ) !== null ) {
+		if ( OptionsAccess::get_option( $this->notice->get_option_name() ) !== null ) {
 			return;
 		}
-		update_option( $this->notice->get_option_name(), $this->notice->get_default_value() );
+
+		OptionsAccess::update_option( $this->notice->get_option_name(), $this->notice->get_default_value() );
+	}
+
+	/**
+	 * Sets options to disable notice.
+	 *
+	 * @return void
+	 */
+	public function set_disable_value() {
+		OptionsAccess::update_option( $this->notice->get_option_name(), $this->notice->get_disable_value() );
 	}
 }

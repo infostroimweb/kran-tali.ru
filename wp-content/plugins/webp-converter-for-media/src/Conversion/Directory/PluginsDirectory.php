@@ -2,39 +2,30 @@
 
 namespace WebpConverter\Conversion\Directory;
 
-use WebpConverter\Conversion\Directory\DirectoryAbstract;
-use WebpConverter\Conversion\Directory\DirectoryInterface;
-
 /**
  * Supports data about /plugins directory.
  */
-class PluginsDirectory extends DirectoryAbstract implements DirectoryInterface {
+class PluginsDirectory extends DirectoryAbstract {
 
 	const DIRECTORY_TYPE = 'plugins';
 	const DIRECTORY_PATH = 'wp-content/plugins';
 
 	/**
-	 * Returns type of directory.
-	 *
-	 * @return string Directory type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return self::DIRECTORY_TYPE;
 	}
 
 	/**
-	 * Returns label of directory.
-	 *
-	 * @return string Directory label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return '/' . self::DIRECTORY_TYPE;
 	}
 
 	/**
-	 * Returns relative path of directory.
-	 *
-	 * @return string Relative path of directory.
+	 * {@inheritdoc}
 	 */
 	public function get_relative_path(): string {
 		return self::DIRECTORY_PATH;

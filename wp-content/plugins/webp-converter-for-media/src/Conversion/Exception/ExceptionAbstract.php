@@ -2,17 +2,13 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Abstract class for class that supports exception when converting images.
  */
 abstract class ExceptionAbstract extends \Exception implements ExceptionInterface {
 
 	/**
-	 * ExceptionInterface constructor.
-	 *
-	 * @param string[]|string $value Params of exception.
+	 * {@inheritdoc}
 	 */
 	final public function __construct( $value = [] ) {
 		$this->code = $this->get_error_status();

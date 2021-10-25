@@ -7,6 +7,7 @@ use WebpConverter\Plugin\Uninstall\DebugFiles;
 use WebpConverter\Plugin\Uninstall\HtaccessFile;
 use WebpConverter\Plugin\Uninstall\PluginSettings;
 use WebpConverter\Plugin\Uninstall\WebpFiles;
+use WebpConverter\PluginInfo;
 
 /**
  * Runs actions before plugin uninstallation.
@@ -14,12 +15,19 @@ use WebpConverter\Plugin\Uninstall\WebpFiles;
 class Uninstall implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginInfo
+	 */
+	private $plugin_info;
+
+	public function __construct( PluginInfo $plugin_info ) {
+		$this->plugin_info = $plugin_info;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
-		register_uninstall_hook( WEBPC_FILE, [ 'WebpConverter\Plugin\Uninstall', 'load_uninstall_actions' ] );
+		register_uninstall_hook( $this->plugin_info->get_plugin_file(), [ 'WebpConverter\Plugin\Uninstall', 'load_uninstall_actions' ] );
 	}
 
 	/**

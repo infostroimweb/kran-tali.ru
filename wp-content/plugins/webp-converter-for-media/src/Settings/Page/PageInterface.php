@@ -2,12 +2,10 @@
 
 namespace WebpConverter\Settings\Page;
 
-use WebpConverter\PluginAccessInterface;
-
 /**
  * Interface for class that supports tab in plugin settings page.
  */
-interface PageInterface extends PluginAccessInterface {
+interface PageInterface {
 
 	/**
 	 * Returns status if view is active.

@@ -2,20 +2,26 @@
 
 namespace WebpConverter\Action;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\Media\Attachment;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Initializes conversion of all image sizes for attachment.
  */
-class ConvertAttachment extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class ConvertAttachment implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginData
+	 */
+	private $plugin_data;
+
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_convert_attachment', [ $this, 'convert_files_by_attachment' ] );
@@ -30,8 +36,7 @@ class ConvertAttachment extends PluginAccessAbstract implements PluginAccessInte
 	 * @internal
 	 */
 	public function convert_files_by_attachment( int $post_id ) {
-		$attachment = new Attachment();
-		$attachment->set_plugin( $this->get_plugin() );
+		$attachment = new Attachment( $this->plugin_data );
 
 		do_action( 'webpc_convert_paths', $attachment->get_attachment_paths( $post_id ) );
 	}

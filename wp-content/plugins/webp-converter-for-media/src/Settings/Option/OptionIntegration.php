@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Settings\Option\OptionAbstract;
-
 /**
  * Allows to integrate with field in plugin settings by specifying its settings and value.
  */
@@ -18,8 +15,6 @@ class OptionIntegration {
 	private $option;
 
 	/**
-	 * OptionIntegration constructor.
-	 *
 	 * @param OptionInterface $option .
 	 */
 	public function __construct( OptionInterface $option ) {
@@ -55,31 +50,43 @@ class OptionIntegration {
 			'label'    => $this->option->get_label(),
 			'info'     => $this->option->get_info(),
 			'values'   => $values,
-			'disabled' => $disabled_values,
-			'value'    => $value,
+			'disabled' => $disabled_values ?: [],
+			'value'    => ( $value !== null ) ? $value : $this->option->get_default_value( $settings ),
 		];
 	}
 
 	/**
 	 * Returns value of option based on plugin settings.
 	 *
-	 * @param mixed    $current_value   Value from plugin settings.
-	 * @param string   $option_type     Key of option.
-	 * @param string[] $values          Values of option.
-	 * @param string[] $disabled_values Disabled values of option.
+	 * @param mixed         $current_value   Value from plugin settings.
+	 * @param string        $option_type     Key of option.
+	 * @param string[]|null $values          Values of option.
+	 * @param string[]|null $disabled_values Disabled values of option.
 	 *
-	 * @return string[]|string Value of option.
+	 * @return string[]|string|null Value of option.
 	 */
-	private function get_option_value( $current_value, string $option_type, array $values, array $disabled_values ) {
-		$valid_values = [];
-		foreach ( (array) $current_value as $option_value ) {
-			if ( array_key_exists( $option_value, $values ) && ! in_array( $option_value, $disabled_values ) ) {
-				$valid_values[] = $option_value;
-			}
+	private function get_option_value( $current_value, string $option_type, array $values = null, array $disabled_values = null ) {
+		switch ( $option_type ) {
+			case OptionAbstract::OPTION_TYPE_CHECKBOX:
+				$valid_values = [];
+				foreach ( (array) $current_value as $option_value ) {
+					if ( array_key_exists( $option_value, $values ?: [] )
+						&& ! in_array( $option_value, $disabled_values ?: [] ) ) {
+						$valid_values[] = $option_value;
+					}
+				}
+				return $valid_values;
+			case OptionAbstract::OPTION_TYPE_RADIO:
+			case OptionAbstract::OPTION_TYPE_QUALITY:
+				if ( array_key_exists( $current_value, $values ?: [] )
+					&& ! in_array( $current_value, $disabled_values ?: [] ) ) {
+					return $current_value;
+				}
+				return null;
+			case OptionAbstract::OPTION_TYPE_INPUT:
+				return sanitize_text_field( $current_value );
 		}
 
-		return ( in_array( $option_type, [ OptionAbstract::OPTION_TYPE_RADIO, OptionAbstract::OPTION_TYPE_QUALITY ] ) )
-			? ( $valid_values[0] ?? '' )
-			: $valid_values;
+		return null;
 	}
 }

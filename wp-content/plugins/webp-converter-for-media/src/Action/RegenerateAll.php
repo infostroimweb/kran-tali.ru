@@ -2,20 +2,26 @@
 
 namespace WebpConverter\Action;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\Endpoint\PathsEndpoint;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Initializes conversion of all image sizes in all directories.
  */
-class RegenerateAll extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class RegenerateAll implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginData
+	 */
+	private $plugin_data;
+
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_regenerate_all', [ $this, 'regenerate_all_images' ] );
@@ -28,9 +34,6 @@ class RegenerateAll extends PluginAccessAbstract implements PluginAccessInterfac
 	 * @internal
 	 */
 	public function regenerate_all_images() {
-		$paths_endpoint = new PathsEndpoint();
-		$paths_endpoint->set_plugin( $this->get_plugin() );
-
-		do_action( 'webpc_convert_paths', $paths_endpoint->get_paths( true ) );
+		do_action( 'webpc_convert_paths', ( new PathsEndpoint( $this->plugin_data ) )->get_paths( true ) );
 	}
 }

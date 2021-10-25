@@ -12,9 +12,7 @@ class Schedules implements HookableInterface {
 	const CRON_SCHEDULE = 'webpc_cron';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'cron_schedules', [ $this, 'add_cron_interval' ] );

@@ -2,90 +2,90 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Settings\Option\ConversionMethodOption;
-use WebpConverter\Settings\Option\LoaderTypeOption;
-use WebpConverter\Conversion\Method\ImagickMethod;
+use WebpConverter\Conversion\Method\GdMethod;
 use WebpConverter\Loader\HtaccessLoader;
 
 /**
- * Handles data about "Extra features" field in plugin settings.
+ * {@inheritdoc}
  */
-class ExtraFeaturesOption extends OptionAbstract implements OptionInterface {
+class ExtraFeaturesOption extends OptionAbstract {
 
-	const LOADER_TYPE = 'features';
+	const OPTION_NAME                   = 'features';
+	const OPTION_VALUE_ONLY_SMALLER     = 'only_smaller';
+	const OPTION_VALUE_MOD_EXPIRES      = 'mod_expires';
+	const OPTION_VALUE_KEEP_METADATA    = 'keep_metadata';
+	const OPTION_VALUE_CRON_ENABLED     = 'cron_enabled';
+	const OPTION_VALUE_CRON_CONVERSION  = 'cron_conversion';
+	const OPTION_VALUE_REFERER_DISABLED = 'referer_disabled';
+	const OPTION_VALUE_DEBUG_ENABLED    = 'debug_enabled';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
-	public function get_name(): string {
-		return self::LOADER_TYPE;
+	public function get_priority(): int {
+		return 70;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
+	 */
+	public function get_name(): string {
+		return self::OPTION_NAME;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'Extra features', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return __( 'Options allow you to enable new functionalities that will increase capabilities of plugin', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * @return string[]
 	 */
 	public function get_values( array $settings ): array {
 		return [
-			'only_smaller'     => __(
+			self::OPTION_VALUE_ONLY_SMALLER     => __(
 				'Automatic removal of WebP files larger than original',
 				'webp-converter-for-media'
 			),
-			'mod_expires'      => __(
+			self::OPTION_VALUE_MOD_EXPIRES      => __(
 				'Browser Caching for WebP files (saving images in browser cache memory)',
 				'webp-converter-for-media'
 			),
-			'keep_metadata'    => __(
-				'Keep images metadata stored in EXIF or XMP formats (only available for Imagick conversion method)',
+			self::OPTION_VALUE_KEEP_METADATA    => __(
+				'Keep images metadata stored in EXIF or XMP formats (unavailable for GD conversion method)',
 				'webp-converter-for-media'
 			),
-			'cron_enabled'     => __(
+			self::OPTION_VALUE_CRON_ENABLED     => __(
 				'Enable cron to automatically convert images from outside Media Library (images from Media Library are converted immediately after upload)',
 				'webp-converter-for-media'
 			),
-			'cron_conversion'  => __(
+			self::OPTION_VALUE_CRON_CONVERSION  => __(
 				'Enable cron to convert images uploaded to Media Library to speed up process of adding images (deactivate this option if images added to Media Library are not automatically converted)',
 				'webp-converter-for-media'
 			),
-			'referer_disabled' => __(
+			self::OPTION_VALUE_REFERER_DISABLED => __(
 				'Force redirections to WebP for all domains (by default, images in WebP are loaded only in domain of your website - when image is displayed via URL on another domain that original file is loaded)',
 				'webp-converter-for-media'
 			),
-			'debug_enabled'    => __(
+			self::OPTION_VALUE_DEBUG_ENABLED    => __(
 				'Log errors while converting to debug.log file (when debugging in WordPress is active)',
 				'webp-converter-for-media'
 			),
@@ -93,36 +93,44 @@ class ExtraFeaturesOption extends OptionAbstract implements OptionInterface {
 	}
 
 	/**
-	 * Returns unavailable values for field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
+	 * @return string[]
 	 */
 	public function get_disabled_values( array $settings ): array {
 		$values = [];
-		if ( ( $settings[ ConversionMethodOption::LOADER_TYPE ] ?? '' ) !== ImagickMethod::METHOD_NAME ) {
-			$values[] = 'keep_metadata';
+		if ( ( $settings[ ConversionMethodOption::OPTION_NAME ] ?? '' ) === GdMethod::METHOD_NAME ) {
+			$values[] = self::OPTION_VALUE_KEEP_METADATA;
 		}
-		if ( ( $settings[ LoaderTypeOption::LOADER_TYPE ] ?? '' ) !== HtaccessLoader::LOADER_TYPE ) {
-			$values[] = 'referer_disabled';
+		if ( ( $settings[ LoaderTypeOption::OPTION_NAME ] ?? '' ) !== HtaccessLoader::LOADER_TYPE ) {
+			$values[] = self::OPTION_VALUE_REFERER_DISABLED;
 		}
 		return $values;
 	}
 
 	/**
-	 * Returns default value of field.
+	 * {@inheritdoc}
 	 *
-	 * @param mixed[]|null $settings Plugin settings.
-	 *
-	 * @return string[] Default value of field.
+	 * @return string[]
 	 */
 	public function get_default_value( array $settings = null ): array {
 		return [
-			'only_smaller',
-			'mod_expires',
-			'cron_conversion',
-			'debug_enabled',
+			self::OPTION_VALUE_ONLY_SMALLER,
+			self::OPTION_VALUE_MOD_EXPIRES,
+			self::OPTION_VALUE_CRON_CONVERSION,
+			self::OPTION_VALUE_REFERER_DISABLED,
+			self::OPTION_VALUE_DEBUG_ENABLED,
+		];
+	}
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @return string[]
+	 */
+	public function get_value_for_debug( array $settings ): array {
+		return [
+			self::OPTION_VALUE_REFERER_DISABLED,
 		];
 	}
 }

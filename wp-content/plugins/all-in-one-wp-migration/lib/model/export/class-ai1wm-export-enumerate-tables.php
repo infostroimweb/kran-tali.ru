@@ -41,7 +41,7 @@ class Ai1wm_Export_Enumerate_Tables {
 		if ( isset( $params['total_tables_count'] ) ) {
 			$total_tables_count = (int) $params['total_tables_count'];
 		} else {
-			$total_tables_count = 0;
+			$total_tables_count = 1;
 		}
 
 		// Set progress
@@ -75,7 +75,7 @@ class Ai1wm_Export_Enumerate_Tables {
 
 		// Write table line
 		foreach ( $mysql->get_tables() as $table_name ) {
-			if ( ai1wm_write( $tables_list, $table_name . PHP_EOL ) ) {
+			if ( ai1wm_putcsv( $tables_list, array( $table_name ) ) ) {
 				$total_tables_count++;
 			}
 		}

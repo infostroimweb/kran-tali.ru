@@ -2,32 +2,23 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "invalid_image" exception when converting images.
  */
-class ImageInvalidException extends ExceptionAbstract implements ExceptionInterface {
+class ImageInvalidException extends ExceptionAbstract {
 
 	const ERROR_MESSAGE = '"%s" is not a valid image file.';
 	const ERROR_CODE    = 'invalid_image';
 
 	/**
-	 * Returns message of error.
-	 *
-	 * @param string[] $values Params from class constructor.
-	 *
-	 * @return string Error message.
+	 * {@inheritdoc}
 	 */
 	public function get_error_message( array $values ): string {
 		return sprintf( self::ERROR_MESSAGE, $values[0] );
 	}
 
 	/**
-	 * Returns status of error.
-	 *
-	 * @return string Error status.
+	 * {@inheritdoc}
 	 */
 	public function get_error_status(): string {
 		return self::ERROR_CODE;

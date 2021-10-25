@@ -2,13 +2,18 @@
 
 namespace WebpConverter\Conversion\Media;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
+use WebpConverter\PluginData;
+use WebpConverter\Settings\Option\SupportedExtensionsOption;
 
 /**
  * Returns all image paths for attachment.
  */
-class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
+class Attachment {
+
+	/**
+	 * @var PluginData
+	 */
+	private $plugin_data;
 
 	/**
 	 * Current upload directory path and URL.
@@ -24,10 +29,8 @@ class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
 	 */
 	private $image_sizes;
 
-	/**
-	 * Attachment constructor.
-	 */
-	public function __construct() {
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
 		$this->upload_dir  = wp_upload_dir();
 		$this->image_sizes = get_intermediate_image_sizes();
 	}
@@ -40,7 +43,7 @@ class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
 	 * @return string[] Server paths of source images.
 	 */
 	public function get_attachment_paths( int $attachment_id ): array {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		return $this->get_paths_by_attachment( $attachment_id, $settings );
 	}
 
@@ -61,14 +64,12 @@ class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
 
 		$extension = strtolower( pathinfo( $metadata['file'], PATHINFO_EXTENSION ) );
 		if ( ! isset( $metadata['file'] )
-			|| ! in_array( $extension, $settings['extensions'] ) ) {
+			|| ! in_array( $extension, $settings[ SupportedExtensionsOption::OPTION_NAME ] ) ) {
 			return $list;
 		}
 
 		$paths = $this->get_paths_by_sizes( $post_id, $metadata['file'] );
-		$paths = apply_filters( 'webpc_attachment_paths', $paths, $post_id );
-		$paths = apply_filters( 'webpc_files_paths', $paths, false );
-		return $paths;
+		return apply_filters( 'webpc_attachment_paths', $paths, $post_id );
 	}
 
 	/**

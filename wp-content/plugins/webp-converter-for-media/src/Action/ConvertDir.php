@@ -10,9 +10,7 @@ use WebpConverter\HookableInterface;
 class ConvertDir implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_convert_dir', [ $this, 'convert_files_by_directory' ], 10, 2 );
@@ -21,14 +19,14 @@ class ConvertDir implements HookableInterface {
 	/**
 	 * Converts all images in directory to output formats.
 	 *
-	 * @param string $dir_path    Server path of directory.
-	 * @param bool   $skip_exists Skip converted images?
+	 * @param string $dir_path       Server path of directory.
+	 * @param bool   $skip_converted Skip converted images?
 	 *
 	 * @return void
 	 * @internal
 	 */
-	public function convert_files_by_directory( string $dir_path, bool $skip_exists = true ) {
-		$paths = apply_filters( 'webpc_dir_filess', [], $dir_path, $skip_exists );
+	public function convert_files_by_directory( string $dir_path, bool $skip_converted = true ) {
+		$paths = apply_filters( 'webpc_dir_files', [], $dir_path, $skip_converted );
 		do_action( 'webpc_convert_paths', $paths );
 	}
 }

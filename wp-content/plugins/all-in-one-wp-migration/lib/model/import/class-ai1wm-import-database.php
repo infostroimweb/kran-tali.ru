@@ -915,6 +915,14 @@ class Ai1wm_Import_Database {
 			$new_table_prefixes[] = ai1wm_table_prefix() . $table_name;
 		}
 
+		// Set BuddyPress table prefixes
+		if ( ai1wm_validate_plugin_basename( 'buddyboss-platform/bp-loader.php' ) || ai1wm_validate_plugin_basename( 'buddypress/bp-loader.php' ) ) {
+			foreach ( array( 'signups', 'bp_activity', 'bp_activity_meta', 'bp_friends', 'bp_groups', 'bp_groups_groupmeta', 'bp_groups_members', 'bp_invitations', 'bp_messages_messages', 'bp_messages_meta', 'bp_messages_notices', 'bp_messages_recipients', 'bp_notifications', 'bp_notifications_meta', 'bp_optouts', 'bp_user_blogs', 'bp_user_blogs_blogmeta', 'bp_xprofile_data', 'bp_xprofile_fields', 'bp_xprofile_groups', 'bp_xprofile_meta' ) as $table_name ) {
+				$old_table_prefixes[] = ai1wm_servmask_prefix( 'mainsite' ) . $table_name;
+				$new_table_prefixes[] = ai1wm_table_prefix() . $table_name;
+			}
+		}
+
 		// Set base table prefixes
 		foreach ( $blogs as $blog ) {
 			if ( ai1wm_is_mainsite( $blog['Old']['BlogID'] ) === true ) {
@@ -1006,11 +1014,11 @@ class Ai1wm_Import_Database {
 			$params['completed'] = false;
 		}
 
-		// Delete active plugins
-		delete_option( AI1WM_ACTIVE_PLUGINS );
-
 		// Flush WP cache
 		ai1wm_cache_flush();
+
+		// Reset active plugins
+		update_option( AI1WM_ACTIVE_PLUGINS, array() );
 
 		// Activate plugins
 		ai1wm_activate_plugins( ai1wm_active_servmask_plugins() );

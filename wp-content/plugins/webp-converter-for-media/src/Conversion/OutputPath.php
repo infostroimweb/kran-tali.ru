@@ -2,8 +2,7 @@
 
 namespace WebpConverter\Conversion;
 
-use WebpConverter\Conversion\Formats;
-use WebpConverter\Conversion\Format\WebpFormat;
+use WebpConverter\Conversion\Format\FormatFactory;
 
 /**
  * Generates output paths from source paths.
@@ -36,15 +35,15 @@ class OutputPath {
 	 */
 	public static function get_paths( string $path, bool $create_dir = false, array $file_extensions = [] ): array {
 		$new_path = self::get_directory_path( $path );
-		if ( $create_dir && ! self::make_directories( self::check_directories( $new_path ) ) ) {
+		if ( $new_path && $create_dir && ! self::make_directories( self::check_directories( $new_path ) ) ) {
 			return [];
 		}
 
-		$extensions = ( new Formats() )->get_format_extensions();
+		$extensions = ( new FormatFactory() )->get_format_extensions();
 		$paths      = [];
 		foreach ( $extensions as $extension ) {
 			$output_path = sprintf( '%1$s.%2$s', $new_path, $extension );
-			if ( in_array( $extension, $file_extensions, true ) || file_exists( $output_path ) ) {
+			if ( in_array( $extension, $file_extensions, true ) ) {
 				$paths[] = $output_path;
 			}
 		}
@@ -56,13 +55,18 @@ class OutputPath {
 	 *
 	 * @param string $path Server path of source directory.
 	 *
-	 * @return string Server paths for output directory.
+	 * @return string|null Server paths for output directory.
 	 */
-	public static function get_directory_path( string $path ): string {
+	public static function get_directory_path( string $path ) {
 		$webp_root    = apply_filters( 'webpc_dir_path', '', 'webp' );
 		$uploads_root = dirname( $webp_root );
 		$output_path  = str_replace( realpath( $uploads_root ) ?: '', '', realpath( $path ) ?: '' );
 		$output_path  = trim( $output_path, '\/' );
+
+		if ( ! $output_path ) {
+			return null;
+		}
+
 		return sprintf( '%1$s/%2$s', $webp_root, $output_path );
 	}
 

@@ -2,46 +2,39 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Loader\LoaderInterface;
+use WebpConverter\Settings\Option\LoaderTypeOption;
+use WebpConverter\Settings\Option\SupportedDirectoriesOption;
+use WebpConverter\Settings\Option\SupportedExtensionsOption;
 
 /**
  * Supports method of loading images using .php file as Pass Thru.
  */
-class PassthruLoader extends LoaderAbstract implements LoaderInterface {
+class PassthruLoader extends LoaderAbstract {
 
 	const LOADER_TYPE   = 'passthru';
 	const PATH_LOADER   = '/webpc-passthru.php';
 	const LOADER_SOURCE = '/includes/passthru.php';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'get_header', [ $this, 'start_buffer' ] );
 	}
 
 	/**
-	 * Returns status if loader is active.
-	 *
-	 * @return bool Is loader active?
+	 * {@inheritdoc}
 	 */
 	public function is_active_loader(): bool {
-		$settings = $this->get_plugin()->get_settings();
-		return ( isset( $settings['loader_type'] ) && ( $settings['loader_type'] === self::LOADER_TYPE ) );
+		$settings = $this->plugin_data->get_plugin_settings();
+		return ( ( $settings[ LoaderTypeOption::OPTION_NAME ] ?? '' ) === self::LOADER_TYPE );
 	}
 
 	/**
-	 * Initializes actions for activating loader.
-	 *
-	 * @param bool $is_debug Is debugging?
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function activate_loader( bool $is_debug = false ) {
-		$path_source = WEBPC_PATH . self::LOADER_SOURCE;
+		$path_source = $this->plugin_info->get_plugin_directory_path() . self::LOADER_SOURCE;
 		$source_code = ( is_readable( $path_source ) ) ? file_get_contents( $path_source ) ?: '' : '';
 		if ( ! $source_code ) {
 			return;
@@ -74,9 +67,7 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	}
 
 	/**
-	 * Initializes actions for deactivating loader.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function deactivate_loader() {
 		$dir_output = dirname( apply_filters( 'webpc_dir_path', '', 'uploads' ) ) . self::PATH_LOADER;
@@ -92,7 +83,11 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	 * @internal
 	 */
 	public function start_buffer() {
-		ob_start( [ $this, 'update_image_urls' ] );
+		ob_start(
+			function ( $buffer ) {
+				return $this->update_image_urls( $buffer );
+			}
+		);
 	}
 
 	/**
@@ -109,17 +104,19 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 			return $buffer;
 		}
 
-		$settings   = ( ! $is_debug ) ? $this->get_plugin()->get_settings() : $this->get_plugin()->get_settings_debug();
-		$extensions = implode( '|', $settings['extensions'] ?? [] );
+		$settings   = ( ! $is_debug ) ? $this->plugin_data->get_plugin_settings() : $this->plugin_data->get_debug_settings();
+		$extensions = implode( '|', $settings[ SupportedExtensionsOption::OPTION_NAME ] );
 		if ( ! $extensions || ( ! $source_dir = self::get_loader_url() )
 			|| ( ! $allowed_dirs = $this->get_allowed_dirs( $settings ) ) ) {
 			return $buffer;
 		}
 
-		$dir_paths = str_replace( '/', '\\/', implode( '|', $allowed_dirs ) );
+		$dir_paths   = str_replace( '/', '\\/', implode( '|', $allowed_dirs ) );
+		$has_nocache = apply_filters( 'webpc_passthru_url_nocache', true );
+
 		return preg_replace(
 			'/(https?:\/\/(?:[^\s()"\']+)(?:' . $dir_paths . ')(?:[^\s()"\']+)\.(?:' . $extensions . '))/',
-			$source_dir . '?src=$1&nocache=1',
+			$source_dir . '?src=$1' . ( ( $has_nocache ) ? '&nocache=1' : '' ),
 			$buffer
 		) ?: '';
 	}
@@ -145,7 +142,7 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	private function get_allowed_dirs( array $settings ): array {
 		$dirs = [];
-		foreach ( $settings['dirs'] as $dir ) {
+		foreach ( $settings[ SupportedDirectoriesOption::OPTION_NAME ] as $dir ) {
 			$dirs[] = apply_filters( 'webpc_dir_name', '', $dir );
 		}
 		return array_filter( $dirs );

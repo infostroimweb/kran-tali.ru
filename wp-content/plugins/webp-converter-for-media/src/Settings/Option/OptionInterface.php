@@ -2,77 +2,79 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Loader\HtaccessLoader;
-use WebpConverter\Loader\PassthruLoader;
-use WebpConverter\Conversion\Method\GdMethod;
-use WebpConverter\Conversion\Method\ImagickMethod;
-
 /**
  * Interface for class that supports data field in plugin settings.
  */
 interface OptionInterface {
 
 	/**
+	 * Returns order priority (ascending).
+	 *
+	 * @return int
+	 */
+	public function get_priority(): int;
+
+	/**
 	 * Returns name of option.
 	 *
-	 * @return string Option name.
+	 * @return string
 	 */
 	public function get_name(): string;
 
 	/**
 	 * Returns type of field.
 	 *
-	 * @return string Field type.
+	 * @return string
 	 */
 	public function get_type(): string;
 
 	/**
 	 * Returns label of option.
 	 *
-	 * @return string Option label.
+	 * @return string
 	 */
 	public function get_label(): string;
 
 	/**
 	 * Returns additional information of field.
 	 *
-	 * @return string Additional information.
+	 * @return string|null
 	 */
-	public function get_info(): string;
+	public function get_info();
 
 	/**
 	 * Returns available values for field.
 	 *
 	 * @param mixed[] $settings Plugin settings.
 	 *
-	 * @return string[] Values for field.
+	 * @return string[]|null
 	 */
-	public function get_values( array $settings ): array;
-
-	/**
-	 * Returns unavailable values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
-	 */
-	public function get_disabled_values( array $settings ): array;
+	public function get_values( array $settings );
 
 	/**
 	 * Returns default value of field.
 	 *
 	 * @param mixed[]|null $settings Plugin settings.
 	 *
-	 * @return string|string[] Default value of field.
+	 * @return string|string[]
 	 */
 	public function get_default_value( array $settings = null );
+
+	/**
+	 * Returns unavailable values for field.
+	 *
+	 * @param mixed[] $settings Plugin settings.
+	 *
+	 * @return string[]|null
+	 */
+	public function get_disabled_values( array $settings );
 
 	/**
 	 * Returns default value of field when debugging.
 	 *
 	 * @param mixed[] $settings Plugin settings.
 	 *
-	 * @return string|string[] Default value of field for debug.
+	 * @return string|string[]
 	 */
 	public function get_value_for_debug( array $settings );
 }

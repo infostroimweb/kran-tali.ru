@@ -2,29 +2,30 @@
 
 namespace WebpConverter\Plugin;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
 use WebpConverter\Plugin\Deactivation\CronReset;
-use WebpConverter\Plugin\Deactivation\Modal;
 use WebpConverter\Plugin\Deactivation\RefreshLoader;
+use WebpConverter\PluginInfo;
 
 /**
  * Runs actions after plugin deactivation.
  */
-class Deactivation extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class Deactivation implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginInfo
+	 */
+	private $plugin_info;
+
+	public function __construct( PluginInfo $plugin_info ) {
+		$this->plugin_info = $plugin_info;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
-		register_deactivation_hook( WEBPC_FILE, [ $this, 'load_deactivation_actions' ] );
-
-		$modal = new Modal();
-		$modal->set_plugin( $this->get_plugin() );
-		$modal->show_deactivation_modal();
+		register_deactivation_hook( $this->plugin_info->get_plugin_file(), [ $this, 'load_deactivation_actions' ] );
 	}
 
 	/**
