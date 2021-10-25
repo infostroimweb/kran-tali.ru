@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'wpcf7_init', 'wpcf7_recaptcha_register_service', 10, 0 );
+add_action( 'wpcf7_init', 'wpcf7_recaptcha_register_service', 15, 0 );
 
 function wpcf7_recaptcha_register_service() {
 	$integration = WPCF7_Integration::get_instance();
@@ -23,12 +23,18 @@ function wpcf7_recaptcha_enqueue_scripts() {
 		return;
 	}
 
+	$url = 'https://www.google.com/recaptcha/api.js';
+
+	if ( apply_filters( 'wpcf7_use_recaptcha_net', false ) ) {
+		$url = 'https://www.recaptcha.net/recaptcha/api.js';
+	}
+
 	wp_enqueue_script( 'google-recaptcha',
 		add_query_arg(
 			array(
 				'render' => $service->get_sitekey(),
 			),
-			'https://www.google.com/recaptcha/api.js'
+			$url
 		),
 		array(),
 		'3.0',
@@ -343,7 +349,6 @@ class WPCF7_RECAPTCHA extends WPCF7_Service {
 		}
 
 		$response_body = wp_remote_retrieve_body( $response );
-file_put_contents(get_home_path().'/captcha-log/'.date('Y_m_d_h_i_s').'.json', $response_body);
 		$response_body = json_decode( $response_body, true );
 
 		$this->last_score = $score = isset( $response_body['score'] )
@@ -368,7 +373,7 @@ file_put_contents(get_home_path().'/captcha-log/'.date('Y_m_d_h_i_s').'.json', $
 	}
 
 	public function get_threshold() {
-		return apply_filters( 'wpcf7_recaptcha_threshold', 0.69 );
+		return apply_filters( 'wpcf7_recaptcha_threshold', 0.50 );
 	}
 
 	public function get_last_score() {

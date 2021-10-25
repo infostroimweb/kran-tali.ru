@@ -217,7 +217,6 @@ abstract class SettingsBase {
 	 * Is this the main menu page.
 	 *
 	 * @return bool
-	 * @noinspection PhpPureAttributeCanBeAddedInspection
 	 */
 	protected function is_main_menu_page() {
 		// Main menu page should have empty string as parent slug.
@@ -262,7 +261,7 @@ abstract class SettingsBase {
 	 *                            With Multisite active this can also include
 	 *                            'network_active' and 'network_only' items.
 	 *
-	 * @return array|mixed Plugin links
+	 * @return array|string[] Plugin links
 	 */
 	public function add_settings_link( array $actions ) {
 		$new_actions = [
@@ -396,6 +395,15 @@ abstract class SettingsBase {
 	 * Setup tabs section.
 	 */
 	public function setup_tabs_section() {
+		/**
+		 * Protection from the bug in \Automattic\Jetpack\Sync\Sender::get_items_to_send(),
+		 * which sets screen without loading of wp-admin/includes/template.php,
+		 * where add_settings_section() is defined.
+		 */
+		if ( ! function_exists( 'add_settings_section' ) ) {
+			return;
+		}
+
 		$tab = $this->get_active_tab();
 
 		add_settings_section(

@@ -2,8 +2,8 @@
 Contributors: SergeyBiryukov, mihdan, karevn, webvitaly, kaggdesign
 Tags: cyrillic, belorussian, ukrainian, bulgarian, macedonian, georgian, kazakh, latin, l10n, russian, cyr-to-lat, cyr2lat, rustolat, slugs, translations, transliteration
 Requires at least: 5.1
-Tested up to: 5.7
-Stable tag: 5.0.4
+Tested up to: 5.8
+Stable tag: 5.2.4
 Requires PHP: 5.6.20
 
 Convert Non-Latin characters in post, page and term slugs to Latin characters.
@@ -169,6 +169,16 @@ Where
   `-post_type` is list of post types,
   `-post_status` is list of post statuses.
 
+= How can I regenerate thumbnails safely? =
+
+Regeneration of thumbnails with the command `wp media regenerate` can break links in old posts as file names become transliterated.
+
+To avoid it, deactivate cyr2lat plugin during regeneration:
+
+`
+wp media regenerate --skip-plugins=cyr2lat
+`
+
 = Can I contribute? =
 
 Yes you can!
@@ -177,6 +187,32 @@ Yes you can!
 * Join in on our [Telegram Group](https://t.me/cyr2lat)
 
 == Changelog ==
+
+= 5.2.4 (07.09.2021) =
+* Fix issue with not showing WooCommerce variable product attributes.
+* Fix issue with Elementor and WPML, endless loop.
+
+= 5.2.3 (07.09.2021) =
+* Fix issue with WP Foro plugin - transliterate topic slug when created on frontend.
+* Fix bug with Polylang on REST request.
+
+= 5.2.2 (06.09.2021) =
+* Fix issue caused by the bug in Jetpack sync.
+* Optimize code related to WPML locale filtering.
+* Fix endless loading of a taxonomy page with WPML.
+* Fix 'nothing found' on a taxonomy page with WPML.
+
+= 5.2.1 (29.07.2021) =
+* Determine WPML language only once to improve performance.
+* Avoid notice on bad SQL request when taxonomies are empty.
+
+= 5.2.0 (27.07.2021) =
+* Add support for categories and tags in other languages with wpml.
+
+= 5.1.0 (19.07.2021) =
+* Fix issue-95 - 404 on localized terms created before plugin install.
+* Add cache flushing after batch conversion.
+* Tested with WordPress 5.8
 
 = 5.0.4 (17.04.2021) =
 * Fix bug in converter without saved options

@@ -5,7 +5,10 @@ defined('ABSPATH') or exit('Please don&rsquo;t call the plugin directly. Thanks 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Get real preview + content analysis
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function seopress_do_real_preview() {
+function seopress_do_real_preview()
+{
+    $docs = seopress_get_docs_links();
+
     check_ajax_referer('seopress_real_preview_nonce', $_GET['_ajax_nonce'], true);
 
     if (current_user_can('edit_posts') && is_admin()) {
@@ -62,7 +65,7 @@ function seopress_do_real_preview() {
             $data      = [];
 
             //Save Target KWs
-            if ( ! isset($_GET['is_elementor'])) {
+            if (! isset($_GET['is_elementor'])) {
                 if (isset($_GET['seopress_analysis_target_kw'])) {
                     delete_post_meta($seopress_get_the_id, '_seopress_analysis_target_kw');
                     update_post_meta($seopress_get_the_id, '_seopress_analysis_target_kw', sanitize_text_field($_GET['seopress_analysis_target_kw']));
@@ -105,7 +108,16 @@ function seopress_do_real_preview() {
                         $response = wp_remote_get($post_url, $args);
                     }
                 } else {
-                    $response = wp_remote_get(get_preview_post_link((int) $seopress_get_the_id, ['no_admin_bar' => 1]), $args);
+                    $custom_args = ['no_admin_bar' => 1];
+
+                    //Useful for Page / Theme builders
+                    $custom_args = apply_filters('seopress_real_preview_custom_args', $custom_args);
+
+					$link = add_query_arg('no_admin_bar', 1, get_preview_post_link((int) $seopress_get_the_id, $custom_args));
+
+					$link = apply_filters('seopress_get_dom_link', $link, $seopress_get_the_id);
+
+                    $response = wp_remote_get($link, $args);
                 }
             } else { //Term taxonomy
                 $response = wp_remote_get(get_term_link((int) $seopress_get_the_id, $seopress_tax_name), $args);
@@ -114,6 +126,8 @@ function seopress_do_real_preview() {
             //Check for error
             if (is_wp_error($response) || '404' == wp_remote_retrieve_response_code($response)) {
                 $data['title'] = __('To get your Google snippet preview, publish your post!', 'wp-seopress');
+            } elseif (is_wp_error($response) || '401' == wp_remote_retrieve_response_code($response)) {
+                $data['title']                   = sprintf(__('Your site is protected by an authentification. <a href="%s" target="_blank">Fix this</a> <span class="dashicons dashicons-external"></span>', 'wp-seopress'), $docs['google_preview']['authentification']);
             } else {
                 $response = wp_remote_retrieve_body($response);
 
@@ -121,7 +135,7 @@ function seopress_do_real_preview() {
                     if (is_plugin_active('oxygen/functions.php') && function_exists('ct_template_output')) {
                         $data = get_post_meta($seopress_get_the_id, '_seopress_analysis_data', true) ? get_post_meta($seopress_get_the_id, '_seopress_analysis_data', true) : $data = [];
 
-                        if ( ! empty($data)) {
+                        if (! empty($data)) {
                             $data = array_slice($data, 0, 3);
                         }
                     }
@@ -145,13 +159,12 @@ function seopress_do_real_preview() {
 
                     //Themify compatibility
                     if (defined('THEMIFY_DIR')) {
-
                         global $ThemifyBuilder;
-                        $builder_data = $ThemifyBuilder->get_builder_data( $seopress_get_the_id );
-                        $plain_text = ThemifyBuilder_Data_Manager::_get_all_builder_text_content( $builder_data );
-                        $plain_text = do_shortcode( $plain_text );
+                        $builder_data = $ThemifyBuilder->get_builder_data($seopress_get_the_id);
+                        $plain_text   = ThemifyBuilder_Data_Manager::_get_all_builder_text_content($builder_data);
+                        $plain_text   = do_shortcode($plain_text);
 
-                        if ($plain_text !='') {
+                        if ('' != $plain_text) {
                             $seopress_get_the_content = $plain_text;
                         }
                     }
@@ -166,11 +179,10 @@ function seopress_do_real_preview() {
                     //Bricks compatibility
                     if (defined('BRICKS_DB_EDITOR_MODE') && ('bricks' == $theme->template || 'Bricks' == $theme->parent_theme)) {
                         $page_sections = get_post_meta($seopress_get_the_id, '_bricks_page_content', true);
-                        $editor_mode = get_post_meta( $seopress_get_the_id, BRICKS_DB_EDITOR_MODE, true );
+                        $editor_mode   = get_post_meta($seopress_get_the_id, BRICKS_DB_EDITOR_MODE, true);
 
-
-                        if ( is_array( $page_sections ) && $editor_mode !== 'wordpress' ) {
-                            $seopress_get_the_content = Bricks\Frontend::render_sections( $page_sections, $seopress_get_the_id, 'content', true );
+                        if (is_array($page_sections) && 'wordpress' !== $editor_mode) {
+                            $seopress_get_the_content = Bricks\Frontend::render_sections($page_sections, $seopress_get_the_id, 'content', true);
                         }
                     }
 
@@ -213,7 +225,7 @@ function seopress_do_real_preview() {
                     }
 
                     if (isset($_GET['seopress_analysis_target_kw']) && ! empty($_GET['seopress_analysis_target_kw'])) {
-                        if ( ! empty($meta_description)) {
+                        if (! empty($meta_description)) {
                             foreach ($meta_description as $meta_desc) {
                                 foreach ($seopress_analysis_target_kw as $kw) {
                                     if (preg_match_all('#\b(' . $kw . ')\b#iu', $meta_desc->nodeValue, $m)) {
@@ -227,7 +239,7 @@ function seopress_do_real_preview() {
                     //OG:title
                     $og_title = $xpath->query('//meta[@property="og:title"]/@content');
 
-                    if ( ! empty($og_title)) {
+                    if (! empty($og_title)) {
                         $data['og_title']['count'] = count($og_title);
                         foreach ($og_title as $key=>$mogtitle) {
                             $data['og_title']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mogtitle->nodeValue)));
@@ -237,7 +249,7 @@ function seopress_do_real_preview() {
                     //OG:description
                     $og_desc = $xpath->query('//meta[@property="og:description"]/@content');
 
-                    if ( ! empty($og_desc)) {
+                    if (! empty($og_desc)) {
                         $data['og_desc']['count'] = count($og_desc);
                         foreach ($og_desc as $key=>$mog_desc) {
                             $data['og_desc']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mog_desc->nodeValue)));
@@ -247,7 +259,7 @@ function seopress_do_real_preview() {
                     //OG:image
                     $og_img = $xpath->query('//meta[@property="og:image"]/@content');
 
-                    if ( ! empty($og_img)) {
+                    if (! empty($og_img)) {
                         $data['og_img']['count'] = count($og_img);
                         foreach ($og_img as $key=>$mog_img) {
                             $data['og_img']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mog_img->nodeValue)));
@@ -257,7 +269,7 @@ function seopress_do_real_preview() {
                     //OG:url
                     $og_url = $xpath->query('//meta[@property="og:url"]/@content');
 
-                    if ( ! empty($og_url)) {
+                    if (! empty($og_url)) {
                         $data['og_url']['count'] = count($og_url);
                         foreach ($og_url as $key=>$mog_url) {
                             $url                        = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mog_url->nodeValue)));
@@ -270,7 +282,7 @@ function seopress_do_real_preview() {
                     //OG:site_name
                     $og_site_name = $xpath->query('//meta[@property="og:site_name"]/@content');
 
-                    if ( ! empty($og_site_name)) {
+                    if (! empty($og_site_name)) {
                         $data['og_site_name']['count'] = count($og_site_name);
                         foreach ($og_site_name as $key=>$mog_site_name) {
                             $data['og_site_name']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mog_site_name->nodeValue)));
@@ -280,7 +292,7 @@ function seopress_do_real_preview() {
                     //Twitter:title
                     $tw_title = $xpath->query('//meta[@name="twitter:title"]/@content');
 
-                    if ( ! empty($tw_title)) {
+                    if (! empty($tw_title)) {
                         $data['tw_title']['count'] = count($tw_title);
                         foreach ($tw_title as $key=>$mtw_title) {
                             $data['tw_title']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mtw_title->nodeValue)));
@@ -290,7 +302,7 @@ function seopress_do_real_preview() {
                     //Twitter:description
                     $tw_desc = $xpath->query('//meta[@name="twitter:description"]/@content');
 
-                    if ( ! empty($tw_desc)) {
+                    if (! empty($tw_desc)) {
                         $data['tw_desc']['count'] = count($tw_desc);
                         foreach ($tw_desc as $key=>$mtw_desc) {
                             $data['tw_desc']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mtw_desc->nodeValue)));
@@ -300,7 +312,7 @@ function seopress_do_real_preview() {
                     //Twitter:image
                     $tw_img = $xpath->query('//meta[@name="twitter:image"]/@content');
 
-                    if ( ! empty($tw_img)) {
+                    if (! empty($tw_img)) {
                         $data['tw_img']['count'] = count($tw_img);
                         foreach ($tw_img as $key=>$mtw_img) {
                             $data['tw_img']['values'][] = esc_attr(stripslashes_deep(wp_filter_nohtml_kses($mtw_img->nodeValue)));
@@ -310,9 +322,9 @@ function seopress_do_real_preview() {
                     //Twitter:image:src
                     $tw_img = $xpath->query('//meta[@name="twitter:image:src"]/@content');
 
-                    if ( ! empty($tw_img)) {
+                    if (! empty($tw_img)) {
                         $count = null;
-                        if ( ! empty($data['tw_img']['count'])) {
+                        if (! empty($data['tw_img']['count'])) {
                             $count = $data['tw_img']['count'];
                         }
 
@@ -336,7 +348,7 @@ function seopress_do_real_preview() {
 
                     //h1
                     $h1 = $xpath->query('//h1');
-                    if ( ! empty($h1)) {
+                    if (! empty($h1)) {
                         $data['h1']['nomatches']['count'] = count($h1);
                         if (isset($_GET['seopress_analysis_target_kw']) && ! empty($_GET['seopress_analysis_target_kw'])) {
                             foreach ($h1 as $heading1) {
@@ -353,7 +365,7 @@ function seopress_do_real_preview() {
                     if (isset($_GET['seopress_analysis_target_kw']) && ! empty($_GET['seopress_analysis_target_kw'])) {
                         //h2
                         $h2 = $xpath->query('//h2');
-                        if ( ! empty($h2)) {
+                        if (! empty($h2)) {
                             foreach ($h2 as $heading2) {
                                 foreach ($seopress_analysis_target_kw as $kw) {
                                     if (preg_match_all('#\b(' . $kw . ')\b#iu', $heading2->nodeValue, $m)) {
@@ -365,7 +377,7 @@ function seopress_do_real_preview() {
 
                         //h3
                         $h3 = $xpath->query('//h3');
-                        if ( ! empty($h3)) {
+                        if (! empty($h3)) {
                             foreach ($h3 as $heading3) {
                                 foreach ($seopress_analysis_target_kw as $kw) {
                                     if (preg_match_all('#\b(' . $kw . ')\b#iu', $heading3->nodeValue, $m)) {
@@ -376,7 +388,7 @@ function seopress_do_real_preview() {
                         }
 
                         //Keywords density
-                        if ( ! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
+                        if (! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
                             foreach ($seopress_analysis_target_kw as $kw) {
                                 if (preg_match_all('#\b(' . $kw . ')\b#iu', stripslashes_deep(strip_tags(wp_filter_nohtml_kses($seopress_get_the_content))), $m)) {
                                     $data['kws_density']['matches'][$kw][] = $m[0];
@@ -408,13 +420,13 @@ function seopress_do_real_preview() {
                     /*Standard images*/
                     $imgs = $xpath->query('//img');
 
-                    if ( ! empty($imgs) && null != $imgs) {
+                    if (! empty($imgs) && null != $imgs) {
                         //init
                         $data_img = [];
                         foreach ($imgs as $img) {
                             if ($img->hasAttribute('src')) {
                                 //Exclude avatars from analysis
-                                if ( ! preg_match_all('#\b(avatar)\b#iu', $img->getAttribute('class'), $m)) {
+                                if (! preg_match_all('#\b(avatar)\b#iu', $img->getAttribute('class'), $m)) {
                                     if ($img->hasAttribute('width') || $img->hasAttribute('height')) {
                                         if ($img->getAttribute('width') > 1 || $img->getAttribute('height') > 1) {
                                             if ('' === $img->getAttribute('alt') || ! $img->hasAttribute('alt')) {//if alt is empty or doesn't exist
@@ -438,7 +450,7 @@ function seopress_do_real_preview() {
 
                     //Meta robots
                     $meta_robots = $xpath->query('//meta[@name="robots"]/@content');
-                    if ( ! empty($meta_robots)) {
+                    if (! empty($meta_robots)) {
                         foreach ($meta_robots as $key=>$value) {
                             $data['meta_robots'][$key][] = esc_attr($value->nodeValue);
                         }
@@ -446,7 +458,7 @@ function seopress_do_real_preview() {
 
                     //Meta google noimageindex / nositelinkssearchbox
                     $meta_google = $xpath->query('//meta[@name="google"]/@content');
-                    if ( ! empty($meta_google)) {
+                    if (! empty($meta_google)) {
                         foreach ($meta_google as $key=>$mgnoimg) {
                             $data['meta_google'][$key][] = esc_attr($mgnoimg->nodeValue);
                         }
@@ -454,9 +466,9 @@ function seopress_do_real_preview() {
 
                     //nofollow links
                     $nofollow_links = $xpath->query("//a[contains(@rel, 'nofollow')]");
-                    if ( ! empty($nofollow_links)) {
+                    if (! empty($nofollow_links)) {
                         foreach ($nofollow_links as $key=>$link) {
-                            if ( ! preg_match_all('#\b(cancel-comment-reply-link)\b#iu', $link->getAttribute('id'), $m) && ! preg_match_all('#\b(comment-reply-link)\b#iu', $link->getAttribute('class'), $m)) {
+                            if (! preg_match_all('#\b(cancel-comment-reply-link)\b#iu', $link->getAttribute('id'), $m) && ! preg_match_all('#\b(comment-reply-link)\b#iu', $link->getAttribute('class'), $m)) {
                                 $data['nofollow_links'][$key][$link->getAttribute('href')] = esc_attr($link->nodeValue);
                             }
                         }
@@ -466,38 +478,38 @@ function seopress_do_real_preview() {
                 //outbound links
                 $site_url       = wp_parse_url(get_home_url(), PHP_URL_HOST);
                 $outbound_links = $xpath->query("//a[not(contains(@href, '" . $site_url . "'))]");
-                if ( ! empty($outbound_links)) {
+                if (! empty($outbound_links)) {
                     foreach ($outbound_links as $key=>$link) {
-                        if ( ! empty(wp_parse_url($link->getAttribute('href'), PHP_URL_HOST))) {
+                        if (! empty(wp_parse_url($link->getAttribute('href'), PHP_URL_HOST))) {
                             $data['outbound_links'][$key][$link->getAttribute('href')] = esc_attr($link->nodeValue);
                         }
                     }
                 }
 
-                //inbound links
+                //Internal links
                 $permalink = get_permalink((int) $seopress_get_the_id);
                 $args      = [
                     's'         => $permalink,
                     'post_type' => 'any',
                 ];
-                $inbound_links = new WP_Query($args);
+                $internal_links = new WP_Query($args);
 
-                if ($inbound_links->have_posts()) {
-                    $data['inbound_links']['count'] = $inbound_links->found_posts;
+                if ($internal_links->have_posts()) {
+                    $data['internal_links']['count'] = $internal_links->found_posts;
 
-                    while ($inbound_links->have_posts()) {
-                        $inbound_links->the_post();
-                        $data['inbound_links']['links'][get_the_ID()] = [get_the_permalink() => get_the_title()];
+                    while ($internal_links->have_posts()) {
+                        $internal_links->the_post();
+                        $data['internal_links']['links'][get_the_ID()] = [get_the_permalink() => get_the_title()];
                     }
                 }
                 wp_reset_postdata();
 
                 //Words Counter
-                if ( ! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
+                if (! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
                     if ('' != $seopress_get_the_content) {
                         $data['words_counter'] = preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", strip_tags(wp_filter_nohtml_kses($seopress_get_the_content)), $matches);
 
-                        if ( ! empty($matches[0])) {
+                        if (! empty($matches[0])) {
                             $words_counter_unique = count(array_unique($matches[0]));
                         } else {
                             $words_counter_unique = '0';
@@ -508,7 +520,7 @@ function seopress_do_real_preview() {
 
                 //Get schemas
                 $json_ld = $xpath->query('//script[@type="application/ld+json"]');
-                if ( ! empty($json_ld)) {
+                if (! empty($json_ld)) {
                     foreach ($json_ld as $node) {
                         $json = json_decode($node->nodeValue, true);
                         if (isset($json['@type'])) {
@@ -543,7 +555,8 @@ add_action('wp_ajax_seopress_do_real_preview', 'seopress_do_real_preview');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Flush permalinks
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function seopress_flush_permalinks() {
+function seopress_flush_permalinks()
+{
     check_ajax_referer('seopress_flush_permalinks_nonce', $_GET['_ajax_nonce'], true);
     if (current_user_can(seopress_capability('manage_options', 'flush')) && is_admin()) {
         flush_rewrite_rules(false);
@@ -555,7 +568,8 @@ add_action('wp_ajax_seopress_flush_permalinks', 'seopress_flush_permalinks');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Dashboard toggle features
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function seopress_toggle_features() {
+function seopress_toggle_features()
+{
     check_ajax_referer('seopress_toggle_features_nonce', $_POST['_ajax_nonce'], true);
 
     if (current_user_can(seopress_capability('manage_options', 'dashboard')) && is_admin()) {
@@ -570,9 +584,63 @@ function seopress_toggle_features() {
 add_action('wp_ajax_seopress_toggle_features', 'seopress_toggle_features');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//Dashboard News Panel
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function seopress_news()
+{
+    check_ajax_referer('seopress_news_nonce', $_POST['_ajax_nonce'], true);
+    if (current_user_can(seopress_capability('manage_options', 'dashboard')) && is_admin()) {
+        if (isset($_POST['news_max_items'])) {
+            $seopress_dashboard_option_name                    = get_option('seopress_dashboard_option_name');
+            $seopress_dashboard_option_name['news_max_items']  = intval($_POST['news_max_items']);
+            update_option('seopress_dashboard_option_name', $seopress_dashboard_option_name, false);
+        }
+        exit();
+    }
+}
+add_action('wp_ajax_seopress_news', 'seopress_news');
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Dashboard Display Panel
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function seopress_display()
+{
+    check_ajax_referer('seopress_display_nonce', $_POST['_ajax_nonce'], true);
+    if (current_user_can(seopress_capability('manage_options', 'dashboard')) && is_admin()) {
+        //Notifications Center
+        if (isset($_POST['notifications_center'])) {
+            $seopress_advanced_option_name                    = get_option('seopress_advanced_option_name');
+
+            if ('1' == $_POST['notifications_center']) {
+                $seopress_advanced_option_name['seopress_advanced_appearance_notifications'] = esc_attr($_POST['notifications_center']);
+            } else {
+                unset($seopress_advanced_option_name['seopress_advanced_appearance_notifications']);
+            }
+
+            update_option('seopress_advanced_option_name', $seopress_advanced_option_name, false);
+        }
+        //News Panel
+        if (isset($_POST['news_center'])) {
+            $seopress_advanced_option_name                    = get_option('seopress_advanced_option_name');
+
+            if ('1' == $_POST['news_center']) {
+                $seopress_advanced_option_name['seopress_advanced_appearance_news'] = esc_attr($_POST['news_center']);
+            } else {
+                unset($seopress_advanced_option_name['seopress_advanced_appearance_news']);
+            }
+
+            update_option('seopress_advanced_option_name', $seopress_advanced_option_name, false);
+        }
+        exit();
+    }
+}
+add_action('wp_ajax_seopress_display', 'seopress_display');
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 //Dashboard hide notices
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function seopress_hide_notices() {
+function seopress_hide_notices()
+{
     check_ajax_referer('seopress_hide_notices_nonce', $_POST['_ajax_nonce'], true);
 
     if (current_user_can(seopress_capability('manage_options', 'dashboard')) && is_admin()) {
