@@ -1316,7 +1316,7 @@ function qmn_polar_display( $id, $question, $answers ) {
 	$input_text .= "<div class='polar-2-wrap'><input type='text' name='polar-2' class='polar-2' /><span>".$unit[1]."</span></div>";
 	$input_text .= "<div class='right-polar-title'>" . $answers[1][0] . '</div>';
 	$question = $input_text;
-	$question_display .= $question_title . "<span class='mlw_qmn_question question-type-polar-s'>" . do_shortcode( htmlspecialchars_decode( $question, ENT_QUOTES ) ) . '</span>';
+	$question_display .= $question_title . "<div class='mlw_qmn_question question-type-polar-s'>" . do_shortcode( htmlspecialchars_decode( $question, ENT_QUOTES ) ) . '</div>';
 
 	return apply_filters( 'qmn_polar_display_front', $question_display, $id, $question, $answers );
 }

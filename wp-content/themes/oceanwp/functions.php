@@ -1688,7 +1688,7 @@ add_action( 'wp_footer', 'mycustom_wp_footer' );
  
 function mycustom_wp_footer() {
 ?>
-<script type="text/javascript">
+<script>
 document.addEventListener( 'wpcf7mailsent', function( event ) {
 	var message = event.detail.apiResponse.message;
 	closeModal('callback');
@@ -1781,3 +1781,10 @@ function my_extra_fields_update( $post_id ){
 //Запрет автоматического проставления абзацев и переносов строк
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
+
+
+//Удаление атрибута type
+add_filter('script_loader_tag', 'clean_script_tag', 1);
+function clean_script_tag($src) {
+    return str_replace("type='text/javascript'", '', $src);
+}
