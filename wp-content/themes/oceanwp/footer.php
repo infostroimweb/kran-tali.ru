@@ -252,7 +252,10 @@ else d.documentElement.firstChild.appendChild(s);
                 "url": "<?php echo get_permalink($post->ID) ?>",
                 "name": "<?php the_title(); ?>",
                 "description": "<?php echo $prodDescription ?>",
-                "brand": "Росттехмаш",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "РОСТТЕХМАШ"
+                },
                 "sku": "<?php the_ID(); ?>",
                 "offers": 
                 {
