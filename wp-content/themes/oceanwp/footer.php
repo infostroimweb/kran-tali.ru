@@ -50,9 +50,9 @@
                 <button class="button jsModalOpen" data-id-modal="callback" style="margin-bottom: 20px;">Закажите звонок</button>
                 <a href="/sitemap/">Карта сайта</a>
             </div>
-            <div class="footer-col align-items-start align-items-lg-center">
+            <nav class="footer-col align-items-start align-items-lg-center">
                 <div class="d-flex flex-column">
-                    <h2 class="footer-menu-title">Продукция</h2>
+                    <b class="footer-menu-title">Продукция</b>
                     <div class="footer-menu-container">
                         <?php 
                         wp_nav_menu([
@@ -64,10 +64,10 @@
                         ?>
                     </div>
                 </div>
-            </div>
-            <div class="footer-col align-items-start align-items-lg-end">
+            </nav>
+            <nav class="footer-col align-items-start align-items-lg-end">
                 <div class="d-flex flex-column">
-                    <h2 class="footer-menu-title">Услуги</h2>
+                    <b class="footer-menu-title">Услуги</b>
                     <div class="footer-menu-container">
                         <?php 
                         wp_nav_menu([
@@ -80,12 +80,12 @@
                     </div>
                     <a href="https://www.youtube.com/channel/UC7rm8d4UZxtFqivJrJ27aWA" class="soc-link-you" target="_blank" title="youtube" rel="nofollow noopener noreferrer" ><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youtube_logo.png" alt="youtube" width="46" height="46"></a>
                 </div>        
-            </div>
+            </nav>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <div class="footer-copyright-inner d-flex justify-content-between align-items-lg-center flex-column flex-lg-row">
+            <div class="footer-copyright-inner d-flex justify-content-between align-items-lg-center flex-column flex-lg-row" data-nosnippet>
                 <span class="footer-copyright-left">© ООО "Росттехмаш" 2008 — <?php echo date('Y') ?>. Информация на сайте не является публичной офертой.</span>
                 <a href="/policy/" class="footer-copyright-right">Соглашение на обработку персональных данных</a>                
             </div>           

@@ -50,7 +50,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
  				<?php if (is_front_page()): ?>
  					<script src="/wp-content/themes/oceanwp/assets/js/slick.min.js"></script>
- 					<div id="main-page-top">
+ 					<section id="main-page-top">
  						<div class="container">
  							<h1>Грузоподъемное оборудование<br>любой сложности</h1>
  							<p>Срок изготовления кранов от 15 дней</p>
@@ -64,7 +64,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  							<div style="background: url('/wp-content/themes/oceanwp/partials/new-header/img/2.jpg') 50% no-repeat; background-size: cover;"></div>
  							<div style="background: url('/wp-content/themes/oceanwp/partials/new-header/img/3.jpg') 50% no-repeat; background-size: cover;"></div>
  						</div>
- 					</div>
+ 					</section>
  					<script>jQuery('.main-page-top-bg').slick({
  						autoplay: true,
  						autoplaySpeed: 4000,

@@ -10,7 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } ?>
 
-<article class="single-page-article clr">
+<?php if (!is_front_page()): ?>
+	<article class="single-page-article clr">
+<?php endif ?>
+
 
 	<?php
 	// Get page entry
@@ -19,4 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// Display comments
 	comments_template(); ?>
 
-</article>
+<?php if (!is_front_page()): ?>
+	</article>
+<?php endif ?>

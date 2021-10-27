@@ -3,23 +3,25 @@
 	<?php if (!is_mobile()): ?>
 		<div class="new-header-top">
 			<div class="new-header-top-inner container d-flex">
-				<ul class="new-header-contact d-flex">
-					<li>
-						<span><i class="fas fa-map-marker-alt"></i>г. Пенза, ул. Захарова, д. 1, офис 8</span>
-					</li>
-					<li>
-						<a href="mailto:kran-tali@mail.ru"><i class="far fa-envelope-open"></i><span>kran-tali@mail.ru</span></a>
-					</li>
-					<li>
-						<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>
-					</li>
-				</ul>
+				<address class="d-flex align-items-center" style="margin: 0;">
+					<ul class="new-header-contact d-flex">
+						<li>
+							<span><i class="fas fa-map-marker-alt"></i>г. Пенза, ул. Захарова, д. 1, офис 8</span>
+						</li>
+						<li>
+							<a href="mailto:kran-tali@mail.ru"><i class="far fa-envelope-open"></i><span>kran-tali@mail.ru</span></a>
+						</li>
+						<li>
+							<a href="tel:88412305663"><i class="fas fa-phone-alt"></i><span>8 (8412) 30-56-63</span></a>
+						</li>
+					</ul>
+				</address>
 				<button class="button jsModalOpen" data-id-modal="callback">Закажите звонок</button>
 			</div>
 		</div>
 	<?php endif; ?>
 	<div class="new-header-bottom">
-		<div class="new-header-bottom-inner container d-flex justify-content-between align-items-center">
+		<nav class="new-header-bottom-inner container d-flex justify-content-between align-items-center">
 			<?php echo get_custom_logo(); ?>
 			<div class="header-menu-container">
 				<?php wp_nav_menu([
@@ -40,7 +42,7 @@
 				<i class="eicon-menu-bar fas fa-bars" aria-hidden="true"></i>
 				<i class="eicon-close fas fa-times" aria-hidden="true" style="display:none"></i>				
 			</button>	
-		</div>
+		</nav>
 	</div>
 	<?php if (is_mobile()): ?>
 		<div class="new-header-phone-bar">
